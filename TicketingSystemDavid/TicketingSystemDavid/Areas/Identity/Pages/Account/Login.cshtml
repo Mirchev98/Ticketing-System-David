@@ -1,5 +1,8 @@
 ﻿@page
+@using TicketingSystem.Data.Models;
 @model LoginModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Log in";

@@ -1,26 +1,26 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TicketingSystem.Common;
 using TicketingSystem.Data;
+using TicketingSystem.Data.Models;
 
 namespace TicketingSystemDavid
 {
     public class Program
     {
         public static void Main(string[] args)
-        {
+        {   
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             
             builder.Services.AddDbContext<TicketingSystemDbContext>(options =>
-                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("TicketingSystem")));
-            
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+                options.UseSqlServer(connectionString));
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddRoles<IdentityRole<Guid>>()
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<TicketingSystemDbContext>();
             
             builder.Services.Configure<IdentityOptions>(options =>
@@ -31,8 +31,13 @@ namespace TicketingSystemDavid
                 options.Password.RequireUppercase = false;
             });
 
-
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            builder.Services
+                .AddControllersWithViews()
+                .AddMvcOptions(options =>
+                {
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                });
 
             var app = builder.Build();
 

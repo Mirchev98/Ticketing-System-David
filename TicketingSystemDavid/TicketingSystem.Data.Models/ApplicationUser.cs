@@ -9,11 +9,10 @@ using TicketingSystem.Common;
 
 namespace TicketingSystem.Data.Models
 {
-    public class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser
     {
         public ApplicationUser()
         {
-            Id = Guid.NewGuid();
         }
 
         public bool IsAdmin { get; set; }
@@ -28,7 +27,7 @@ namespace TicketingSystem.Data.Models
         public string FirstName { get; set; } = null!;
 
         [Required]
-        [MaxLength(DataConstants.UserLastNameMinLen)]
+        [MaxLength(DataConstants.UserLastNameMaxLen)]
         public string LastName { get; set; } = null!;
     }
 }
