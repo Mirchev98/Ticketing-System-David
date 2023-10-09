@@ -12,8 +12,8 @@ using TicketingSystem.Data;
 namespace TicketingSystem.Data.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    [Migration("20231005193923_Initial")]
-    partial class Initial
+    [Migration("20231007154616_Initital")]
+    partial class Initital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

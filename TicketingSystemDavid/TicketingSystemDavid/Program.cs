@@ -19,10 +19,11 @@ namespace TicketingSystemDavid
             builder.Services.AddDbContext<TicketingSystemDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            //builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<TicketingSystemDbContext>();
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<TicketingSystemDbContext>();
-            
+
             builder.Services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.

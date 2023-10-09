@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,14 @@ namespace TicketingSystem.Data.Models
     {
         public ApplicationUser()
         {
+            IsAuthorized = false;
+            IsAdmin = false;
         }
 
+        [AllowNull]
         public bool IsAdmin { get; set; }
 
+        [AllowNull]
         public bool IsAuthorized { get; set; }
 
         [Required]
