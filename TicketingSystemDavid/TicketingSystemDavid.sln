@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Common", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitcketingSystem.Data", "TitcketingSystem.Data\TitcketingSystem.Data.csproj", "{8F207BE8-E6EC-4D72-B5B7-98EA6BD449EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketingSystem.Web.ViewModels", "TicketingSystem.Web.ViewModels\TicketingSystem.Web.ViewModels.csproj", "{C76B518F-BF2C-428F-BBE6-84DE28F36A16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{8F207BE8-E6EC-4D72-B5B7-98EA6BD449EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F207BE8-E6EC-4D72-B5B7-98EA6BD449EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F207BE8-E6EC-4D72-B5B7-98EA6BD449EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C76B518F-BF2C-428F-BBE6-84DE28F36A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C76B518F-BF2C-428F-BBE6-84DE28F36A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C76B518F-BF2C-428F-BBE6-84DE28F36A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C76B518F-BF2C-428F-BBE6-84DE28F36A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{DDA381A9-E1D1-49A8-8B49-2285D1651BF4} = {D110A368-A151-4D10-B8FB-C8977864DC22}
 		{8EF70D08-19E5-4CCC-B8FD-B263526B5FC6} = {19BE4F85-97F9-40A7-BEB7-FFF423FA363B}
 		{8F207BE8-E6EC-4D72-B5B7-98EA6BD449EE} = {35D7233E-B94E-424E-AA0D-B6EE35C588B1}
+		{C76B518F-BF2C-428F-BBE6-84DE28F36A16} = {36C4A1E2-972B-48C9-BECA-0EB4078E8BBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28B24F18-43A0-4FCC-9B9D-03379E8ECE60}

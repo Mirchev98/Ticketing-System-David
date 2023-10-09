@@ -32,5 +32,9 @@ namespace TicketingSystem.Common
         //Message constants
         public const int MessageContentMinLen = 3;
         public const int MessageContentMaxLen = 20;
+
+        //Password constants
+        public const int PassowordLenMin = 5;
+        public const int PasswordLenMax = 15;
     }
 }

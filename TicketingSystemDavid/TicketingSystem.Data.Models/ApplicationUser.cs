@@ -18,17 +18,14 @@ namespace TicketingSystem.Data.Models
             IsAdmin = false;
         }
 
-        [AllowNull]
         public bool IsAdmin { get; set; }
 
-        [AllowNull]
         public bool IsAuthorized { get; set; }
 
-        [Required]
-        public string AppliedRole { get; set; } = null!;
+        public string? AppliedRole { get; set; }
 
         [Required]
-        [MaxLength(DataConstants.UserFirstNameMinLen)]
+        [MaxLength(DataConstants.UserFirstNameMaxLen)]
         public string FirstName { get; set; } = null!;
 
         [Required]

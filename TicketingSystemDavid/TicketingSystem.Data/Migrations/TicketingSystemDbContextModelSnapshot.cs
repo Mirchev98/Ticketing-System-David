@@ -168,7 +168,6 @@ namespace TicketingSystem.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AppliedRole")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -184,8 +183,8 @@ namespace TicketingSystem.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");

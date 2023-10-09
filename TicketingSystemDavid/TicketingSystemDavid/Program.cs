@@ -40,6 +40,9 @@ namespace TicketingSystemDavid
                     options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
                 });
 
+            builder.Services.AddMemoryCache();
+            builder.Services.AddResponseCaching();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
