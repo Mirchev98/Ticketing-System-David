@@ -7,7 +7,7 @@ using TicketingSystem.Web.ViewModels.User;
 
 namespace TicketingSystemDavid.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;

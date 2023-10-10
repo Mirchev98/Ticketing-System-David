@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using TicketingSystem.Common;
 using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
+using TitcketingSystem.Data;
+using TitcketingSystem.Data.Interfaces;
 
 namespace TicketingSystemDavid
 {
@@ -32,6 +34,8 @@ namespace TicketingSystemDavid
                 options.Password.RequireUppercase = false;
             });
 
+            builder.Services.AddScoped<IProjectServices, ProjectServices>();
+            
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services
                 .AddControllersWithViews()
