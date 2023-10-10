@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TicketingSystem.Data\TicketingSystem.Data.csproj" />
+    <ProjectReference Include="..\TicketingSystem.Web.ViewModels\TicketingSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

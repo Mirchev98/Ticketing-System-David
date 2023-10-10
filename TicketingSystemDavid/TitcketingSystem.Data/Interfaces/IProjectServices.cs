@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketingSystem.Web.ViewModels.Project;
 
 namespace TitcketingSystem.Data.Interfaces
 {
-    internal interface IProjectServices
+    public interface IProjectServices
     {
+        Task Create(CreateProjectViewModel model);
     }
 }
