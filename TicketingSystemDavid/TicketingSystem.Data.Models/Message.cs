@@ -18,7 +18,7 @@ namespace TicketingSystem.Data.Models
         [Key]
         public int Id { get; set; }
 
-        //public ApplicationUser Creator { get; set; } = null!;
+        public string Creator { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
 

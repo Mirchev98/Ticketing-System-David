@@ -17,7 +17,7 @@ namespace TicketingSystem.Web.ViewModels.Project
         public string Name { get; set; } = null!;
 
         [Required]
-        [StringLength(DataConstants.ProjectNameMaxLen, MinimumLength = DataConstants.ProjectDescriptionMinLen)]
+        [StringLength(DataConstants.ProjectDescriptionMaxLen, MinimumLength = DataConstants.ProjectDescriptionMinLen)]
         public string Description { get; set; } = null!;
     }
 }

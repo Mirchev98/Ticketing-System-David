@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,15 @@ namespace TicketingSystem.Data.Models
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        [ForeignKey(nameof(Project))]
+        public int ProjectId { get; set; }
+
+        public Project Project { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
-        //public ApplicationUser Creator { get; set; } = null!;
+        public string Creator { get; set; } = null!;
 
         [Required]
         public string Type { get; set; } = null!;

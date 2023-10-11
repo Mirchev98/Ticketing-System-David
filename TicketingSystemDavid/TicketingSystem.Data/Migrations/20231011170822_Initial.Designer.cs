@@ -12,7 +12,7 @@ using TicketingSystem.Data;
 namespace TicketingSystem.Data.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    [Migration("20231009182314_Initial")]
+    [Migration("20231011170822_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -309,6 +309,10 @@ namespace TicketingSystem.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Creator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -319,7 +323,7 @@ namespace TicketingSystem.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("ProjectId")
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<string>("State")
@@ -397,9 +401,13 @@ namespace TicketingSystem.Data.Migrations
 
             modelBuilder.Entity("TicketingSystem.Data.Models.Ticket", b =>
                 {
-                    b.HasOne("TicketingSystem.Data.Models.Project", null)
+                    b.HasOne("TicketingSystem.Data.Models.Project", "Project")
                         .WithMany("Tickets")
-                        .HasForeignKey("ProjectId");
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("TicketingSystem.Data.Models.Project", b =>
