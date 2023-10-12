@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketingSystem.Common;
+using TicketingSystem.Web.ViewModels.Message.Enums;
 
 namespace TicketingSystem.Web.ViewModels.Message
 {

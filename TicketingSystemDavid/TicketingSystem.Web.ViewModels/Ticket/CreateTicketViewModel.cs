@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TicketingSystem.Common;
 using TicketingSystem.Data.Models;
+using TicketingSystem.Web.ViewModels.Ticket.Enums;
 
 namespace TicketingSystem.Web.ViewModels.Ticket
 {

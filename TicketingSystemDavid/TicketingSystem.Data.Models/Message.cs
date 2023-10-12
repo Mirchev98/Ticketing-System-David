@@ -34,5 +34,7 @@ namespace TicketingSystem.Data.Models
         public int TicketId { get; set; }
 
         public Ticket Ticket { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

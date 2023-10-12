@@ -46,5 +46,7 @@ namespace TicketingSystem.Data.Models
         public string Description { get; set; } = null!;
 
         public ICollection<Message> Messages { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

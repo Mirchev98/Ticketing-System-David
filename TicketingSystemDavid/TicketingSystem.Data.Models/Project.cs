@@ -27,5 +27,7 @@ namespace TicketingSystem.Data.Models
         public string Description { get; set; } = null!;
 
         public ICollection<Ticket> Tickets { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

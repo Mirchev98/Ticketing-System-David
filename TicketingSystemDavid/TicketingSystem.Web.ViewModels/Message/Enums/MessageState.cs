@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicketingSystem.Web.ViewModels.Message
+namespace TicketingSystem.Web.ViewModels.Message.Enums
 {
     public enum MessageState
     {

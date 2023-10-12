@@ -29,5 +29,17 @@ namespace TicketingSystemDavid.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> All([FromQuery] ProjectAllQueryModel query)
+        {
+            AllBooksFilteredAndOrdered model = await bookService.AllAsync(query);
+
+            query.Books = model.Books;
+            query.TotalBooks = model.TotalBooksCount;
+            query.Categories = await categoryService.AllCategoryNames();
+
+            return View(query);
+        }
     }
 }

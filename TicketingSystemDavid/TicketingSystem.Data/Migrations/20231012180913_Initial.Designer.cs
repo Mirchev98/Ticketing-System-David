@@ -12,7 +12,7 @@ using TicketingSystem.Data;
 namespace TicketingSystem.Data.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    [Migration("20231011170822_Initial")]
+    [Migration("20231012180913_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -261,11 +261,18 @@ namespace TicketingSystem.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Creator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TicketId")
+                    b.Property<int>("TicketId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -287,6 +294,9 @@ namespace TicketingSystem.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -322,6 +332,9 @@ namespace TicketingSystem.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
@@ -394,9 +407,13 @@ namespace TicketingSystem.Data.Migrations
 
             modelBuilder.Entity("TicketingSystem.Data.Models.Message", b =>
                 {
-                    b.HasOne("TicketingSystem.Data.Models.Ticket", null)
+                    b.HasOne("TicketingSystem.Data.Models.Ticket", "Ticket")
                         .WithMany("Messages")
-                        .HasForeignKey("TicketId");
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("TicketingSystem.Data.Models.Ticket", b =>
