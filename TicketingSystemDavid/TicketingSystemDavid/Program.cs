@@ -6,6 +6,7 @@ using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
 using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
+using TitcketingSystem.Data.Models;
 
 namespace TicketingSystemDavid
 {
@@ -36,6 +37,7 @@ namespace TicketingSystemDavid
 
             builder.Services.AddScoped<IProjectServices, ProjectServices>();
             builder.Services.AddScoped<ITicketServices, TicketServices>();
+            builder.Services.AddScoped<IMessageServices, MessageServices>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services

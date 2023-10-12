@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,5 +29,10 @@ namespace TicketingSystem.Data.Models
         [Required]
         [MaxLength(DataConstants.MessageContentMaxLen)]
         public string Content { get; set; } = null!;
+
+        [ForeignKey(nameof(Ticket))]
+        public int TicketId { get; set; }
+
+        public Ticket Ticket { get; set; }
     }
 }
