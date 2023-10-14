@@ -33,11 +33,10 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> All([FromQuery] ProjectAllQueryModel query)
         {
-            AllBooksFilteredAndOrdered model = await bookService.AllAsync(query);
+            AllProjectsFilteredAndOrdered model = await _projectServices.AllAsync(query);
 
-            query.Books = model.Books;
-            query.TotalBooks = model.TotalBooksCount;
-            query.Categories = await categoryService.AllCategoryNames();
+            query.Projects = model.Projects;
+            query.TotalProjects = model.TotalProjectsCount;
 
             return View(query);
         }

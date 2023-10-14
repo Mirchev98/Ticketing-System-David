@@ -8,7 +8,7 @@ using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.Message;
 using TitcketingSystem.Data.Interfaces;
 
-namespace TitcketingSystem.Data.Models
+namespace TitcketingSystem.Data
 {
     public class MessageServices : IMessageServices
     {

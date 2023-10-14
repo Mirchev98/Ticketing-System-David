@@ -6,7 +6,6 @@ using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
 using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
-using TitcketingSystem.Data.Models;
 
 namespace TicketingSystemDavid
 {

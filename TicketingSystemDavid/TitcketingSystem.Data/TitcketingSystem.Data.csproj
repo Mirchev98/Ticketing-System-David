@@ -11,4 +11,8 @@
     <ProjectReference Include="..\TicketingSystem.Web.ViewModels\TicketingSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

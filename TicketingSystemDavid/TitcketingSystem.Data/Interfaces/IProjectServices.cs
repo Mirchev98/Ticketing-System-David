@@ -10,5 +10,7 @@ namespace TitcketingSystem.Data.Interfaces
     public interface IProjectServices
     {
         Task Create(CreateProjectViewModel model);
+
+        Task<AllProjectsFilteredAndOrdered> AllAsync(ProjectAllQueryModel queryModel);
     }
 }

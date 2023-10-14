@@ -8,9 +8,6 @@ namespace TicketingSystem.Web.ViewModels.Project.Enums
 {
     public enum ProjectSortEnum
     {
-        DateAsc,
-        DateDesc,
-        State,
         NameAsc,
         NameDesc
     }
