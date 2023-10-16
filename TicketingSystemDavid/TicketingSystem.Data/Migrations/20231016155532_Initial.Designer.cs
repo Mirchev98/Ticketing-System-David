@@ -12,7 +12,7 @@ using TicketingSystem.Data;
 namespace TicketingSystem.Data.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    [Migration("20231012180913_Initial")]
+    [Migration("20231016155532_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -243,6 +243,68 @@ namespace TicketingSystem.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "eabfa39f-5aaa-4990-9341-bf8addd53a4a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "973359d4-75ef-4e60-bb1c-42ca765f2948",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            IsAdmin = false,
+                            IsAuthorized = false,
+                            LastName = "Adminov",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@admin.com",
+                            NormalizedUserName = "admin@admin.com",
+                            PasswordHash = "AFloBPIRamnTE52VAMW1s3NoTWyHhzGd2eZVfrs+hlMdP320L+Prwxh0/+ecmCURrw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8fad8615-6a1d-431a-9a83-8fe7edea8dc6",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        },
+                        new
+                        {
+                            Id = "7b8cf2f9-2883-4e8c-bc35-10d378c44871",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6805402e-12b0-4cbe-a551-2bc62ebdce54",
+                            Email = "support@support.com",
+                            EmailConfirmed = false,
+                            FirstName = "Support",
+                            IsAdmin = false,
+                            IsAuthorized = false,
+                            LastName = "Supportov",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "support@support.com",
+                            NormalizedUserName = "support@support.com",
+                            PasswordHash = "ANfRXfZh91nAl8HZbx9twFOCZtgoJFErJAFBJveA2bWe4H90wPnlyi9MTSi6UH/Fkg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e4499afc-773f-4f54-b841-0ef0d9aae34d",
+                            TwoFactorEnabled = false,
+                            UserName = "support@support.com"
+                        },
+                        new
+                        {
+                            Id = "9b4ed4d9-e256-4f93-b246-e92d7e43a985",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e7410865-7a1b-4ceb-8364-a6b2e01634b7",
+                            Email = "user@user.com",
+                            EmailConfirmed = false,
+                            FirstName = "User",
+                            IsAdmin = false,
+                            IsAuthorized = false,
+                            LastName = "Userov",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "user@user.com",
+                            NormalizedUserName = "user@user.com",
+                            PasswordHash = "AKgny4GyfORTS+pUl1MubmUeUfDRPKaJiBhjXsXhxRUcwk1xCqAqDfyGQuMZTbVF3w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "fd3448cf-ef47-4650-ae71-00a14272dffe",
+                            TwoFactorEnabled = false,
+                            UserName = "user@user.com"
+                        });
                 });
 
             modelBuilder.Entity("TicketingSystem.Data.Models.Message", b =>
@@ -280,6 +342,28 @@ namespace TicketingSystem.Data.Migrations
                     b.HasIndex("TicketId");
 
                     b.ToTable("Messages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "Testing message",
+                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9152),
+                            Creator = "support@support.com",
+                            IsDeleted = false,
+                            State = "Posted",
+                            TicketId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "Second Message",
+                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9155),
+                            Creator = "user@user.com",
+                            IsDeleted = false,
+                            State = "Posted",
+                            TicketId = 1
+                        });
                 });
 
             modelBuilder.Entity("TicketingSystem.Data.Models.Project", b =>
@@ -292,8 +376,8 @@ namespace TicketingSystem.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -306,6 +390,29 @@ namespace TicketingSystem.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Just for testing",
+                            IsDeleted = false,
+                            Name = "Test Project One"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "It's a fun project to work on",
+                            IsDeleted = false,
+                            Name = "Super Cool Project"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu pretium nunc. Nulla porttitor et mauris tristique commodo. Ut ac lectus eget purus commodo dapibus vel vel arcu. Sed mattis, tortor a dignissim scelerisque, ex justo hendrerit tortor, vel tincidunt lectus erat eget magna.",
+                            IsDeleted = false,
+                            Name = "Lorem Ispum"
+                        });
                 });
 
             modelBuilder.Entity("TicketingSystem.Data.Models.Ticket", b =>
@@ -325,8 +432,8 @@ namespace TicketingSystem.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Heading")
                         .IsRequired()
@@ -352,6 +459,32 @@ namespace TicketingSystem.Data.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Tickets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9131),
+                            Creator = "user@user.com",
+                            Description = "Very bad bug found",
+                            Heading = "Bug Found",
+                            IsDeleted = false,
+                            ProjectId = 1,
+                            State = "New",
+                            Type = "Bug Report"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9136),
+                            Creator = "user@user.com",
+                            Description = "A very nice feature to add",
+                            Heading = "Feature Idea",
+                            IsDeleted = false,
+                            ProjectId = 1,
+                            State = "Work In Progress",
+                            Type = "Feature Request"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

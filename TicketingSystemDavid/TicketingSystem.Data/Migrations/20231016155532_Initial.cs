@@ -60,7 +60,7 @@ namespace TicketingSystem.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -186,7 +186,7 @@ namespace TicketingSystem.Data.Migrations
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Heading = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -223,6 +223,46 @@ namespace TicketingSystem.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "AppliedRole", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsAdmin", "IsAuthorized", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "7b8cf2f9-2883-4e8c-bc35-10d378c44871", 0, null, "6805402e-12b0-4cbe-a551-2bc62ebdce54", "support@support.com", false, "Support", false, false, "Supportov", false, null, "support@support.com", "support@support.com", "ANfRXfZh91nAl8HZbx9twFOCZtgoJFErJAFBJveA2bWe4H90wPnlyi9MTSi6UH/Fkg==", null, false, "e4499afc-773f-4f54-b841-0ef0d9aae34d", false, "support@support.com" },
+                    { "9b4ed4d9-e256-4f93-b246-e92d7e43a985", 0, null, "e7410865-7a1b-4ceb-8364-a6b2e01634b7", "user@user.com", false, "User", false, false, "Userov", false, null, "user@user.com", "user@user.com", "AKgny4GyfORTS+pUl1MubmUeUfDRPKaJiBhjXsXhxRUcwk1xCqAqDfyGQuMZTbVF3w==", null, false, "fd3448cf-ef47-4650-ae71-00a14272dffe", false, "user@user.com" },
+                    { "eabfa39f-5aaa-4990-9341-bf8addd53a4a", 0, null, "973359d4-75ef-4e60-bb1c-42ca765f2948", "admin@admin.com", false, "Admin", false, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "AFloBPIRamnTE52VAMW1s3NoTWyHhzGd2eZVfrs+hlMdP320L+Prwxh0/+ecmCURrw==", null, false, "8fad8615-6a1d-431a-9a83-8fe7edea8dc6", false, "admin@admin.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "Id", "Description", "IsDeleted", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Just for testing", false, "Test Project One" },
+                    { 2, "It's a fun project to work on", false, "Super Cool Project" },
+                    { 3, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu pretium nunc. Nulla porttitor et mauris tristique commodo. Ut ac lectus eget purus commodo dapibus vel vel arcu. Sed mattis, tortor a dignissim scelerisque, ex justo hendrerit tortor, vel tincidunt lectus erat eget magna.", false, "Lorem Ispum" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tickets",
+                columns: new[] { "Id", "CreatedOn", "Creator", "Description", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
+                values: new object[] { 1, new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9131), "user@user.com", "Very bad bug found", "Bug Found", false, 1, "New", "Bug Report" });
+
+            migrationBuilder.InsertData(
+                table: "Tickets",
+                columns: new[] { "Id", "CreatedOn", "Creator", "Description", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
+                values: new object[] { 2, new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9136), "user@user.com", "A very nice feature to add", "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
+
+            migrationBuilder.InsertData(
+                table: "Messages",
+                columns: new[] { "Id", "Content", "CreatedOn", "Creator", "IsDeleted", "State", "TicketId" },
+                values: new object[] { 1, "Testing message", new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9152), "support@support.com", false, "Posted", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Messages",
+                columns: new[] { "Id", "Content", "CreatedOn", "Creator", "IsDeleted", "State", "TicketId" },
+                values: new object[] { 2, "Second Message", new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9155), "user@user.com", false, "Posted", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

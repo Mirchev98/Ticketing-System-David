@@ -23,7 +23,7 @@ namespace TicketingSystem.Data.Models
         public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength (DataConstants.ProjectNameMaxLen)]
+        [MaxLength (DataConstants.ProjectDescriptionMaxLen)]
         public string Description { get; set; } = null!;
 
         public ICollection<Ticket> Tickets { get; set; }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketingSystem.Data.Configuration;
 using TicketingSystem.Data.Models;
     
 namespace TicketingSystem.Data
@@ -25,6 +26,8 @@ namespace TicketingSystem.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            EntitySeedDataConfiguration.Seed(builder);
+
             base.OnModelCreating(builder);
         }
     }

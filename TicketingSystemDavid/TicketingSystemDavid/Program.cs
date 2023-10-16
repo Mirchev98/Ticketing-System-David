@@ -6,6 +6,7 @@ using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
 using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
+using TicketingSystem.Web.Infrastructure;
 
 namespace TicketingSystemDavid
 {
@@ -72,10 +73,10 @@ namespace TicketingSystemDavid
             app.UseAuthentication();
             app.UseAuthorization();
 
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.SeedAdmin(DataConstants.AdminEmail);
-            //}
+            if (app.Environment.IsDevelopment())
+            {
+                app.SeedAdminAndSupport(DataConstants.AdminEmail, DataConstants.SupportEmail);
+            }
 
             app.UseEndpoints(config =>
             {
