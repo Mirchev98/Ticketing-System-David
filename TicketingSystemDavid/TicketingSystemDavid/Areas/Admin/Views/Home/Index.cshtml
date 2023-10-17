@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mt-4 p-5 bg-light text-center">
+    <h2 class="display-4">Hello, Admin!</h2>
+    <hr class="my-4">
+    <a asp-area="" asp-controller="Project" asp-action="Create"
+       class="btn btn-primary btn-lg">Create Project</a>
+    <a asp-area="" asp-controller="Project" asp-action="All"
+       class="btn btn-primary btn-lg">All Projects</a>
+    <span>  |   </span>
+@*     <a asp-area="" asp-controller="Author" asp-action="All"
+       class="btn btn-primary btn-lg">All Authors</a>
+    <span>  |   </span>
+    <a asp-area="" asp-controller="Author" asp-action="Add"
+       class="btn btn-primary btn-lg">Add Author</a>
+    <a asp-area="" asp-controller="Category" asp-action="All"
+       class="btn btn-primary btn-lg">All Categories</a>
+    <a asp-area="" asp-controller="Category" asp-action="Add"
+       class="btn btn-primary btn-lg">Add Category</a> *@
+       <a asp-area="Admin" asp-controller="User" asp-action="All"
+       class="btn btn-primary btn-lg">All Users</a>
+</div>

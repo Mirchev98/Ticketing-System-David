@@ -29,4 +29,8 @@
     <ProjectReference Include="..\TitcketingSystem.Data\TitcketingSystem.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\ViewModels\" />
+  </ItemGroup>
+
 </Project>

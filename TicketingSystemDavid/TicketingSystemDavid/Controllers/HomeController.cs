@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using TicketingSystem.Common;
 using TicketingSystemDavid.Models;
 
 namespace TicketingSystemDavid.Controllers
@@ -15,6 +16,11 @@ namespace TicketingSystemDavid.Controllers
 
         public IActionResult Index()
         {
+            if (this.User.IsInRole(DataConstants.AdminRoleName))
+            {
+                return this.RedirectToAction("Index", "Home", new { Area = DataConstants.AdminRoleName });
+            }
+
             return View();
         }
 

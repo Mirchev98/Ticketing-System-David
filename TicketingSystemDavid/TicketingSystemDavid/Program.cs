@@ -88,7 +88,7 @@ namespace TicketingSystemDavid
                 config.MapControllerRoute(
                     name: "ProtectingUrlRoute",
                     pattern: "/{controller}/{action}/{id}/{information}",
-                    defaults: new { Controller = "Book", Action = "All" });
+                    defaults: new { Controller = "Project", Action = "All" });
 
                 config.MapDefaultControllerRoute();
 

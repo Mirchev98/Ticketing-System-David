@@ -47,7 +47,7 @@ namespace TicketingSystem.Web.Infrastructure
                     ApplicationUser supportUser = await userManager.FindByEmailAsync(supportEmail);
 
                     await userManager.AddToRoleAsync(adminUser, DataConstants.AdminRoleName);
-                    await userManager.AddToRoleAsync(supportUser, DataConstants.AdminRoleName);
+                    await userManager.AddToRoleAsync(supportUser, DataConstants.SupportRoleName);
                 }
                 )
                 .GetAwaiter()
