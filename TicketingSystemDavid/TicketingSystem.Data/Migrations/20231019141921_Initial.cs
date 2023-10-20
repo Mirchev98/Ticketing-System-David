@@ -29,6 +29,7 @@ namespace TicketingSystem.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    IsSupport = table.Column<bool>(type: "bit", nullable: false),
                     IsAuthorized = table.Column<bool>(type: "bit", nullable: false),
                     AppliedRole = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
@@ -226,12 +227,12 @@ namespace TicketingSystem.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "AppliedRole", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsAdmin", "IsAuthorized", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "AppliedRole", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsAdmin", "IsAuthorized", "IsSupport", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "7b8cf2f9-2883-4e8c-bc35-10d378c44871", 0, null, "6805402e-12b0-4cbe-a551-2bc62ebdce54", "support@support.com", false, "Support", false, false, "Supportov", false, null, "support@support.com", "support@support.com", "ANfRXfZh91nAl8HZbx9twFOCZtgoJFErJAFBJveA2bWe4H90wPnlyi9MTSi6UH/Fkg==", null, false, "e4499afc-773f-4f54-b841-0ef0d9aae34d", false, "support@support.com" },
-                    { "9b4ed4d9-e256-4f93-b246-e92d7e43a985", 0, null, "e7410865-7a1b-4ceb-8364-a6b2e01634b7", "user@user.com", false, "User", false, false, "Userov", false, null, "user@user.com", "user@user.com", "AKgny4GyfORTS+pUl1MubmUeUfDRPKaJiBhjXsXhxRUcwk1xCqAqDfyGQuMZTbVF3w==", null, false, "fd3448cf-ef47-4650-ae71-00a14272dffe", false, "user@user.com" },
-                    { "eabfa39f-5aaa-4990-9341-bf8addd53a4a", 0, null, "973359d4-75ef-4e60-bb1c-42ca765f2948", "admin@admin.com", false, "Admin", false, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "AFloBPIRamnTE52VAMW1s3NoTWyHhzGd2eZVfrs+hlMdP320L+Prwxh0/+ecmCURrw==", null, false, "8fad8615-6a1d-431a-9a83-8fe7edea8dc6", false, "admin@admin.com" }
+                    { "8cbec86b-7788-410b-91be-d9a3381e6c91", 0, null, "ed7e052e-4a36-4b69-bf57-479d0bc9ff93", "support@support.com", false, "Support", false, true, false, "Supportov", false, null, "support@support.com", "support@support.com", "AGu1tAtJ7NchFwR4q3DGR3eT9JRZMmYK4cmDhDqgE9tiRMls306ozZ0obNoY9w4Yww==", null, false, "e40aedb6-4dad-4c6b-b10d-7d13d3e4e898", false, "support@support.com" },
+                    { "928aa0ec-f085-4478-99ee-0108d8fd2879", 0, null, "c2695f52-c53e-40b8-bd7b-bdfaefc3290d", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "ABRDyKggSjPJOcb0yJwuep7EZtvz7D5WE6kGTYgTG15iaTDYjYYIi6yCwGqqZpKF7A==", null, false, "64ec3032-db6c-4501-9245-c3b6e85ff9c1", false, "admin@admin.com" },
+                    { "a3f858d1-47f0-47b2-b25b-9086b945b295", 0, null, "601b2d83-6b39-4af2-9416-3923ca267c4d", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "ADUcUPEZUkJngh86RRJqezjV3EXJhRyAGuMbVYNqBRZM4gD+KB22Tc4nfBBluNCpmQ==", null, false, "45d4b2e4-07f3-4221-8680-0f67261f001b", false, "user@user.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -247,22 +248,22 @@ namespace TicketingSystem.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Tickets",
                 columns: new[] { "Id", "CreatedOn", "Creator", "Description", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 1, new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9131), "user@user.com", "Very bad bug found", "Bug Found", false, 1, "New", "Bug Report" });
+                values: new object[] { 1, new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6535), "user@user.com", "Very bad bug found", "Bug Found", false, 1, "New", "Bug Report" });
 
             migrationBuilder.InsertData(
                 table: "Tickets",
                 columns: new[] { "Id", "CreatedOn", "Creator", "Description", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 2, new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9136), "user@user.com", "A very nice feature to add", "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
+                values: new object[] { 2, new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6545), "user@user.com", "A very nice feature to add", "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
 
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "Id", "Content", "CreatedOn", "Creator", "IsDeleted", "State", "TicketId" },
-                values: new object[] { 1, "Testing message", new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9152), "support@support.com", false, "Posted", 1 });
+                values: new object[] { 1, "Testing message", new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6578), "support@support.com", false, "Posted", 1 });
 
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "Id", "Content", "CreatedOn", "Creator", "IsDeleted", "State", "TicketId" },
-                values: new object[] { 2, "Second Message", new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9155), "user@user.com", false, "Posted", 1 });
+                values: new object[] { 2, "Second Message", new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6581), "user@user.com", false, "Posted", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

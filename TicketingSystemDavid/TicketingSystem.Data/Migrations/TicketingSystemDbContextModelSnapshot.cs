@@ -192,6 +192,9 @@ namespace TicketingSystem.Data.Migrations
                     b.Property<bool>("IsAuthorized")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSupport")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(15)
@@ -245,61 +248,64 @@ namespace TicketingSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eabfa39f-5aaa-4990-9341-bf8addd53a4a",
+                            Id = "928aa0ec-f085-4478-99ee-0108d8fd2879",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "973359d4-75ef-4e60-bb1c-42ca765f2948",
+                            ConcurrencyStamp = "c2695f52-c53e-40b8-bd7b-bdfaefc3290d",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
-                            IsAdmin = false,
-                            IsAuthorized = false,
+                            IsAdmin = true,
+                            IsAuthorized = true,
+                            IsSupport = false,
                             LastName = "Adminov",
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin@admin.com",
-                            PasswordHash = "AFloBPIRamnTE52VAMW1s3NoTWyHhzGd2eZVfrs+hlMdP320L+Prwxh0/+ecmCURrw==",
+                            PasswordHash = "ABRDyKggSjPJOcb0yJwuep7EZtvz7D5WE6kGTYgTG15iaTDYjYYIi6yCwGqqZpKF7A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8fad8615-6a1d-431a-9a83-8fe7edea8dc6",
+                            SecurityStamp = "64ec3032-db6c-4501-9245-c3b6e85ff9c1",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "7b8cf2f9-2883-4e8c-bc35-10d378c44871",
+                            Id = "8cbec86b-7788-410b-91be-d9a3381e6c91",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6805402e-12b0-4cbe-a551-2bc62ebdce54",
+                            ConcurrencyStamp = "ed7e052e-4a36-4b69-bf57-479d0bc9ff93",
                             Email = "support@support.com",
                             EmailConfirmed = false,
                             FirstName = "Support",
                             IsAdmin = false,
-                            IsAuthorized = false,
+                            IsAuthorized = true,
+                            IsSupport = false,
                             LastName = "Supportov",
                             LockoutEnabled = false,
                             NormalizedEmail = "support@support.com",
                             NormalizedUserName = "support@support.com",
-                            PasswordHash = "ANfRXfZh91nAl8HZbx9twFOCZtgoJFErJAFBJveA2bWe4H90wPnlyi9MTSi6UH/Fkg==",
+                            PasswordHash = "AGu1tAtJ7NchFwR4q3DGR3eT9JRZMmYK4cmDhDqgE9tiRMls306ozZ0obNoY9w4Yww==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e4499afc-773f-4f54-b841-0ef0d9aae34d",
+                            SecurityStamp = "e40aedb6-4dad-4c6b-b10d-7d13d3e4e898",
                             TwoFactorEnabled = false,
                             UserName = "support@support.com"
                         },
                         new
                         {
-                            Id = "9b4ed4d9-e256-4f93-b246-e92d7e43a985",
+                            Id = "a3f858d1-47f0-47b2-b25b-9086b945b295",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7410865-7a1b-4ceb-8364-a6b2e01634b7",
+                            ConcurrencyStamp = "601b2d83-6b39-4af2-9416-3923ca267c4d",
                             Email = "user@user.com",
                             EmailConfirmed = false,
                             FirstName = "User",
                             IsAdmin = false,
-                            IsAuthorized = false,
+                            IsAuthorized = true,
+                            IsSupport = false,
                             LastName = "Userov",
                             LockoutEnabled = false,
                             NormalizedEmail = "user@user.com",
                             NormalizedUserName = "user@user.com",
-                            PasswordHash = "AKgny4GyfORTS+pUl1MubmUeUfDRPKaJiBhjXsXhxRUcwk1xCqAqDfyGQuMZTbVF3w==",
+                            PasswordHash = "ADUcUPEZUkJngh86RRJqezjV3EXJhRyAGuMbVYNqBRZM4gD+KB22Tc4nfBBluNCpmQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fd3448cf-ef47-4650-ae71-00a14272dffe",
+                            SecurityStamp = "45d4b2e4-07f3-4221-8680-0f67261f001b",
                             TwoFactorEnabled = false,
                             UserName = "user@user.com"
                         });
@@ -346,7 +352,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = 1,
                             Content = "Testing message",
-                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9152),
+                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6578),
                             Creator = "support@support.com",
                             IsDeleted = false,
                             State = "Posted",
@@ -356,7 +362,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = 2,
                             Content = "Second Message",
-                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9155),
+                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6581),
                             Creator = "user@user.com",
                             IsDeleted = false,
                             State = "Posted",
@@ -462,7 +468,7 @@ namespace TicketingSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9131),
+                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6535),
                             Creator = "user@user.com",
                             Description = "Very bad bug found",
                             Heading = "Bug Found",
@@ -474,7 +480,7 @@ namespace TicketingSystem.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2023, 10, 16, 15, 55, 32, 381, DateTimeKind.Utc).AddTicks(9136),
+                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6545),
                             Creator = "user@user.com",
                             Description = "A very nice feature to add",
                             Heading = "Feature Idea",

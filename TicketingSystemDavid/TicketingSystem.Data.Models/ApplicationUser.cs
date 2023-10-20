@@ -16,9 +16,12 @@ namespace TicketingSystem.Data.Models
         {
             IsAuthorized = false;
             IsAdmin = false;
+            IsSupport = false;
         }
 
         public bool IsAdmin { get; set; }
+
+        public bool IsSupport { get; set; }
 
         public bool IsAuthorized { get; set; }
 

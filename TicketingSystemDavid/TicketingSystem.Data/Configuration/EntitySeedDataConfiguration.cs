@@ -24,7 +24,9 @@ namespace TicketingSystem.Data.Configuration
                     NormalizedUserName = DataConstants.AdminEmail,
                     FirstName = DataConstants.FirstNameAdmin,
                     LastName = DataConstants.LastNameAdmin,
-                    PasswordHash = Crypto.HashPassword(DataConstants.Password)
+                    PasswordHash = Crypto.HashPassword(DataConstants.Password),
+                    IsAdmin = true,
+                    IsAuthorized = true
                 },
                 new ApplicationUser
                 {
@@ -34,7 +36,9 @@ namespace TicketingSystem.Data.Configuration
                     NormalizedUserName = DataConstants.SupportEmail,
                     FirstName = DataConstants.FirstNameSupport,
                     LastName = DataConstants.LastNameSupport,
-                    PasswordHash = Crypto.HashPassword(DataConstants.Password)
+                    PasswordHash = Crypto.HashPassword(DataConstants.Password),
+                    IsAuthorized = true,
+                    IsSupport = true
                 },
                 new ApplicationUser
                 {
@@ -44,7 +48,8 @@ namespace TicketingSystem.Data.Configuration
                     NormalizedUserName = DataConstants.UserEmail,
                     FirstName = DataConstants.FirstNameUser,
                     LastName = DataConstants.LastNameUser,
-                    PasswordHash = Crypto.HashPassword(DataConstants.Password)
+                    PasswordHash = Crypto.HashPassword(DataConstants.Password),
+                    IsAuthorized = true
                 });
 
             modelBuilder.Entity<Project>()

@@ -38,6 +38,7 @@ namespace TicketingSystemDavid
             builder.Services.AddScoped<IProjectServices, ProjectServices>();
             builder.Services.AddScoped<ITicketServices, TicketServices>();
             builder.Services.AddScoped<IMessageServices, MessageServices>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services
