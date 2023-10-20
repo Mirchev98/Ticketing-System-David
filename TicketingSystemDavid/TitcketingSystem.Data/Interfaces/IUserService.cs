@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketingSystem.Data.Models;
+using TicketingSystem.Web.ViewModels.User;
 
 namespace TitcketingSystem.Data.Interfaces
 {
@@ -24,5 +25,7 @@ namespace TitcketingSystem.Data.Interfaces
         Task Autorize(ApplicationUser user);
 
         Task RemoveAutorization(ApplicationUser user);
+
+        Task Edit(string id, UserCredentialsEditModel model);
     }
 }

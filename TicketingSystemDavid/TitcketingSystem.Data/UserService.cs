@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
+using TicketingSystem.Web.ViewModels.User;
 using TitcketingSystem.Data.Interfaces;
 
 namespace TitcketingSystem.Data
@@ -29,6 +30,11 @@ namespace TitcketingSystem.Data
         {
             user.IsAuthorized = true;
             await dbContext.SaveChangesAsync();
+        }
+
+        public Task Edit(string id, UserCredentialsEditModel model)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<ApplicationUser>> GetAllUsers()

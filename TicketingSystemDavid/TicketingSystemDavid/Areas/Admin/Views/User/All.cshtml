@@ -82,6 +82,13 @@
                         </td>
                     }
                 }
+
+                <td>
+                    <div class="form-inline align-self-center">
+                        <a class="btn btn-danger" asp-area="Admin" asp-controller="User" asp-action="Edit"
+                           asp-route-id="@user.Id" confirm="Are your sure?">Edit Credentials</a>
+                    </div>
+                </td>
             </tr>
         }
     </tbody>

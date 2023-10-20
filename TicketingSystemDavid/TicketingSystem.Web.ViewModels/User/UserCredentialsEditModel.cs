@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace TicketingSystem.Web.ViewModels.User
 {
-    internal class UserCredentialsEditModel
+    public class UserCredentialsEditModel
     {
+        public string Id { get; set; }
+
+        public string Password { get; set; }
+
+        public string ConfirmPassowrd { get; set; }
+
+        public string Email { get; set; }
     }
 }
