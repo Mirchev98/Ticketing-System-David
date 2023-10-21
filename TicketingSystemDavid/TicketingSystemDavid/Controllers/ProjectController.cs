@@ -40,5 +40,11 @@ namespace TicketingSystemDavid.Controllers
 
             return View(query);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+
+        }
     }
 }

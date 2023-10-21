@@ -1,0 +1,52 @@
+﻿@model ProjectDetailsViewModel
+
+@{
+    ViewBag.Title = "Project Details";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="container" style="display:inline">
+    <div class="row">
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.Name</u></p>
+            <p>@Model.Description</p>
+            <p></p>
+            <div class="form-inline align-self-center">
+                <p text-centre style="font-size:25px;"><u>Reviews</u></p>
+                <a class="ml-2 btn btn-info" asp-controller="Ticket" asp-action="Add"
+                   asp-route-id="@Model.Id">Create a Ticket</a>
+            </div>
+
+            @if (Model.Tickets.Count == 0)
+            {
+                <p text-centre style="font-size:25px;">No tickets yet!</p>
+            }
+
+            @foreach (TicketDetailsViewModel message in Model.Tickets)
+            {
+                <br />
+                <div class="form-inline align-self-center card col-8 border-1">
+                    <p style="font-size:15px;"><b>@message.Heading</b></p>
+                    <p>Written by: <b>@message.Creator</b></p>
+                    <p>Description: <b>@message.Description</b></p>
+                    <p>Type: <b>@message.Type</b></p>
+                    <p>State: <b>@message.State</b></p>
+                    @{
+                        if (message.Creator == User.Identity.Name || User.IsInRole("Admin"))
+                        {
+                            <div class="form-inline align-self-center">
+                                <a class="btn btn-danger" asp-controller="Message" asp-action="Remove"
+                                   asp-route-id="@message.Id" confirm="Are your sure?">Remove</a>
+                                <a class="btn btn-danger" asp-controller="Message" asp-action="Edit"
+                                   asp-route-id="@message.Id">Edit</a>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
