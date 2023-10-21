@@ -1,11 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
+using TicketingSystem.Common;
 using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
+using TicketingSystem.Web.ViewModels;
 using TicketingSystem.Web.ViewModels.User;
 using TitcketingSystem.Data.Interfaces;
 
@@ -14,10 +18,13 @@ namespace TitcketingSystem.Data
     public class UserService : IUserService
     {
         private readonly TicketingSystemDbContext dbContext;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public UserService(TicketingSystemDbContext dbContext)
+        public UserService(TicketingSystemDbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this.dbContext = dbContext;
+            this.userManager = userManager;
         }
 
         public async Task AddAdminRights(ApplicationUser user)
@@ -32,9 +39,18 @@ namespace TitcketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public Task Edit(string id, UserCredentialsEditModel model)
+        public async Task Edit(ApplicationUser user, RegisterFormModel model)
         {
-            throw new NotImplementedException();
+            user.Email = model.Email;
+            user.NormalizedEmail = model.Email;
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.PasswordHash = Crypto.HashPassword(model.Password);
+
+            await userManager.SetEmailAsync(user, model.Email);
+            await userManager.SetUserNameAsync(user, model.Email);
+
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<List<ApplicationUser>> GetAllUsers()

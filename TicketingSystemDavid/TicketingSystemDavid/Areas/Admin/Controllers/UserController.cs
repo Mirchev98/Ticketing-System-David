@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using TicketingSystem.Common;
 using TicketingSystem.Data.Models;
+using TicketingSystem.Web.ViewModels.User;
 using TicketingSystemDavid.Web.Areas.Admin.Controllers;
 using TitcketingSystem.Data.Interfaces;
 
@@ -119,6 +120,37 @@ namespace TicketingSystemDavid.Areas.Admin.Controllers
             }
 
             await userService.RemoveSupport(user);
+
+            return RedirectToAction("All", "User");
+        }
+
+        [HttpGet]
+        [Route("Admin/User/Edit/{id}")]
+        public async Task<IActionResult> Edit(string id)
+        {
+            RegisterFormModel model = new RegisterFormModel();
+
+            ApplicationUser user = await userService.GetUserById(id);
+
+            if (user == null)
+            {
+                return RedirectToAction("All", "User");
+            }
+
+            model.Email = user.Email;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Admin/User/Edit/{id}")]
+        public async Task<IActionResult> Edit(string id, RegisterFormModel model)
+        {
+            ApplicationUser user = await userService.GetUserById(id);
+
+            await userService.Edit(user, model);
 
             return RedirectToAction("All", "User");
         }

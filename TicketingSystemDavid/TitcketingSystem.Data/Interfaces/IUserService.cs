@@ -26,6 +26,6 @@ namespace TitcketingSystem.Data.Interfaces
 
         Task RemoveAutorization(ApplicationUser user);
 
-        Task Edit(string id, UserCredentialsEditModel model);
+        Task Edit(ApplicationUser user, RegisterFormModel model);
     }
 }
