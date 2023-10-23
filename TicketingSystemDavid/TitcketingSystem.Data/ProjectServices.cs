@@ -8,6 +8,7 @@ using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.Project;
 using TicketingSystem.Web.ViewModels.Project.Enums;
+using TicketingSystem.Web.ViewModels.Ticket;
 using TitcketingSystem.Data.Interfaces;
 
 namespace TitcketingSystem.Data
@@ -75,6 +76,35 @@ namespace TitcketingSystem.Data
                 TotalProjectsCount = totalProjectsCount,
                 Projects = projects
             };
+        }
+
+        public async Task<ProjectDetailsViewModel> FillModel(ProjectDetailsViewModel model, int id)
+        {
+            Project project = await dbContext.Projects.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == id);
+
+            model.Id = project.Id;
+            model.Description = project.Description;
+            model.IsDeleted = project.IsDeleted;
+            model.Tickets = project.Tickets.Select(x => new TicketDetailsViewModel
+            {
+                Id = x.Id,
+                CreatedOn = x.CreatedOn,
+                Creator = x.Creator,
+                Type = x.Type,
+                State = x.State,
+                Heading = x.Heading,
+                Description = x.Description,
+                MessagesCount = x.Messages.Count(),
+                IsDeleted = x.IsDeleted
+            }).ToList();
+            model.Name = project.Name;
+
+            return model;
+        }
+
+        public async Task<Project> FindProject(int id)
+        {
+            return await dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }

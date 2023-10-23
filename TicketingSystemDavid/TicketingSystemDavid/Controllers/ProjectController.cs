@@ -44,7 +44,11 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            ProjectDetailsViewModel model = new ProjectDetailsViewModel();
 
+            await _projectServices.FillModel(model, id);
+
+            return View(model);
         }
     }
 }

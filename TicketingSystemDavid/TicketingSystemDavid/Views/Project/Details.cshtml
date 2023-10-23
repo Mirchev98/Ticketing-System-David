@@ -4,54 +4,43 @@
     ViewBag.Title = "Project Details";
 }
 
-<h2 class="text-center">@ViewBag.Title</h2>
-<hr />
+<div class="container mt-5">
+    <h2 class="text-center mb-4">@ViewBag.Title</h2>
 
-<div class="container" style="display:inline">
-    <div class="row">
-        <div class="card col-8 border-0">
-            <p style="font-size:25px;"><u>@Model.Name</u></p>
-            <p>@Model.Description</p>
-            <p></p>
-            <div class="form-inline align-self-center">
-                <p text-centre style="font-size:25px;"><u>Reviews</u></p>
-                <a class="ml-2 btn btn-info" asp-controller="Ticket" asp-action="Add"
-                   asp-route-id="@Model.Id">Create a Ticket</a>
-            </div>
+    <div class="card col-md-8 mx-auto p-4 mb-4">
+        <h3 class="text-center mb-3">@Model.Name</h3>
+        <p>@Model.Description</p>
 
-            @if (Model.Tickets.Count == 0)
-            {
-                <p text-centre style="font-size:25px;">No tickets yet!</p>
-            }
+        <div class="text-center mt-3">
+            <a class="btn btn-primary" asp-controller="Ticket" asp-action="Create" asp-route-id="@Model.Id">Create a Ticket</a>
+        </div>
 
-            @foreach (TicketDetailsViewModel ticket in Model.Tickets)
-            {
-                <br />
-                <div class="form-inline align-self-center card col-8 border-1">
-                    <p style="font-size:15px;"><b>@ticket.Heading</b></p>
-                    <p>Written by: <b>@ticket.Creator</b></p>
-                    <p>Description: <b>@ticket.Description</b></p>
-                    <p>Type: <b>@ticket.Type</b></p>
-                    <p>State: <b>@ticket.State</b></p>
-                    <p>Messages: <b>@ticket.Messages.Count()</b></p>
-                    <div class="form-inline align-self-center">
-                        <a class="btn btn-danger" asp-controller="Ticket" asp-action="Details"
-                           asp-route-id="@ticket.Id">Details</a>
-                    </div>
-                    @{
-                        if (ticket.Creator == User.Identity.Name || User.IsInRole("Admin"))
-                        {
-                            <div class="form-inline align-self-center">
-                                <a class="btn btn-danger" asp-controller="Ticket" asp-action="Remove"
-                                   asp-route-id="@ticket.Id" confirm="Are your sure?">Remove</a>
-                                <a class="btn btn-danger" asp-controller="Ticket" asp-action="Edit"
-                                   asp-route-id="@ticket.Id">Edit</a>
-                            </div>
-                        }
+        <h4 class="text-center mt-5 mb-4">Tickets</h4>
+
+        @if (Model.Tickets.Count == 0)
+        {
+            <p class="text-center text-muted">No tickets yet!</p>
+        }
+
+        @foreach (TicketDetailsViewModel ticket in Model.Tickets)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">@ticket.Heading</h5>
+                    <p class="card-text">Written by: <b>@ticket.Creator</b></p>
+                    <p class="card-text">Description: @ticket.Description</p>
+                    <p class="card-text">Type: @ticket.Type</p>
+                    <p class="card-text">State: @ticket.State</p>
+                    <p class="card-text">Messages: @ticket.MessagesCount</p>
+                    <a class="btn btn-info mr-2" asp-controller="Ticket" asp-action="Details" asp-route-id="@ticket.Id">Details</a>
+
+                    @if (ticket.Creator == User.Identity.Name || User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-warning mr-2" asp-controller="Ticket" asp-action="Edit" asp-route-id="@ticket.Id">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Ticket" asp-action="Remove" asp-route-id="@ticket.Id" confirm="Are your sure?">Remove</a>
                     }
                 </div>
-            }
-
-        </div>
+            </div>
+        }
     </div>
 </div>
