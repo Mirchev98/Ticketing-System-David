@@ -34,5 +34,15 @@ namespace TicketingSystemDavid.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            TicketDetailsViewModel model = new TicketDetailsViewModel();
+
+            await _ticketServices.Details(model, id);
+            
+            return View(model);
+        }
     }
 }

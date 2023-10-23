@@ -10,5 +10,7 @@ namespace TitcketingSystem.Data.Interfaces
     public interface ITicketServices
     {
         Task Create(CreateTicketViewModel model); 
+
+        Task<TicketDetailsViewModel> Details(TicketDetailsViewModel model, int id);
     }
 }

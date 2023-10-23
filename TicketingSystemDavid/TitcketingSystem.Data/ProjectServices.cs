@@ -8,6 +8,7 @@ using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.Project;
 using TicketingSystem.Web.ViewModels.Project.Enums;
+using TicketingSystem.Web.ViewModels.Message;
 using TicketingSystem.Web.ViewModels.Ticket;
 using TitcketingSystem.Data.Interfaces;
 
@@ -94,7 +95,16 @@ namespace TitcketingSystem.Data
                 State = x.State,
                 Heading = x.Heading,
                 Description = x.Description,
-                MessagesCount = x.Messages.Count(),
+                Messages = x.Messages.Select(x => new MessageDetailsViewModel
+                {
+                    Id = x.Id,
+                    CreatedOn = x.CreatedOn,
+                    Creator = x.Creator,
+                    State = x.State,
+                    Content = x.Content,
+                    TicketId = x.TicketId,
+                    IsDeleted = x.IsDeleted
+                }).ToList(),
                 IsDeleted = x.IsDeleted
             }).ToList();
             model.Name = project.Name;

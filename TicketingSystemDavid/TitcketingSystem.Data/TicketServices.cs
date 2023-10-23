@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
+using TicketingSystem.Web.ViewModels.Message;
 using TicketingSystem.Web.ViewModels.Ticket;
 using TitcketingSystem.Data.Interfaces;
 
@@ -32,6 +34,32 @@ namespace TitcketingSystem.Data
 
             await dbContext.Tickets.AddAsync(ticket);
             await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<TicketDetailsViewModel> Details(TicketDetailsViewModel model, int id)
+        {
+            Ticket ticket = await dbContext.Tickets.Include(x => x.Messages).FirstOrDefaultAsync(t => t.Id == id);
+
+            model.Id = ticket.Id;
+            model.ProjectId = ticket.ProjectId;
+            model.Creator = ticket.Creator;
+            model.State = ticket.State;
+            model.Heading = ticket.Heading;
+            model.Description = ticket.Description;
+            model.Type = ticket.Type;
+            model.IsDeleted = ticket.IsDeleted;
+            model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModel
+            {
+                Id = x.Id,
+                CreatedOn = x.CreatedOn,
+                Creator = x.Creator,
+                State = x.State,
+                Content = x.Content,
+                TicketId = x.TicketId,
+                IsDeleted = x.IsDeleted
+            }).ToList();
+
+            return model;
         }
     }
 }

@@ -31,7 +31,6 @@
                     <p class="card-text">Description: @ticket.Description</p>
                     <p class="card-text">Type: @ticket.Type</p>
                     <p class="card-text">State: @ticket.State</p>
-                    <p class="card-text">Messages: @ticket.MessagesCount</p>
                     <a class="btn btn-info mr-2" asp-controller="Ticket" asp-action="Details" asp-route-id="@ticket.Id">Details</a>
 
                     @if (ticket.Creator == User.Identity.Name || User.IsInRole("Admin"))

@@ -1,0 +1,20 @@
+﻿@model MessageDetailsViewModel
+
+<div class="card mb-4">
+    <div class="card-body">
+        <p><strong>Description:</strong> @Model.Content</p>
+        <p><strong>Written by:</strong> @Model.Creator</p>
+        <p><strong>State:</strong> @Model.State</p>
+        <p><strong>Created On:</strong> @Model.CreatedOn</p>
+
+        @if (Model.Creator == User.Identity.Name || User.IsInRole("Admin"))
+        {
+            <div class="mt-3">
+                <a class="btn btn-danger" asp-controller="Message" asp-action="Remove"
+                   asp-route-id="@Model.Id" confirm="Are you sure?">Remove</a>
+                <a class="btn btn-warning" asp-controller="Message" asp-action="Edit"
+                   asp-route-id="@Model.Id">Edit</a>
+            </div>
+        }
+    </div>
+</div>

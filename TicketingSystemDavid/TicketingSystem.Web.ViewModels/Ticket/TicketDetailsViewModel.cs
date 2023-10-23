@@ -14,6 +14,7 @@ namespace TicketingSystem.Web.ViewModels.Ticket
     {
         public TicketDetailsViewModel()
         {
+            Messages = new List<MessageDetailsViewModel>();
         }
 
         public int Id { get; set; }
@@ -32,7 +33,7 @@ namespace TicketingSystem.Web.ViewModels.Ticket
 
         public string Description { get; set; } = null!;
 
-        public int MessagesCount { get; set; }
+        public ICollection<MessageDetailsViewModel> Messages { get; set; }
 
         public bool IsDeleted { get; set; }
     }

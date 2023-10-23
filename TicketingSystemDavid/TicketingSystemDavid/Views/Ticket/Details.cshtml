@@ -1,0 +1,47 @@
+﻿@model TicketDetailsViewModel
+
+@{
+    ViewBag.Title = "Ticket Details";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">@ViewBag.Title</h2>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>@Model.Heading</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Description:</strong> @Model.Description</p>
+            <p><strong>Written by:</strong> @Model.Creator</p>
+            <p><strong>Type:</strong> @Model.Type</p>
+            <p><strong>State:</strong> @Model.State</p>
+            <p><strong>Messages:</strong> @Model.Messages.Count()</p>
+            <div class="mt-3">
+                <a class="btn btn-info" asp-controller="Message" asp-action="Create"
+                   asp-route-id="@Model.Id" confirm="Are you sure?">Add a Message</a>
+            </div>
+
+
+            @if (Model.Creator == User.Identity.Name || User.IsInRole("Admin"))
+            {
+                <div class="mt-3">
+                    <a class="btn btn-danger" asp-controller="Ticket" asp-action="Remove"
+                       asp-route-id="@Model.Id" confirm="Are you sure?">Remove</a>
+                    <a class="btn btn-warning" asp-controller="Ticket" asp-action="Edit"
+                       asp-route-id="@Model.Id">Edit</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    @foreach (var message in Model.Messages)
+    {
+        if (!message.IsDeleted)
+        {
+            <partial name="_MessageDetailsPartial" model="@message" />
+        }
+    }
+</div>
