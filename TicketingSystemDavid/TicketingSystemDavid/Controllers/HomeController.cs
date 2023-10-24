@@ -21,7 +21,7 @@ namespace TicketingSystemDavid.Controllers
                 return this.RedirectToAction("Index", "Home", new { Area = DataConstants.AdminRoleName });
             }
 
-            return View();
+            return RedirectToAction("All", "Project");
         }
 
         public IActionResult Privacy()

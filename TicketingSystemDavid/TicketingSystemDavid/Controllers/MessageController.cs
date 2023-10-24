@@ -35,5 +35,25 @@ namespace TicketingSystemDavid.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            CreateMessageViewModel model = new CreateMessageViewModel();
+            model.Creator = this.User.Identity.Name;
+
+            await _messageServices.FillModel(model, id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, CreateMessageViewModel model)
+        {
+            model.Creator = this.User.Identity.Name;
+            await _messageServices.Edit(model, id);
+
+            return RedirectToAction("Details", "Ticket", new { id });
+        }
     }
 }

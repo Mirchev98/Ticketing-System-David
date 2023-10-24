@@ -10,5 +10,11 @@ namespace TitcketingSystem.Data.Interfaces
     public interface IMessageServices
     {
         Task Create(CreateMessageViewModel model);
+
+        Task<CreateMessageViewModel> FillModel(CreateMessageViewModel model, int id);
+
+        Task Edit(CreateMessageViewModel model, int id);
+
+        Task Delete(int id);
     }
 }

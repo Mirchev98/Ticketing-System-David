@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.Message;
+using TicketingSystem.Web.ViewModels.Message.Enums;
 using TitcketingSystem.Data.Interfaces;
 
 namespace TitcketingSystem.Data
@@ -30,6 +31,36 @@ namespace TitcketingSystem.Data
 
             await dbContext.Messages.AddAsync(message);
             await dbContext.SaveChangesAsync();
+        }
+
+        public async Task Delete(int id)
+        {
+            Message message = await dbContext.Messages.FindAsync(id);
+
+            message.IsDeleted = true;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task Edit(CreateMessageViewModel model, int id)
+        {
+            Message message = await dbContext.Messages.FindAsync(id);
+
+            message.State = model.State.ToString();
+            message.Content = model.Content;
+            message.Creator = model.Creator;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<CreateMessageViewModel> FillModel(CreateMessageViewModel model, int id)
+        {
+            Message message = await dbContext.Messages.FindAsync(id);
+
+            model.Content = message.Content;
+            model.Creator = message.Creator;
+
+            return model;
         }
     }
 }
