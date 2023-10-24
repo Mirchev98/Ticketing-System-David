@@ -17,5 +17,7 @@ namespace TitcketingSystem.Data.Interfaces
         Task<ProjectDetailsViewModel> FillModel(ProjectDetailsViewModel model, int id);
 
         Task<Project> FindProject(int id);
+
+        Task Delete(int id);
     }
 }

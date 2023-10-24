@@ -36,6 +36,11 @@ namespace TitcketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<TicketDetailsViewModel> Details(TicketDetailsViewModel model, int id)
         {
             Ticket ticket = await dbContext.Tickets.Include(x => x.Messages).FirstOrDefaultAsync(t => t.Id == id);
@@ -60,6 +65,16 @@ namespace TitcketingSystem.Data
             }).ToList();
 
             return model;
+        }
+
+        public Task Edit(CreateTicketViewModel model, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CreateTicketViewModel> FillModel(CreateTicketViewModel model, int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

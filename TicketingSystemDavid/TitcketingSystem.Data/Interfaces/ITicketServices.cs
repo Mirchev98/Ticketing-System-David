@@ -12,5 +12,11 @@ namespace TitcketingSystem.Data.Interfaces
         Task Create(CreateTicketViewModel model); 
 
         Task<TicketDetailsViewModel> Details(TicketDetailsViewModel model, int id);
+
+        Task<CreateTicketViewModel> FillModel(CreateTicketViewModel model, int id);
+
+        Task Edit(CreateTicketViewModel model, int id);
+
+        Task Delete(int id);
     }
 }

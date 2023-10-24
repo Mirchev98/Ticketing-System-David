@@ -11,6 +11,7 @@ using TicketingSystem.Web.ViewModels.Project.Enums;
 using TicketingSystem.Web.ViewModels.Message;
 using TicketingSystem.Web.ViewModels.Ticket;
 using TitcketingSystem.Data.Interfaces;
+using System.Runtime.InteropServices;
 
 namespace TitcketingSystem.Data
 {
@@ -115,6 +116,15 @@ namespace TitcketingSystem.Data
         public async Task<Project> FindProject(int id)
         {
             return await dbContext.Projects.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task Delete(int id)
+        {
+            Project project = await dbContext.Projects.FindAsync(id);
+
+            project.IsDeleted = true;
+
+            await dbContext.SaveChangesAsync();
         }
     }
 }

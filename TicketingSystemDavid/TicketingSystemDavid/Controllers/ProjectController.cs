@@ -27,7 +27,7 @@ namespace TicketingSystemDavid.Controllers
         {
             await _projectServices.Create(model);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All");
         }
 
         [HttpGet]
@@ -49,6 +49,13 @@ namespace TicketingSystemDavid.Controllers
             await _projectServices.FillModel(model, id);
 
             return View(model);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _projectServices.Delete(id);
+
+            return RedirectToAction("All");
         }
     }
 }
