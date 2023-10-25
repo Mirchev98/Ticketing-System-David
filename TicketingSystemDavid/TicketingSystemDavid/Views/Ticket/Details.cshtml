@@ -26,9 +26,9 @@
             @if (Model.Creator == User.Identity.Name || User.IsInRole("Admin"))
             {
                 <div class="mt-3">
-                    <a class="btn btn-danger" asp-controller="Message" asp-action="Remove"
+                    <a class="btn btn-danger" asp-controller="Ticket" asp-action="Delete"
                        asp-route-id="@Model.Id" confirm="Are you sure?">Remove</a>
-                    <a class="btn btn-warning" asp-controller="Message" asp-action="Edit"
+                    <a class="btn btn-warning" asp-controller="Ticket" asp-action="Edit"
                        asp-route-id="@Model.Id">Edit</a>
                 </div>
             }

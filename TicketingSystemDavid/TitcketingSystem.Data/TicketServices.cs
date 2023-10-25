@@ -36,9 +36,11 @@ namespace TitcketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            Ticket ticket = await dbContext.Tickets.FindAsync(id);
+
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<TicketDetailsViewModel> Details(TicketDetailsViewModel model, int id)
@@ -67,14 +69,31 @@ namespace TitcketingSystem.Data
             return model;
         }
 
-        public Task Edit(CreateTicketViewModel model, int id)
+        public async Task Edit(CreateTicketViewModel model, int id)
         {
-            throw new NotImplementedException();
+            Ticket ticket = await dbContext.Tickets.FindAsync(id);
+
+            //ticket.ProjectId = model.ProjectId;
+            ticket.Creator = model.Creator;
+            ticket.Heading = model.Heading;
+            ticket.Description = model.Description;
+            ticket.Type = model.Type.ToString();
+            ticket.State = model.State.ToString();
+
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<CreateTicketViewModel> FillModel(CreateTicketViewModel model, int id)
+        public async Task<CreateTicketViewModel> FillModel(CreateTicketViewModel model, int id)
         {
-            throw new NotImplementedException();
+            Ticket ticket = await dbContext.Tickets.FindAsync(id);
+
+            model.Id = ticket.Id;
+            model.ProjectId = ticket.ProjectId;
+            model.Creator = ticket.Creator;
+            model.Heading = ticket.Heading;
+            model.Description = ticket.Description;
+
+            return model;
         }
     }
 }

@@ -45,5 +45,34 @@ namespace TicketingSystemDavid.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            CreateTicketViewModel model = new CreateTicketViewModel();
+
+            model.Creator = User.Identity.Name;
+
+            await _ticketServices.FillModel(model, id);
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, CreateTicketViewModel model)
+        {
+            model.Creator = User.Identity.Name;
+
+            await _ticketServices.Edit(model, id);
+
+            return RedirectToAction("Details", "Ticket", new { id });
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _ticketServices.Delete(id);
+
+            return RedirectToAction("All", "Project");
+        }
     }
 }
