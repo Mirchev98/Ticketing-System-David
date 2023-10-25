@@ -188,7 +188,10 @@ namespace TicketingSystem.Data.Migrations
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Heading = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    ContentType = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -212,7 +215,10 @@ namespace TicketingSystem.Data.Migrations
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     TicketId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    ContentType = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -230,9 +236,9 @@ namespace TicketingSystem.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "AppliedRole", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsAdmin", "IsAuthorized", "IsSupport", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "8cbec86b-7788-410b-91be-d9a3381e6c91", 0, null, "ed7e052e-4a36-4b69-bf57-479d0bc9ff93", "support@support.com", false, "Support", false, true, false, "Supportov", false, null, "support@support.com", "support@support.com", "AGu1tAtJ7NchFwR4q3DGR3eT9JRZMmYK4cmDhDqgE9tiRMls306ozZ0obNoY9w4Yww==", null, false, "e40aedb6-4dad-4c6b-b10d-7d13d3e4e898", false, "support@support.com" },
-                    { "928aa0ec-f085-4478-99ee-0108d8fd2879", 0, null, "c2695f52-c53e-40b8-bd7b-bdfaefc3290d", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "ABRDyKggSjPJOcb0yJwuep7EZtvz7D5WE6kGTYgTG15iaTDYjYYIi6yCwGqqZpKF7A==", null, false, "64ec3032-db6c-4501-9245-c3b6e85ff9c1", false, "admin@admin.com" },
-                    { "a3f858d1-47f0-47b2-b25b-9086b945b295", 0, null, "601b2d83-6b39-4af2-9416-3923ca267c4d", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "ADUcUPEZUkJngh86RRJqezjV3EXJhRyAGuMbVYNqBRZM4gD+KB22Tc4nfBBluNCpmQ==", null, false, "45d4b2e4-07f3-4221-8680-0f67261f001b", false, "user@user.com" }
+                    { "031f86ff-67a6-4055-837a-4b14c4807061", 0, null, "854dfb24-48fb-46fb-a3b9-87a0218bcc53", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "ABkuJLVyksBp7PlrX8yoZBlgr//WMJYb45WHF2GmHJvO8XjzmgwTKkZ0Dx48u7ED9A==", null, false, "6d1e73fb-63ee-4dc4-852b-57d9b6cccebb", false, "user@user.com" },
+                    { "acdaa908-e2d9-402f-a23f-6fde04dc6edc", 0, null, "9caf28cf-bc17-491a-bdb5-0b9a81e40b62", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "AEd8mfyVSDJIwJuBG9lp7l0XvuNWPcWpq9lH7docOXlVD2LoInyHfeBkl1lzgZ669g==", null, false, "d3415c9a-ee29-4ec6-ab81-6c068690ce58", false, "admin@admin.com" },
+                    { "e776f462-b46a-4ef5-8849-2e52d4764ea8", 0, null, "996dea6b-4db5-4ccb-8ec3-5d45ad728aee", "support@support.com", false, "Support", false, true, true, "Supportov", false, null, "support@support.com", "support@support.com", "AGExJ2OyUS9Y5Zbt9poqUAODMFKoDoM/tvoNm3nJZ9ZmNO0h7jDslN0SqMi6pFb9hQ==", null, false, "8b9f1747-e474-43c4-bfea-c4f2fbbaab57", false, "support@support.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -247,23 +253,23 @@ namespace TicketingSystem.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tickets",
-                columns: new[] { "Id", "CreatedOn", "Creator", "Description", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 1, new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6535), "user@user.com", "Very bad bug found", "Bug Found", false, 1, "New", "Bug Report" });
+                columns: new[] { "Id", "ContentType", "CreatedOn", "Creator", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
+                values: new object[] { 1, null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7751), "user@user.com", "Very bad bug found", null, null, "Bug Found", false, 1, "New", "Bug Report" });
 
             migrationBuilder.InsertData(
                 table: "Tickets",
-                columns: new[] { "Id", "CreatedOn", "Creator", "Description", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 2, new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6545), "user@user.com", "A very nice feature to add", "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
+                columns: new[] { "Id", "ContentType", "CreatedOn", "Creator", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
+                values: new object[] { 2, null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7758), "user@user.com", "A very nice feature to add", null, null, "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
 
             migrationBuilder.InsertData(
                 table: "Messages",
-                columns: new[] { "Id", "Content", "CreatedOn", "Creator", "IsDeleted", "State", "TicketId" },
-                values: new object[] { 1, "Testing message", new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6578), "support@support.com", false, "Posted", 1 });
+                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "Creator", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
+                values: new object[] { 1, "Testing message", null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7785), "support@support.com", null, null, false, "Posted", 1 });
 
             migrationBuilder.InsertData(
                 table: "Messages",
-                columns: new[] { "Id", "Content", "CreatedOn", "Creator", "IsDeleted", "State", "TicketId" },
-                values: new object[] { 2, "Second Message", new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6581), "user@user.com", false, "Posted", 1 });
+                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "Creator", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
+                values: new object[] { 2, "Second Message", null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7789), "user@user.com", null, null, false, "Posted", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

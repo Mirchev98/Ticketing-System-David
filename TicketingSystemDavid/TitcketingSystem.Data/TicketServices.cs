@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,9 @@ namespace TitcketingSystem.Data
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
             ticket.Type = model.Type.ToString();
+            ticket.FileContent = model.FileContent;
+            ticket.ContentType = model.ContentType;
+            ticket.FileName = model.FileName;
 
             await dbContext.Tickets.AddAsync(ticket);
             await dbContext.SaveChangesAsync();
@@ -39,6 +43,8 @@ namespace TitcketingSystem.Data
         public async Task Delete(int id)
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
+            
+            ticket.IsDeleted = true;
 
             await dbContext.SaveChangesAsync();
         }
@@ -94,6 +100,13 @@ namespace TitcketingSystem.Data
             model.Description = ticket.Description;
 
             return model;
+        }
+
+        public async Task<Ticket> Find(int id)
+        {
+            Ticket ticket = await dbContext.Tickets.FindAsync(id);
+
+            return ticket;
         }
     }
 }

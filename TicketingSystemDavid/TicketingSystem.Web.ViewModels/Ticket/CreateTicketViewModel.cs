@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,5 +31,16 @@ namespace TicketingSystem.Web.ViewModels.Ticket
         public TicketCategory Type { get; set; }
 
         public TicketState State { get; set; }
+
+        public IFormFile File { get; set; }
+
+        [AllowNull]
+        public string? FileName { get; set; }
+
+        [AllowNull]
+        public byte[]? FileContent { get; set; }
+
+        [AllowNull]
+        public string? ContentType { get; set; }
     }
 }

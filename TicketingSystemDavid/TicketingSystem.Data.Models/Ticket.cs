@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,5 +49,14 @@ namespace TicketingSystem.Data.Models
         public ICollection<Message> Messages { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        [AllowNull]
+        public string? FileName { get; set; }
+
+        [AllowNull]
+        public byte[]? FileContent { get; set; }
+
+        [AllowNull]
+        public string? ContentType { get; set; }
     }
 }

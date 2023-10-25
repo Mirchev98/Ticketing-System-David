@@ -12,7 +12,7 @@ using TicketingSystem.Data;
 namespace TicketingSystem.Data.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    [Migration("20231019141921_Initial")]
+    [Migration("20231025185119_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,9 +250,9 @@ namespace TicketingSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "928aa0ec-f085-4478-99ee-0108d8fd2879",
+                            Id = "acdaa908-e2d9-402f-a23f-6fde04dc6edc",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c2695f52-c53e-40b8-bd7b-bdfaefc3290d",
+                            ConcurrencyStamp = "9caf28cf-bc17-491a-bdb5-0b9a81e40b62",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -263,38 +263,38 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin@admin.com",
-                            PasswordHash = "ABRDyKggSjPJOcb0yJwuep7EZtvz7D5WE6kGTYgTG15iaTDYjYYIi6yCwGqqZpKF7A==",
+                            PasswordHash = "AEd8mfyVSDJIwJuBG9lp7l0XvuNWPcWpq9lH7docOXlVD2LoInyHfeBkl1lzgZ669g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "64ec3032-db6c-4501-9245-c3b6e85ff9c1",
+                            SecurityStamp = "d3415c9a-ee29-4ec6-ab81-6c068690ce58",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
                         new
                         {
-                            Id = "8cbec86b-7788-410b-91be-d9a3381e6c91",
+                            Id = "e776f462-b46a-4ef5-8849-2e52d4764ea8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ed7e052e-4a36-4b69-bf57-479d0bc9ff93",
+                            ConcurrencyStamp = "996dea6b-4db5-4ccb-8ec3-5d45ad728aee",
                             Email = "support@support.com",
                             EmailConfirmed = false,
                             FirstName = "Support",
                             IsAdmin = false,
                             IsAuthorized = true,
-                            IsSupport = false,
+                            IsSupport = true,
                             LastName = "Supportov",
                             LockoutEnabled = false,
                             NormalizedEmail = "support@support.com",
                             NormalizedUserName = "support@support.com",
-                            PasswordHash = "AGu1tAtJ7NchFwR4q3DGR3eT9JRZMmYK4cmDhDqgE9tiRMls306ozZ0obNoY9w4Yww==",
+                            PasswordHash = "AGExJ2OyUS9Y5Zbt9poqUAODMFKoDoM/tvoNm3nJZ9ZmNO0h7jDslN0SqMi6pFb9hQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e40aedb6-4dad-4c6b-b10d-7d13d3e4e898",
+                            SecurityStamp = "8b9f1747-e474-43c4-bfea-c4f2fbbaab57",
                             TwoFactorEnabled = false,
                             UserName = "support@support.com"
                         },
                         new
                         {
-                            Id = "a3f858d1-47f0-47b2-b25b-9086b945b295",
+                            Id = "031f86ff-67a6-4055-837a-4b14c4807061",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "601b2d83-6b39-4af2-9416-3923ca267c4d",
+                            ConcurrencyStamp = "854dfb24-48fb-46fb-a3b9-87a0218bcc53",
                             Email = "user@user.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -305,9 +305,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "user@user.com",
                             NormalizedUserName = "user@user.com",
-                            PasswordHash = "ADUcUPEZUkJngh86RRJqezjV3EXJhRyAGuMbVYNqBRZM4gD+KB22Tc4nfBBluNCpmQ==",
+                            PasswordHash = "ABkuJLVyksBp7PlrX8yoZBlgr//WMJYb45WHF2GmHJvO8XjzmgwTKkZ0Dx48u7ED9A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "45d4b2e4-07f3-4221-8680-0f67261f001b",
+                            SecurityStamp = "6d1e73fb-63ee-4dc4-852b-57d9b6cccebb",
                             TwoFactorEnabled = false,
                             UserName = "user@user.com"
                         });
@@ -326,11 +326,20 @@ namespace TicketingSystem.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("ContentType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Creator")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("FileContent")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -354,7 +363,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = 1,
                             Content = "Testing message",
-                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6578),
+                            CreatedOn = new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7785),
                             Creator = "support@support.com",
                             IsDeleted = false,
                             State = "Posted",
@@ -364,7 +373,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = 2,
                             Content = "Second Message",
-                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6581),
+                            CreatedOn = new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7789),
                             Creator = "user@user.com",
                             IsDeleted = false,
                             State = "Posted",
@@ -429,6 +438,9 @@ namespace TicketingSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("ContentType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -440,6 +452,12 @@ namespace TicketingSystem.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<byte[]>("FileContent")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Heading")
                         .IsRequired()
@@ -470,7 +488,7 @@ namespace TicketingSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6535),
+                            CreatedOn = new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7751),
                             Creator = "user@user.com",
                             Description = "Very bad bug found",
                             Heading = "Bug Found",
@@ -482,7 +500,7 @@ namespace TicketingSystem.Data.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2023, 10, 19, 14, 19, 21, 180, DateTimeKind.Utc).AddTicks(6545),
+                            CreatedOn = new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7758),
                             Creator = "user@user.com",
                             Description = "A very nice feature to add",
                             Heading = "Feature Idea",

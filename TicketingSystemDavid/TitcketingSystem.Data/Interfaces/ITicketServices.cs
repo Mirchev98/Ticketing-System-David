@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.Ticket;
 
 namespace TitcketingSystem.Data.Interfaces
@@ -18,5 +19,7 @@ namespace TitcketingSystem.Data.Interfaces
         Task Edit(CreateTicketViewModel model, int id);
 
         Task Delete(int id);
+
+        Task<Ticket> Find(int id);
     }
 }

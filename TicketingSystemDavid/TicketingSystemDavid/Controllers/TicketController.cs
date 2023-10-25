@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Web.ViewModels.Ticket;
+using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
 
 namespace TicketingSystemDavid.Controllers
@@ -16,7 +17,8 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public IActionResult Create(int id)
         {
-            CreateTicketViewModel model = new CreateTicketViewModel();
+
+                CreateTicketViewModel model = new CreateTicketViewModel();
 
             model.ProjectId = id;
 
@@ -26,6 +28,16 @@ namespace TicketingSystemDavid.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateTicketViewModel model, int id)
         {
+            if (model.File != null && model.File.Length > 0)
+            {
+                using var stream = new MemoryStream();
+                await model.File.CopyToAsync(stream);
+                model.FileContent = stream.ToArray();
+                model.ContentType = model.File.ContentType;
+                model.FileName = model.File.FileName;
+            }
+
+            
             model.Creator = this.User.Identity.Name;
 
             model.ProjectId = id;
@@ -73,6 +85,16 @@ namespace TicketingSystemDavid.Controllers
             await _ticketServices.Delete(id);
 
             return RedirectToAction("All", "Project");
+        }
+
+        public async Task<IActionResult> DownloadFile(int id)
+        {
+            var ticket = await _ticketServices.Find(id);
+
+            if (ticket == null || ticket.FileContent == null)
+                return RedirectToAction("Details", "Ticket", new { id });
+
+            return File(ticket.FileContent, ticket.ContentType, ticket.FileName);
         }
     }
 }

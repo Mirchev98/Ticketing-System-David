@@ -6,6 +6,8 @@
         <p><strong>Written by:</strong> @Model.Creator</p>
         <p><strong>State:</strong> @Model.State</p>
         <p><strong>Created On:</strong> @Model.CreatedOn</p>
+        <a class="btn btn-info" asp-controller="Message" asp-action="DownloadFile"
+           asp-route-id="@Model.Id">Download File</a>
 
         @if (Model.Creator == User.Identity.Name || User.IsInRole("Admin"))
         {

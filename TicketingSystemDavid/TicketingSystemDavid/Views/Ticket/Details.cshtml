@@ -17,13 +17,17 @@
             <p><strong>Type:</strong> @Model.Type</p>
             <p><strong>State:</strong> @Model.State</p>
             <p><strong>Messages:</strong> @Model.Messages.Count()</p>
+
+            <a class="btn btn-info" asp-controller="Ticket" asp-action="DownloadFile"
+               asp-route-id="@Model.Id">Download File</a>
+
             <div class="mt-3">
                 <a class="btn btn-info" asp-controller="Message" asp-action="Create"
-                   asp-route-id="@Model.Id" confirm="Are you sure?">Add a Message</a>
+                   asp-route-id="@Model.Id">Add a Message</a>
             </div>
 
 
-            @if (Model.Creator == User.Identity.Name || User.IsInRole("Admin"))
+            @if (Model.Creator == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Support"))
             {
                 <div class="mt-3">
                     <a class="btn btn-danger" asp-controller="Ticket" asp-action="Delete"

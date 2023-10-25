@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using TicketingSystem.Data;
@@ -28,6 +29,9 @@ namespace TitcketingSystem.Data
             message.Content = model.Content;
             message.Creator = model.Creator;
             message.TicketId = model.TicketId;
+            message.FileContent = model.FileContent;
+            message.ContentType = model.ContentType;
+            message.FileName = model.FileName;
 
             await dbContext.Messages.AddAsync(message);
             await dbContext.SaveChangesAsync();
@@ -61,6 +65,13 @@ namespace TitcketingSystem.Data
             model.Creator = message.Creator;
 
             return model;
+        }
+
+        public async Task<Message> Find(int id)
+        {
+            Message message = await dbContext.Messages.FindAsync(id);
+
+            return message;
         }
     }
 }

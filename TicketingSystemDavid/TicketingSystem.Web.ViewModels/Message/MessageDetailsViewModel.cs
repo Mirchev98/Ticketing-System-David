@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TicketingSystem.Common;
+using Microsoft.AspNetCore.Http;
 
 namespace TicketingSystem.Web.ViewModels.Message
 {
@@ -24,5 +25,7 @@ namespace TicketingSystem.Web.ViewModels.Message
         public int TicketId { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public IFormFile File { get; set; }
     }
 }
