@@ -74,10 +74,7 @@ namespace TicketingSystemDavid
             app.UseAuthentication();
             app.UseAuthorization();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.SeedAdminAndSupport(DataConstants.AdminEmail, DataConstants.SupportEmail);
-            }
+            app.SeedAdminAndSupport(DataConstants.AdminEmail, DataConstants.SupportEmail);
 
             app.UseEndpoints(config =>
             {
