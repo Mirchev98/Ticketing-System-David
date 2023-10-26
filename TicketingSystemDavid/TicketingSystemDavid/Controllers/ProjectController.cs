@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TicketingSystem.Common;
 using TicketingSystem.Web.ViewModels.Project;
 using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
@@ -15,6 +17,7 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = DataConstants.AdminRoleName)]
         public IActionResult Create()
         {
             CreateProjectViewModel model = new CreateProjectViewModel();
@@ -51,6 +54,7 @@ namespace TicketingSystemDavid.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = DataConstants.AdminRoleName)]
         public async Task<IActionResult> Delete(int id)
         {
             await _projectServices.Delete(id);
