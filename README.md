@@ -36,8 +36,8 @@ _GitHub:_ [https://github.com/Mirchev98](https://github.com/Mirchev98)
 6. **Explore the ticketing system and enjoy its functionalities!**
 
 7. **Other important information**
-   -In develepoment area the application seeds it's own data for each entity for testing purposes.
-   -It also seeds roles and accounts such as the following:
-     = Admin account: аdmin@admin.com  password: 12345a
-     = Support account: сupport@support.com password: 12345a
-     = Normal user account: user@user.com password: 12345a
+   *In develepoment area the application seeds it's own data for each entity for testing purposes.
+   *It also seeds roles and accounts such as the following:
+     * Admin account: аdmin@admin.com  password: 12345a
+     * Support account: сupport@support.com password: 12345a
+     * Normal user account: user@user.com password: 12345a
