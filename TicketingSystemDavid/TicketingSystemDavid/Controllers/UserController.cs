@@ -5,7 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.User;
 
-namespace TicketingSystem.Controllers
+namespace TicketingSystemDavid.Controllers
 {
     public class UserController : BaseController
     {

@@ -8,7 +8,7 @@ using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
 using TicketingSystem.Web.Infrastructure;
 
-namespace TicketingSystem
+namespace TicketingSystemDavid
 {
     public class Program
     {

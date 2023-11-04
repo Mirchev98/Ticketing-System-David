@@ -1,4 +1,4 @@
-namespace TicketingSystem.Models
+namespace TicketingSystemDavid.Models
 {
     public class ErrorViewModel
     {

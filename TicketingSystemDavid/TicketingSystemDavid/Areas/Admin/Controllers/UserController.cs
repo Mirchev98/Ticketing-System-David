@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using TicketingSystem.Common;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.User;
-using TicketingSystem.Web.Areas.Admin.Controllers;
+using TicketingSystemDavid.Web.Areas.Admin.Controllers;
 using TitcketingSystem.Data.Interfaces;
 
-namespace TicketingSystem.Areas.Admin.Controllers
+namespace TicketingSystemDavid.Areas.Admin.Controllers
 {
     public class UserController : BaseAdminController
     {

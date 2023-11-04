@@ -4,7 +4,7 @@ using TicketingSystem.Data.Models;
 using TicketingSystem.Web.ViewModels.Message;
 using TitcketingSystem.Data.Interfaces;
 
-namespace TicketingSystem.Controllers
+namespace TicketingSystemDavid.Controllers
 {
     public class MessageController : BaseController
     {
