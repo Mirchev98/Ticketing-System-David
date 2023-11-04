@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TicketingSystem.Common;
-using TicketingSystemDavid.Models;
+using TicketingSystem.Models;
 
-namespace TicketingSystemDavid.Controllers
+namespace TicketingSystem.Controllers
 {
     public class HomeController : BaseController
     {

@@ -3,7 +3,7 @@ using TicketingSystem.Web.ViewModels.Ticket;
 using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
 
-namespace TicketingSystemDavid.Controllers
+namespace TicketingSystem.Controllers
 {
     public class TicketController : BaseController
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace TicketingSystemDavid.Web.Areas.Admin.Controllers
+namespace TicketingSystem.Web.Areas.Admin.Controllers
 {
     public class HomeController : BaseAdminController
     {

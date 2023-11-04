@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace TicketingSystemDavid.Controllers
+namespace TicketingSystem.Controllers
 {
     
     public class BaseController : Controller
