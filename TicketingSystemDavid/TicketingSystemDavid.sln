@@ -19,11 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Data.Models
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Common", "TicketingSystem.Common\TicketingSystem.Common.csproj", "{8EF70D08-19E5-4CCC-B8FD-B263526B5FC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TitcketingSystem.Data", "TitcketingSystem.Data\TitcketingSystem.Data.csproj", "{8F207BE8-E6EC-4D72-B5B7-98EA6BD449EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TitcketingSystem.Services", "TitcketingSystem.Data\TitcketingSystem.Services.csproj", "{8F207BE8-E6EC-4D72-B5B7-98EA6BD449EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Web.ViewModels", "TicketingSystem.Web.ViewModels\TicketingSystem.Web.ViewModels.csproj", "{C76B518F-BF2C-428F-BBE6-84DE28F36A16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketingSystem.Web.Infrastructure", "TicketingSystem.Web.Infrastructure\TicketingSystem.Web.Infrastructure.csproj", "{61C464B2-371D-49A2-A8C1-1233530D1A59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketingSystem.Web.Infrastructure", "TicketingSystem.Web.Infrastructure\TicketingSystem.Web.Infrastructure.csproj", "{61C464B2-371D-49A2-A8C1-1233530D1A59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
