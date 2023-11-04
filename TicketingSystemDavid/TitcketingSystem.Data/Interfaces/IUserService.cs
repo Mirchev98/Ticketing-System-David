@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels.User;
+﻿using TicketingSystem.Data.Models;
+using TicketingSystem.Services.ViewModels.User;
 
-namespace TitcketingSystem.Data.Interfaces
+namespace TicketingSystem.Data.Interfaces
 {
     public interface IUserService
     {

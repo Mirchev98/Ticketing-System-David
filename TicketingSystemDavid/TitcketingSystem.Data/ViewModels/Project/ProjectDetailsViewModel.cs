@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Common;
-using TicketingSystem.Web.ViewModels.Ticket;
+﻿using TicketingSystem.Services.ViewModels.Ticket;
 
-namespace TicketingSystem.Web.ViewModels.Project
+namespace TicketingSystem.Services.ViewModels.Project
 {
     public class ProjectDetailsViewModel
     {

@@ -1,19 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels.Project;
-using TicketingSystem.Web.ViewModels.Project.Enums;
-using TicketingSystem.Web.ViewModels.Message;
-using TicketingSystem.Web.ViewModels.Ticket;
-using TitcketingSystem.Data.Interfaces;
-using System.Runtime.InteropServices;
+using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.ViewModels.Project;
+using TicketingSystem.Services.ViewModels.Project.Enums;
+using TicketingSystem.Services.ViewModels.Ticket;
+using TicketingSystem.Services.ViewModels.Message;
 
-namespace TitcketingSystem.Data
+namespace TicketingSystem.Data
 {
     public class ProjectServices : IProjectServices
     {
@@ -96,7 +89,7 @@ namespace TitcketingSystem.Data
                 State = x.State,
                 Heading = x.Heading,
                 Description = x.Description,
-                Messages = x.Messages.Select(x => new MessageDetailsViewModel
+                Messages = x.Messages.Select(x => new MessageDetailsViewModelMessage
                 {
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,

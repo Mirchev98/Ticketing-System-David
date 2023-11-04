@@ -22,11 +22,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketingSystem.Common\TicketingSystem.Common.csproj" />
-    <ProjectReference Include="..\TicketingSystem.Data.Models\TicketingSystem.Data.Models.csproj" />
     <ProjectReference Include="..\TicketingSystem.Data\TicketingSystem.Data.csproj" />
-    <ProjectReference Include="..\TicketingSystem.Web.Infrastructure\TicketingSystem.Web.Infrastructure.csproj" />
-    <ProjectReference Include="..\TicketingSystem.Web.ViewModels\TicketingSystem.Web.ViewModels.csproj" />
-    <ProjectReference Include="..\TitcketingSystem.Data\TitcketingSystem.Services.csproj" />
+    <ProjectReference Include="..\TitcketingSystem.Data\TicketingSystem.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,19 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Helpers;
-using TicketingSystem.Common;
-using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels;
-using TicketingSystem.Web.ViewModels.User;
-using TitcketingSystem.Data.Interfaces;
+using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.ViewModels.User;
 
-namespace TitcketingSystem.Data
+namespace TicketingSystem.Data
 {
     public class UserService : IUserService
     {

@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using TicketingSystem.Common;
 using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
-using TitcketingSystem.Data;
-using TitcketingSystem.Data.Interfaces;
+using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Web.Infrastructure;
 
 namespace TicketingSystemDavid

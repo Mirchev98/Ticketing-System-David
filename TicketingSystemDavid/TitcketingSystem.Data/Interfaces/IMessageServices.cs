@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels.Message;
+﻿using TicketingSystem.Data.Models;
+using TicketingSystem.Services.ViewModels.Message;
+using TicketingSystem.Services.ViewModels.Ticket;
 
-namespace TitcketingSystem.Data.Interfaces
+namespace TicketingSystem.Data.Interfaces
 {
     public interface IMessageServices
     {
@@ -18,6 +14,6 @@ namespace TitcketingSystem.Data.Interfaces
 
         Task Delete(int id);
 
-        Task<Message> Find(int id);
+        Task<DownloadFilesViewModelMessage> Download(int id);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TicketingSystem.Web.ViewModels.Ticket;
-using TitcketingSystem.Data;
-using TitcketingSystem.Data.Interfaces;
+using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.Controllers
 {
@@ -89,12 +88,12 @@ namespace TicketingSystemDavid.Controllers
 
         public async Task<IActionResult> DownloadFile(int id)
         {
-            var ticket = await _ticketServices.Find(id);
+            var model = await _ticketServices.Download(id);
 
-            if (ticket == null || ticket.FileContent == null)
+            if (model == null || model.FileContent == null)
                 return RedirectToAction("Details", "Ticket", new { id });
 
-            return File(ticket.FileContent, ticket.ContentType, ticket.FileName);
+            return File(model.FileContent, model.ContentType, model.FileName);
         }
     }
 }

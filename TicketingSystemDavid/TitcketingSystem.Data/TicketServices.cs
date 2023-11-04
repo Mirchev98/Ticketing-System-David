@@ -1,17 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels.Message;
-using TicketingSystem.Web.ViewModels.Ticket;
-using TitcketingSystem.Data.Interfaces;
+using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.ViewModels.Ticket;
+using TicketingSystem.Services.ViewModels.Message;
 
-namespace TitcketingSystem.Data
+namespace TicketingSystem.Data
 {
     public class TicketServices : ITicketServices
     {
@@ -61,7 +54,7 @@ namespace TitcketingSystem.Data
             model.Description = ticket.Description;
             model.Type = ticket.Type;
             model.IsDeleted = ticket.IsDeleted;
-            model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModel
+            model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModelMessage
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
@@ -71,6 +64,19 @@ namespace TitcketingSystem.Data
                 TicketId = x.TicketId,
                 IsDeleted = x.IsDeleted
             }).ToList();
+
+            return model;
+        }
+
+        public async Task<DownloadFilesViewModelTicket> Download(int id)
+        {
+            Ticket ticket = await dbContext.Tickets.FindAsync(id);
+
+            DownloadFilesViewModelTicket model = new DownloadFilesViewModelTicket();
+
+            model.FileContent = ticket.FileContent;
+            model.ContentType = ticket.ContentType;
+            model.FileName = ticket.FileName;
 
             return model;
         }
@@ -100,13 +106,6 @@ namespace TitcketingSystem.Data
             model.Description = ticket.Description;
 
             return model;
-        }
-
-        public async Task<Ticket> Find(int id)
-        {
-            Ticket ticket = await dbContext.Tickets.FindAsync(id);
-
-            return ticket;
         }
     }
 }

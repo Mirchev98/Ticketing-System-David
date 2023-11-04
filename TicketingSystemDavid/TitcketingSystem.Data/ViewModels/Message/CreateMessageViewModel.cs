@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketingSystem.Common;
-using TicketingSystem.Web.ViewModels.Message.Enums;
+using TicketingSystem.Services.ViewModels.Message.Enums;
 
-namespace TicketingSystem.Web.ViewModels.Message
+namespace TicketingSystem.Services.ViewModels.Message
 {
     public class CreateMessageViewModel
     {

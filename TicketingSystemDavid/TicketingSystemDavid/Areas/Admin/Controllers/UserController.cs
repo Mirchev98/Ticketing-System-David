@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using TicketingSystem.Common;
 using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels.User;
 using TicketingSystemDavid.Web.Areas.Admin.Controllers;
-using TitcketingSystem.Data.Interfaces;
+using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.ViewModels.User;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
 {

@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Common;
-using TicketingSystem.Web.ViewModels.Project;
-using TitcketingSystem.Data;
-using TitcketingSystem.Data.Interfaces;
+using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.ViewModels.Project;
 
 namespace TicketingSystemDavid.Controllers
 {

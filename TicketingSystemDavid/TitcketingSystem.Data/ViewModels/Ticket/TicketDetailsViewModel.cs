@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Common;
-using TicketingSystem.Web.ViewModels.Message;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using TicketingSystem.Services.ViewModels.Message;
 
-namespace TicketingSystem.Web.ViewModels.Ticket
+namespace TicketingSystem.Services.ViewModels.Ticket
 {
     public class TicketDetailsViewModel
     {
         public TicketDetailsViewModel()
         {
-            Messages = new List<MessageDetailsViewModel>();
+            Messages = new List<MessageDetailsViewModelMessage>();
         }
 
         public int Id { get; set; }
@@ -34,7 +26,7 @@ namespace TicketingSystem.Web.ViewModels.Ticket
 
         public string Description { get; set; } = null!;
 
-        public ICollection<MessageDetailsViewModel> Messages { get; set; }
+        public ICollection<MessageDetailsViewModelMessage> Messages { get; set; }
 
         public bool IsDeleted { get; set; }
 

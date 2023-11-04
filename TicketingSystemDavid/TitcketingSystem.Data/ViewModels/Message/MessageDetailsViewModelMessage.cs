@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Common;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
-namespace TicketingSystem.Web.ViewModels.Message
+namespace TicketingSystem.Services.ViewModels.Message
 {
-    public class MessageDetailsViewModel
+    public class MessageDetailsViewModelMessage
     {
         public int Id { get; set; }
 

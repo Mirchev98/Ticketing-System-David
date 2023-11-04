@@ -1,16 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TicketingSystem.Common;
-using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels.Ticket.Enums;
+using TicketingSystem.Services.ViewModels.Ticket.Enums;
 
-namespace TicketingSystem.Web.ViewModels.Ticket
+namespace TicketingSystem.Services.ViewModels.Ticket
 {
     public class CreateTicketViewModel
     {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Web.ViewModels.Project.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using TicketingSystem.Services.ViewModels.Project.Enums;
 
-namespace TicketingSystem.Web.ViewModels.Project
+namespace TicketingSystem.Services.ViewModels.Project
 {
     public class ProjectAllQueryModel
     {

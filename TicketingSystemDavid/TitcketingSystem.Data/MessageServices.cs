@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using TicketingSystem.Data;
-using TicketingSystem.Data.Models;
-using TicketingSystem.Web.ViewModels.Message;
-using TicketingSystem.Web.ViewModels.Message.Enums;
-using TitcketingSystem.Data.Interfaces;
+﻿using TicketingSystem.Data.Models;
+using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.ViewModels.Message;
+using TicketingSystem.Services.ViewModels.Ticket;
 
-namespace TitcketingSystem.Data
+namespace TicketingSystem.Data
 {
     public class MessageServices : IMessageServices
     {
@@ -46,6 +39,19 @@ namespace TitcketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
+        public async Task<DownloadFilesViewModelMessage> Download(int id)
+        {
+            Message message = await dbContext.Messages.FindAsync(id);
+
+            DownloadFilesViewModelMessage model = new DownloadFilesViewModelMessage();
+
+            model.FileContent = message.FileContent;
+            model.ContentType = message.ContentType;
+            model.FileName = message.FileName;
+
+            return model;
+        }
+
         public async Task Edit(CreateMessageViewModel model, int id)
         {
             Message message = await dbContext.Messages.FindAsync(id);
@@ -65,13 +71,6 @@ namespace TitcketingSystem.Data
             model.Creator = message.Creator;
 
             return model;
-        }
-
-        public async Task<Message> Find(int id)
-        {
-            Message message = await dbContext.Messages.FindAsync(id);
-
-            return message;
         }
     }
 }
