@@ -8,7 +8,7 @@ using TitcketingSystem.Data;
 using TitcketingSystem.Data.Interfaces;
 using TicketingSystem.Web.Infrastructure;
 
-namespace TicketingSystem
+namespace TicketingSystemDavid
 {
     public class Program
     {
@@ -22,6 +22,7 @@ namespace TicketingSystem
             builder.Services.AddDbContext<TicketingSystemDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            //builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<TicketingSystemDbContext>();
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<TicketingSystemDbContext>();
