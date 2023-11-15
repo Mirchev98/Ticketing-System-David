@@ -4,7 +4,7 @@ using TicketingSystem.Common;
 using TicketingSystem.Data.Models;
 using TicketingSystemDavid.Web.Areas.Admin.Controllers;
 using TicketingSystem.Data.Interfaces;
-using TicketingSystem.Services.ViewModels.User;
+using TicketingSystemDavid.ViewModels.User;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
 {

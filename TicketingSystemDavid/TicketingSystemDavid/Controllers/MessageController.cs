@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Data.Interfaces;
-using TicketingSystem.Services.ViewModels.Message;
+using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.Controllers
 {

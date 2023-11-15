@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using TicketingSystem.Data.Models;
-using TicketingSystem.Services.ViewModels.User;
+using TicketingSystemDavid.ViewModels.User;
 
 namespace TicketingSystemDavid.Controllers
 {

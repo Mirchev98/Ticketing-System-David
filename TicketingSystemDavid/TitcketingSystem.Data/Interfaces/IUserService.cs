@@ -1,5 +1,5 @@
 ﻿using TicketingSystem.Data.Models;
-using TicketingSystem.Services.ViewModels.User;
+using TicketingSystem.Services.Models.User;
 
 namespace TicketingSystem.Data.Interfaces
 {
@@ -21,6 +21,6 @@ namespace TicketingSystem.Data.Interfaces
 
         Task RemoveAutorization(ApplicationUser user);
 
-        Task Edit(ApplicationUser user, RegisterFormModel model);
+        Task Edit(ApplicationUser user, UserInformationServices model);
     }
 }

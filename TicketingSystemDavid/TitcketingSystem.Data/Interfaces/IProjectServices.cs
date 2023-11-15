@@ -1,15 +1,15 @@
 ﻿using TicketingSystem.Data.Models;
-using TicketingSystem.Services.ViewModels.Project;
+using TicketingSystem.Services.Models.Project;
 
 namespace TicketingSystem.Data.Interfaces
 {
     public interface IProjectServices
     {
-        Task Create(CreateProjectViewModel model);
+        Task Create(CreateProjectViewModelServices model);
 
-        Task<AllProjectsFilteredAndOrdered> AllAsync(ProjectAllQueryModel queryModel);
+        Task<AllProjectsFilteredAndOrderedServices> AllAsync(ProjectAllQueryModelServices queryModel);
 
-        Task<ProjectDetailsViewModel> FillModel(ProjectDetailsViewModel model, int id);
+        Task<ProjectDetailsViewModelServices> FillModel(ProjectDetailsViewModelServices model, int id);
 
         Task<Project> FindProject(int id);
 

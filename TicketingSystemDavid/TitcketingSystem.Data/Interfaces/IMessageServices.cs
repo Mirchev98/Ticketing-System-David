@@ -1,19 +1,18 @@
 ﻿using TicketingSystem.Data.Models;
-using TicketingSystem.Services.ViewModels.Message;
-using TicketingSystem.Services.ViewModels.Ticket;
+using TicketingSystem.Services.Models.Message;
 
 namespace TicketingSystem.Data.Interfaces
 {
     public interface IMessageServices
     {
-        Task Create(CreateMessageViewModel model);
+        Task Create(CreateMessageModelServices model);
 
-        Task<CreateMessageViewModel> FillModel(CreateMessageViewModel model, int id);
+        Task<CreateMessageModelServices> FillModel(CreateMessageModelServices model, int id);
 
-        Task Edit(CreateMessageViewModel model, int id);
+        Task Edit(CreateMessageModelServices model, int id);
 
         Task Delete(int id);
 
-        Task<DownloadFilesViewModelMessage> Download(int id);
+        Task<DownloadFilesModelServices> Download(int id);
     }
 }

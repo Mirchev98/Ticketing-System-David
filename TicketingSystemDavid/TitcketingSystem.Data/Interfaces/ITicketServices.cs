@@ -1,20 +1,20 @@
 ﻿using TicketingSystem.Data.Models;
-using TicketingSystem.Services.ViewModels.Ticket;
+using TicketingSystem.Services.Models.Ticket;
 
 namespace TicketingSystem.Data.Interfaces
 {
     public interface ITicketServices
     {
-        Task Create(CreateTicketViewModel model); 
+        Task Create(CreateTicketViewModelServices model); 
 
-        Task<TicketDetailsViewModel> Details(TicketDetailsViewModel model, int id);
+        Task<TicketDetailsViewModelServices> Details(TicketDetailsViewModelServices model, int id);
 
-        Task<CreateTicketViewModel> FillModel(CreateTicketViewModel model, int id);
+        Task<CreateTicketViewModelServices> FillModel(CreateTicketViewModelServices model, int id);
 
-        Task Edit(CreateTicketViewModel model, int id);
+        Task Edit(CreateTicketViewModelServices model, int id);
 
         Task Delete(int id);
 
-        Task<DownloadFilesViewModelTicket> Download(int id);
+        Task<DownloadFilesTicketServices> Download(int id);
     }
 }

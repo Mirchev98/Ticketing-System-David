@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
-using TicketingSystem.Services.ViewModels.Project;
 using TicketingSystem.Services.ViewModels.Project.Enums;
-using TicketingSystem.Services.ViewModels.Ticket;
-using TicketingSystem.Services.ViewModels.Message;
+using TicketingSystem.Services.Models.Project;
+using TicketingSystem.Services.Models.Ticket;
+using TicketingSystem.Services.Models.Message;
 
 namespace TicketingSystem.Data
 {
@@ -17,7 +17,7 @@ namespace TicketingSystem.Data
             this.dbContext = dbContext;
         }
 
-        public async Task Create(CreateProjectViewModel model)
+        public async Task Create(CreateProjectViewModelServices model)
         {
             Project project = new Project();
 
@@ -28,7 +28,7 @@ namespace TicketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<AllProjectsFilteredAndOrdered> AllAsync(ProjectAllQueryModel queryModel)
+        public async Task<AllProjectsFilteredAndOrderedServices> AllAsync(ProjectAllQueryModelServices queryModel)
         {
             IQueryable<Project> projectQuery = this.dbContext
                                 .Projects
@@ -46,16 +46,16 @@ namespace TicketingSystem.Data
 
             projectQuery = queryModel.ProjectSorting switch
             {
-                ProjectSortEnum.NameAsc => projectQuery
+                ProjectSortEnumServices.NameAsc => projectQuery
                     .OrderBy(b => b.Name),
-                ProjectSortEnum.NameDesc => projectQuery
+                ProjectSortEnumServices.NameDesc => projectQuery
                     .OrderByDescending(b => b.Name)
             };
 
-            IEnumerable<ProjectAllViewModel> projects = await projectQuery
+            IEnumerable<ProjectAllViewModelServices> projects = await projectQuery
                 .Skip((queryModel.CurrentPage - 1) * queryModel.ProjectsPerPage)
                 .Take(queryModel.ProjectsPerPage)
-                .Select(b => new ProjectAllViewModel
+                .Select(b => new ProjectAllViewModelServices
                 {
                     Id = b.Id,
                     Name = b.Name,
@@ -66,21 +66,21 @@ namespace TicketingSystem.Data
 
             int totalProjectsCount = projectQuery.Count();
 
-            return new AllProjectsFilteredAndOrdered()
+            return new AllProjectsFilteredAndOrderedServices()
             {
                 TotalProjectsCount = totalProjectsCount,
                 Projects = projects
             };
         }
 
-        public async Task<ProjectDetailsViewModel> FillModel(ProjectDetailsViewModel model, int id)
+        public async Task<ProjectDetailsViewModelServices> FillModel(ProjectDetailsViewModelServices model, int id)
         {
             Project project = await dbContext.Projects.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == id);
 
             model.Id = project.Id;
             model.Description = project.Description;
             model.IsDeleted = project.IsDeleted;
-            model.Tickets = project.Tickets.Select(x => new TicketDetailsViewModel
+            model.Tickets = project.Tickets.Select(x => new TicketDetailsViewModelServices
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
@@ -89,7 +89,7 @@ namespace TicketingSystem.Data
                 State = x.State,
                 Heading = x.Heading,
                 Description = x.Description,
-                Messages = x.Messages.Select(x => new MessageDetailsViewModelMessage
+                Messages = x.Messages.Select(x => new MessageDetailsViewModelServices
                 {
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
