@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.Models.Ticket;
+using TicketingSystem.Services.Models.Message;
 
 namespace TicketingSystem.Data
 {
@@ -13,7 +15,7 @@ namespace TicketingSystem.Data
             this.dbContext = dbContext;
         }
 
-        public async Task Create(CreateTicketViewModel model)
+        public async Task Create(CreateTicketViewModelServices model)
         {
             Ticket ticket = new Ticket();
 
@@ -40,7 +42,7 @@ namespace TicketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<TicketDetailsViewModel> Details(TicketDetailsViewModel model, int id)
+        public async Task<TicketDetailsViewModelServices> Details(TicketDetailsViewModelServices model, int id)
         {
             Ticket ticket = await dbContext.Tickets.Include(x => x.Messages).FirstOrDefaultAsync(t => t.Id == id);
 
@@ -52,7 +54,7 @@ namespace TicketingSystem.Data
             model.Description = ticket.Description;
             model.Type = ticket.Type;
             model.IsDeleted = ticket.IsDeleted;
-            model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModelMessage
+            model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModelServices
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
@@ -66,11 +68,11 @@ namespace TicketingSystem.Data
             return model;
         }
 
-        public async Task<DownloadFilesViewModelTicket> Download(int id)
+        public async Task<DownloadFilesTicketServices> Download(int id)
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
-            DownloadFilesViewModelTicket model = new DownloadFilesViewModelTicket();
+            DownloadFilesTicketServices model = new DownloadFilesTicketServices();
 
             model.FileContent = ticket.FileContent;
             model.ContentType = ticket.ContentType;
@@ -79,7 +81,7 @@ namespace TicketingSystem.Data
             return model;
         }
 
-        public async Task Edit(CreateTicketViewModel model, int id)
+        public async Task Edit(CreateTicketViewModelServices model, int id)
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
@@ -93,7 +95,7 @@ namespace TicketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<CreateTicketViewModel> FillModel(CreateTicketViewModel model, int id)
+        public async Task<CreateTicketViewModelServices> FillModel(CreateTicketViewModelServices model, int id)
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 

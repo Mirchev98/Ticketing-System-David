@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Web.Helpers;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.Models.User;
 
 namespace TicketingSystem.Data
 {
@@ -30,7 +31,7 @@ namespace TicketingSystem.Data
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Edit(ApplicationUser user, RegisterFormModel model)
+        public async Task Edit(ApplicationUser user, UserInformationServices model)
         {
             user.Email = model.Email;
             user.NormalizedEmail = model.Email;
