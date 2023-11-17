@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TicketingSystem.Common;
-using TicketingSystem.Services.ViewModels.Ticket.Enums;
 using TicketingSystemDavid.ViewModels.Ticket.Enums;
 
 namespace TicketingSystemDavid.ViewModels.Ticket

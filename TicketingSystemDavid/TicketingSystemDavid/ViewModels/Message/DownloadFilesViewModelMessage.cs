@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace TicketingSystemDavid.ViewModels.Message
+﻿namespace TicketingSystemDavid.ViewModels.Message
 {
     public class DownloadFilesViewModelMessage
     {

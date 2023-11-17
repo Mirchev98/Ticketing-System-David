@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
-using TicketingSystem.Services.ViewModels.Ticket;
-using TicketingSystem.Services.ViewModels.Message;
 
 namespace TicketingSystem.Data
 {

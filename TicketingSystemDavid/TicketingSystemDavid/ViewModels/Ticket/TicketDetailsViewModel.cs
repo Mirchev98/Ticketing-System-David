@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using TicketingSystemDavid.ViewModels.Message;
+﻿using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.ViewModels.Ticket
 {

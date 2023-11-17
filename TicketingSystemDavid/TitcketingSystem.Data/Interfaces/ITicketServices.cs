@@ -1,5 +1,4 @@
-﻿using TicketingSystem.Data.Models;
-using TicketingSystem.Services.Models.Ticket;
+﻿using TicketingSystem.Services.Models.Ticket;
 
 namespace TicketingSystem.Data.Interfaces
 {

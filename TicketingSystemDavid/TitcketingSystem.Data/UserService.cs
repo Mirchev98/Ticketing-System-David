@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Web.Helpers;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
-using TicketingSystem.Services.ViewModels.User;
 
 namespace TicketingSystem.Data
 {

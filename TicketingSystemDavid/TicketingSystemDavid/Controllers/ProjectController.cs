@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Common;
 using TicketingSystem.Data.Interfaces;
-using TicketingSystem.Services.ViewModels.Project;
 
 namespace TicketingSystemDavid.Controllers
 {
