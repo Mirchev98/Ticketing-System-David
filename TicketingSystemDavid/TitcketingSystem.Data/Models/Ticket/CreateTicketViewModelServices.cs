@@ -15,9 +15,9 @@ namespace TicketingSystem.Services.Models.Ticket
 
         public string Description { get; set; }
 
-        public TicketCategory Type { get; set; }
+        public TicketCategoryServices Type { get; set; }
 
-        public TicketState State { get; set; }
+        public TicketStateServices State { get; set; }
 
         public IFormFile File { get; set; }
 

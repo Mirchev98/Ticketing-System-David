@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystem.Services.Models.Ticket.Enums
 {
-    public enum TicketState
+    public enum TicketStateServices
     {
         Draft,
         New,

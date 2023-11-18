@@ -5,6 +5,7 @@ using TicketingSystem.Data.Models;
 using TicketingSystemDavid.Web.Areas.Admin.Controllers;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystemDavid.ViewModels.User;
+using TicketingSystem.Services.Models.User;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
 {
@@ -149,7 +150,7 @@ namespace TicketingSystemDavid.Areas.Admin.Controllers
         {
             ApplicationUser user = await userService.GetUserById(id);
 
-            await userService.Edit(user, model);
+            await userService.Edit(user, Convert(model));
 
             return RedirectToAction("All", "User");
         }

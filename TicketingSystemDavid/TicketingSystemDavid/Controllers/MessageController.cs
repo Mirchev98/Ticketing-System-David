@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.Models.Message;
 using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.Controllers
@@ -39,7 +40,7 @@ namespace TicketingSystemDavid.Controllers
             model.Creator = this.User.Identity.Name;
             model.TicketId = id;
 
-            await _messageServices.Create(model);
+            await _messageServices.Create(ConvertMessage(model));
 
             return RedirectToAction("Index", "Home");
         }
@@ -50,16 +51,17 @@ namespace TicketingSystemDavid.Controllers
             CreateMessageViewModel model = new CreateMessageViewModel();
             model.Creator = this.User.Identity.Name;
 
-            await _messageServices.FillModel(model, id);
+            CreateMessageModelServices newModel = await _messageServices.FillModel(ConvertMessage(model), id);
 
-            return View(model);
+            return View(ConvertMessageViewModel(newModel));
         }
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, CreateMessageViewModel model)
         {
             model.Creator = this.User.Identity.Name;
-            await _messageServices.Edit(model, id);
+            
+            await _messageServices.Edit(ConvertMessage(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id });
         }

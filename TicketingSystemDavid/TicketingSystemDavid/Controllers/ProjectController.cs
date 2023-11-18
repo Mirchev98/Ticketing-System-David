@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Common;
 using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.Models.Project;
+using TicketingSystemDavid.ViewModels.Project;
 
 namespace TicketingSystemDavid.Controllers
 {
@@ -26,7 +28,7 @@ namespace TicketingSystemDavid.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateProjectViewModel model)
         {
-            await _projectServices.Create(model);
+            await _projectServices.Create(ConvertProject(model));
 
             return RedirectToAction("All");
         }
@@ -34,10 +36,12 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> All([FromQuery] ProjectAllQueryModel query)
         {
-            AllProjectsFilteredAndOrdered model = await _projectServices.AllAsync(query);
+            AllProjectsFilteredAndOrderedServices model = await _projectServices.AllAsync(ConvertQuery(query));
 
-            query.Projects = model.Projects;
-            query.TotalProjects = model.TotalProjectsCount;
+            AllProjectsFilteredAndOrdered convertedModel = ConvertProjectAllViewModel(model);
+
+            query.Projects = convertedModel.Projects;
+            query.TotalProjects = convertedModel.TotalProjectsCount;
 
             return View(query);
         }
@@ -45,11 +49,12 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            ProjectDetailsViewModel model = new ProjectDetailsViewModel();
+            ProjectDetailsViewModelServices model = new ProjectDetailsViewModelServices();
 
             await _projectServices.FillModel(model, id);
 
-            return View(model);
+
+            return View(ConvertProjectDetailsViewModel(model));
         }
 
         [Authorize(Roles = DataConstants.AdminRoleName)]

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Data.Interfaces;
+using TicketingSystem.Services.Models.Ticket;
 using TicketingSystemDavid.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.Controllers
@@ -17,7 +18,7 @@ namespace TicketingSystemDavid.Controllers
         public IActionResult Create(int id)
         {
 
-                CreateTicketViewModel model = new CreateTicketViewModel();
+            CreateTicketViewModel model = new CreateTicketViewModel();
 
             model.ProjectId = id;
 
@@ -36,12 +37,12 @@ namespace TicketingSystemDavid.Controllers
                 model.FileName = model.File.FileName;
             }
 
-            
+
             model.Creator = this.User.Identity.Name;
 
             model.ProjectId = id;
 
-            await _ticketServices.Create(model);
+            await _ticketServices.Create(ConvertTicket(model));
 
             return RedirectToAction("Index", "Home");
         }
@@ -49,23 +50,23 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            TicketDetailsViewModel model = new TicketDetailsViewModel();
+            TicketDetailsViewModelServices model = new TicketDetailsViewModelServices();
 
             await _ticketServices.Details(model, id);
-            
-            return View(model);
+
+            return View(ConvertTicketDetailsViewModel(model));
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            CreateTicketViewModel model = new CreateTicketViewModel();
+            CreateTicketViewModelServices model = new CreateTicketViewModelServices();
 
             model.Creator = User.Identity.Name;
 
             await _ticketServices.FillModel(model, id);
 
-            return View(model);
+            return View(ConvertTicketViewModel(model));
         }
 
 
@@ -74,7 +75,7 @@ namespace TicketingSystemDavid.Controllers
         {
             model.Creator = User.Identity.Name;
 
-            await _ticketServices.Edit(model, id);
+            await _ticketServices.Edit(ConvertTicket(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id });
         }
