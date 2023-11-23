@@ -80,6 +80,11 @@ namespace TicketingSystemDavid.Controllers
 
             CreateMessageModelServices newModel = await _messageServices.FillModel(ConvertMessage(model), id);
 
+            if (newModel == null)
+            {
+                return RedirectToAction("Details", "Ticket", new { id });
+            }
+
             return View(ConvertMessageViewModel(newModel));
         }
 
@@ -93,16 +98,23 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
+            int ticketId = await _messageServices.FindTicket(model.Id);
+
             await _messageServices.Edit(ConvertMessage(model), id);
 
-            return RedirectToAction("Details", "Ticket", new { id });
+            return RedirectToAction("Details", "Ticket", new { id = ticketId });
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            await _messageServices.Delete(id);
-
             int ticketId = await _messageServices.FindTicket(id);
+
+            if (ticketId == null)
+            {
+                return RedirectToAction("All", "Project");
+            }
+
+            await _messageServices.Delete(id);
 
             return RedirectToAction("Details", "Ticket", new { id = ticketId });
         }

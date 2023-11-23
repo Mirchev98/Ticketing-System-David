@@ -67,11 +67,12 @@ namespace TicketingSystem.Data
 
         public async Task<CreateMessageModelServices> FillModel(CreateMessageModelServices model, int id)
         {
-            Message message = await dbContext.Messages.FindAsync(id);
+            Message message = await dbContext.Messages.Include(x=> x.Ticket).FirstOrDefaultAsync(x => x.Id == id);
 
             model.Content = message.Content;
             model.Creator = message.Creator;
             model.CreatedOn = message.CreatedOn;
+            model.TicketId = message.TicketId;
 
             return model;
         }

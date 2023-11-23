@@ -92,6 +92,11 @@ namespace TicketingSystemDavid.Controllers
 
             await _ticketServices.FillModel(model, id);
 
+            if (model == null)
+            {
+                return RedirectToAction("Details", "Ticket", new { id });
+            }
+
             return View(ConvertTicketViewModel(model));
         }
 
@@ -113,9 +118,14 @@ namespace TicketingSystemDavid.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            await _ticketServices.Delete(id);
-
             int projectId = await _ticketServices.FindProjectId(id);
+
+            if (projectId == null)
+            {
+                return RedirectToAction("All", "Project");
+            }
+
+            await _ticketServices.Delete(id);
 
             return RedirectToAction("Details", "Project", new {id = projectId});
         }
