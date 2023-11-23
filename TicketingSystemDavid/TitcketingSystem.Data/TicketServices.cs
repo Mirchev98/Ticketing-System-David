@@ -28,6 +28,7 @@ namespace TicketingSystem.Data
             ticket.FileContent = model.FileContent;
             ticket.ContentType = model.ContentType;
             ticket.FileName = model.FileName;
+            ticket.CreatedOn = DateTime.Now;
 
             await dbContext.Tickets.AddAsync(ticket);
             await dbContext.SaveChangesAsync();
@@ -64,7 +65,9 @@ namespace TicketingSystem.Data
                 State = x.State,
                 Content = x.Content,
                 TicketId = x.TicketId,
-                IsDeleted = x.IsDeleted
+                IsDeleted = x.IsDeleted,
+                FileContent = x.FileContent,
+                FileName = x.FileName
             }).ToList();
 
             return model;
@@ -108,6 +111,13 @@ namespace TicketingSystem.Data
             model.Description = ticket.Description;
 
             return model;
+        }
+
+        public async Task<int> FindProjectId(int id)
+        {
+            Ticket ticket = await dbContext.Tickets.Include(x => x.Project).FirstOrDefaultAsync(x => x.Id == id);
+
+            return ticket.ProjectId;
         }
     }
 }

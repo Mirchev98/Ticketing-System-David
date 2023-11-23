@@ -1,6 +1,7 @@
 ﻿using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.Message;
+using Microsoft.EntityFrameworkCore;
 
 namespace TicketingSystem.Data
 {
@@ -24,6 +25,7 @@ namespace TicketingSystem.Data
             message.FileContent = model.FileContent;
             message.ContentType = model.ContentType;
             message.FileName = model.FileName;
+            message.CreatedOn = DateTime.Now;
 
             await dbContext.Messages.AddAsync(message);
             await dbContext.SaveChangesAsync();
@@ -58,6 +60,7 @@ namespace TicketingSystem.Data
             message.State = model.State.ToString();
             message.Content = model.Content;
             message.Creator = model.Creator;
+            message.CreatedOn = DateTime.Now;
 
             await dbContext.SaveChangesAsync();
         }
@@ -68,8 +71,16 @@ namespace TicketingSystem.Data
 
             model.Content = message.Content;
             model.Creator = message.Creator;
+            model.CreatedOn = message.CreatedOn;
 
             return model;
+        }
+
+        public async Task<int> FindTicket(int id)
+        {
+            Message message = await dbContext.Messages.Include(x => x.Ticket).FirstOrDefaultAsync(x => x.Id == id);
+
+            return message.TicketId;
         }
     }
 }

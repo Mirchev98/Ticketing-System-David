@@ -15,6 +15,8 @@ namespace TicketingSystem.Services.Models.Message
 
         public string Creator { get; set; } = null!;
 
+        public DateTime CreatedOn { get; set; }
+
         [Required]
         [StringLength(DataConstants.MessageContentMaxLen, MinimumLength = DataConstants.MessageContentMinLen)]
         public string Content { get; set; } = null!;
@@ -31,5 +33,7 @@ namespace TicketingSystem.Services.Models.Message
 
         [AllowNull]
         public string? ContentType { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

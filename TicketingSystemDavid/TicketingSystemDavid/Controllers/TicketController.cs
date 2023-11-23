@@ -60,12 +60,17 @@ namespace TicketingSystemDavid.Controllers
 
             await _ticketServices.Create(ConvertTicket(model));
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Details", "Project", new { id });
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             TicketDetailsViewModelServices model = new TicketDetailsViewModelServices();
 
             await _ticketServices.Details(model, id);
@@ -76,6 +81,11 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             CreateTicketViewModelServices model = new CreateTicketViewModelServices();
 
             model.Creator = User.Identity.Name;
@@ -105,7 +115,9 @@ namespace TicketingSystemDavid.Controllers
         {
             await _ticketServices.Delete(id);
 
-            return RedirectToAction("All", "Project");
+            int projectId = await _ticketServices.FindProjectId(id);
+
+            return RedirectToAction("Details", "Project", new {id = projectId});
         }
 
         public async Task<IActionResult> DownloadFile(int id)

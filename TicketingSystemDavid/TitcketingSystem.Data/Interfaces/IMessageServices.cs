@@ -13,5 +13,7 @@ namespace TicketingSystem.Data.Interfaces
         Task Delete(int id);
 
         Task<DownloadFilesModelServices> Download(int id);
+
+        Task<int> FindTicket(int id);
     }
 }

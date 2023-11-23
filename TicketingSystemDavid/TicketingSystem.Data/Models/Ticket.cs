@@ -9,7 +9,6 @@ namespace TicketingSystem.Data.Models
     {
         public Ticket()
         {
-            CreatedOn = DateTime.UtcNow;
             Messages = new List<Message>();
         }
 

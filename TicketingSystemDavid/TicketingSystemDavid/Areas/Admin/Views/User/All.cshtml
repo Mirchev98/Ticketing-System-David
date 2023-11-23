@@ -31,7 +31,7 @@
                         <td>
                             <div class="form-inline align-self-center">
                                 <a class="btn btn-danger" asp-area="Admin" asp-controller="User" asp-action="RemoveAdmin"
-                                   asp-route-id="@user.Id" confirm="Are your sure?">Remove Admin Rights</a>
+                                   asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to remove admin rights?');">Remove Admin Rights</a>
                             </div>
                         </td>
                     }
@@ -40,7 +40,7 @@
                         <td>
                             <div class="form-inline align-self-center">
                                 <a class="btn btn-success" asp-area="Admin" asp-controller="User" asp-action="AddAdmin"
-                                   asp-route-id="@user.Id" confirm="Are your sure?">Add Admin Rights</a>
+                                   asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to give admin rights?');">Add Admin Rights</a>
                             </div>
                         </td>
                     }
@@ -50,7 +50,7 @@
                         <td>
                             <div class="form-inline align-self-center">
                                 <a class="btn btn-danger" asp-area="Admin" asp-controller="User" asp-action="RemoveSupport"
-                                   asp-route-id="@user.Id" confirm="Are your sure?">Remove Support Rights</a>
+                                   asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to remove support rights?');">Remove Support Rights</a>
                             </div>
                         </td>
                     }
@@ -59,7 +59,7 @@
                         <td>
                             <div class="form-inline align-self-center">
                                 <a class="btn btn-success" asp-area="Admin" asp-controller="User" asp-action="AddSupport"
-                                   asp-route-id="@user.Id" confirm="Are your sure?">Add Support Rights</a>
+                                   asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to add support rights?');">Add Support Rights</a>
                             </div>
                         </td>
                     }
@@ -69,7 +69,7 @@
                         <td>
                             <div class="form-inline align-self-center">
                                 <a class="btn btn-danger" asp-area="Admin" asp-controller="User" asp-action="RemoveAutorization"
-                                   asp-route-id="@user.Id" confirm="Are your sure?">Remove Autorization</a>
+                                   asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to remove authorization?');">Remove Autorization</a>
                             </div>
                         </td>
                     }
@@ -78,7 +78,7 @@
                         <td>
                             <div class="form-inline align-self-center">
                                 <a class="btn btn-success" asp-area="Admin" asp-controller="User" asp-action="AddAutorization"
-                                   asp-route-id="@user.Id" confirm="Are your sure?">Add Autorization</a>
+                                   asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to give authorization?');">Add Autorization</a>
                             </div>
                         </td>
                     }
@@ -87,7 +87,7 @@
                 <td>
                     <div class="form-inline align-self-center">
                         <a class="btn btn-danger" asp-area="Admin" asp-controller="User" asp-action="Edit"
-                           asp-route-id="@user.Id" confirm="Are your sure?">Edit Credentials</a>
+                           asp-route-id="@user.Id">Edit Credentials</a>
                     </div>
                 </td>
             </tr>

@@ -23,6 +23,7 @@ namespace TicketingSystem.Data
 
             project.Name = model.Name;
             project.Description = model.Description;
+            
 
             await dbContext.Projects.AddAsync(project);
             await dbContext.SaveChangesAsync();
@@ -60,7 +61,7 @@ namespace TicketingSystem.Data
                     Id = b.Id,
                     Name = b.Name,
                     Description = b.Description,
-                    TicketCount = b.Tickets.Count
+                    TicketCount = b.Tickets.Where(x => x.IsDeleted == false).Count(),
                 })
                 .ToArrayAsync();
 

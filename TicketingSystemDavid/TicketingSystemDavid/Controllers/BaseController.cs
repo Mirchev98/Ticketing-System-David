@@ -27,10 +27,12 @@ namespace TicketingSystemDavid.Controllers
                 State = (MessageStateServices)Enum.Parse(typeof(MessageStateServices), model.State.ToString()),
                 Content = model.Content,
                 Creator = model.Creator,
+                CreatedOn = model.CreatedOn,
                 TicketId = model.TicketId,
                 FileContent = model.FileContent,
                 ContentType = model.ContentType,
-                FileName = model.FileName
+                FileName = model.FileName,
+                IsDeleted = model.IsDeleted
             };
 
             return newModel;
@@ -45,9 +47,11 @@ namespace TicketingSystemDavid.Controllers
                 Content = model.Content,
                 Creator = model.Creator,
                 TicketId = model.TicketId,
+                CreatedOn = model.CreatedOn,
                 FileContent = model.FileContent,
                 ContentType = model.ContentType,
-                FileName = model.FileName
+                FileName = model.FileName,
+                IsDeleted = model.IsDeleted
             };
 
             return newModel;
@@ -147,13 +151,15 @@ namespace TicketingSystemDavid.Controllers
                     Heading = t.Heading,
                     State = t.State,
                     Description = t.Description,
+                    IsDeleted = t.IsDeleted,
                     Messages = t.Messages.Select(m => new MessageDetailsViewModelMessage
                     {
                         Id = m.Id,
                         State = m.State,
                         Content = m.Content,
                         Creator = m.Creator,
-                        TicketId = m.TicketId
+                        TicketId = m.TicketId,
+                        IsDeleted = m.IsDeleted
                     }).ToList(),
                 }).ToList()
             };
@@ -223,7 +229,11 @@ namespace TicketingSystemDavid.Controllers
                     State = m.State,
                     Content = m.Content,
                     Creator = m.Creator,
-                    TicketId = m.TicketId
+                    TicketId = m.TicketId,
+                    FileContent = m.FileContent,
+                    FileName = m.FileName,
+                    File = m.File,
+                    IsDeleted = m.IsDeleted
                 }).ToList(),
             };
 
@@ -252,7 +262,11 @@ namespace TicketingSystemDavid.Controllers
                     State = m.State,
                     Content = m.Content,
                     Creator = m.Creator,
-                    TicketId = m.TicketId
+                    TicketId = m.TicketId,
+                    FileContent = m.FileContent,
+                    FileName = m.FileName,
+                    File = m.File,
+                    IsDeleted = m.IsDeleted
                 }).ToList(),
             };
 

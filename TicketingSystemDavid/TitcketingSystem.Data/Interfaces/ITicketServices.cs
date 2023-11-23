@@ -15,5 +15,7 @@ namespace TicketingSystem.Data.Interfaces
         Task Delete(int id);
 
         Task<DownloadFilesTicketServices> Download(int id);
+
+        Task<int> FindProjectId(int id);
     }
 }

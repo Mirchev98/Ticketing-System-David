@@ -9,7 +9,7 @@ namespace TicketingSystem.Data.Models
     {
         public Message()
         {
-            CreatedOn = DateTime.UtcNow;
+
         }
 
         [Key]

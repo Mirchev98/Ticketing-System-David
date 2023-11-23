@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TicketingSystem.Common;
+using TicketingSystem.Data;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.Project;
 using TicketingSystemDavid.ViewModels.Project;
@@ -11,10 +13,13 @@ namespace TicketingSystemDavid.Controllers
     public class ProjectController : BaseController
     {
         private readonly IProjectServices _projectServices;
+        private readonly IUserService _userService;
 
-        public ProjectController(IProjectServices projectServices)
+        public ProjectController(IProjectServices projectServices, IUserService userService)
         {
             _projectServices = projectServices;
+            _userService = userService;
+
         }
 
         [HttpGet]
@@ -42,6 +47,11 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> All([FromQuery] ProjectAllQueryModel query)
         {
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             AllProjectsFilteredAndOrderedServices model = await _projectServices.AllAsync(ConvertQuery(query));
 
             AllProjectsFilteredAndOrdered convertedModel = ConvertProjectAllViewModel(model);
@@ -55,6 +65,11 @@ namespace TicketingSystemDavid.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             ProjectDetailsViewModelServices model = new ProjectDetailsViewModelServices();
 
             await _projectServices.FillModel(model, id);

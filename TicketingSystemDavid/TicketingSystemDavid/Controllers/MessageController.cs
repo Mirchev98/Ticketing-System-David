@@ -40,6 +40,11 @@ namespace TicketingSystemDavid.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateMessageViewModel model, int id)
         {
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             if (model.File != null && model.File.Length > 0)
             {
                 using var stream = new MemoryStream();
@@ -59,12 +64,17 @@ namespace TicketingSystemDavid.Controllers
 
             await _messageServices.Create(ConvertMessage(model));
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Details", "Ticket", new { id });
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             CreateMessageViewModel model = new CreateMessageViewModel();
             model.Creator = this.User.Identity.Name;
 
@@ -86,6 +96,15 @@ namespace TicketingSystemDavid.Controllers
             await _messageServices.Edit(ConvertMessage(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id });
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _messageServices.Delete(id);
+
+            int ticketId = await _messageServices.FindTicket(id);
+
+            return RedirectToAction("Details", "Ticket", new { id = ticketId });
         }
 
         public async Task<IActionResult> DownloadFile(int id)

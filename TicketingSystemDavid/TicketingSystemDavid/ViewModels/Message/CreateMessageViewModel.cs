@@ -13,7 +13,9 @@ namespace TicketingSystemDavid.ViewModels.Message
         public MessageState State { get; set; }
 
         [AllowNull]
-        public string? Creator { get; set; } 
+        public string? Creator { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         [Required]
         [StringLength(DataConstants.MessageContentMaxLen, MinimumLength = DataConstants.MessageContentMinLen)]
@@ -32,5 +34,7 @@ namespace TicketingSystemDavid.ViewModels.Message
 
         [AllowNull]
         public string? ContentType { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
