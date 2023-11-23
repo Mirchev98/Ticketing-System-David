@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.Ticket;
+using TicketingSystem.Services.Models.User;
 using TicketingSystemDavid.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.Controllers
@@ -8,15 +11,22 @@ namespace TicketingSystemDavid.Controllers
     public class TicketController : BaseController
     {
         private readonly ITicketServices _ticketServices;
+        private readonly IUserService _userService;
 
-        public TicketController(ITicketServices ticketServices)
+        public TicketController(ITicketServices ticketServices, IUserService userServices)
         {
             this._ticketServices = ticketServices;
+            this._userService = userServices;
         }
 
         [HttpGet]
         public IActionResult Create(int id)
         {
+
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
 
             CreateTicketViewModel model = new CreateTicketViewModel();
 

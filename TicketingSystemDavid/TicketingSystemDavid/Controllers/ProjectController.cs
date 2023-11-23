@@ -7,6 +7,7 @@ using TicketingSystemDavid.ViewModels.Project;
 
 namespace TicketingSystemDavid.Controllers
 {
+    [Authorize]
     public class ProjectController : BaseController
     {
         private readonly IProjectServices _projectServices;

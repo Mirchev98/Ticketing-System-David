@@ -4,6 +4,8 @@ using System.Web.Helpers;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.User;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace TicketingSystem.Data
 {
@@ -81,6 +83,18 @@ namespace TicketingSystem.Data
         {
             user.IsSupport = false;
             await dbContext.SaveChangesAsync();
+        }
+
+        public bool CheckIfUserIsAuthorized(string id)
+        {
+            ApplicationUser user = dbContext.Users.Find(id);
+
+            if (user.IsAuthorized)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

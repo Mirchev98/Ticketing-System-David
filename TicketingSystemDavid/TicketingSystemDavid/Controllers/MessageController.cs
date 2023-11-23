@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.Message;
 using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.Controllers
 {
+    [Authorize]
     public class MessageController : BaseController
     {
         private readonly IMessageServices _messageServices;

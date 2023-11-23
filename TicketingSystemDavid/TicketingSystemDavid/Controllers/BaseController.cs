@@ -11,7 +11,6 @@ using TicketingSystemDavid.ViewModels.Project;
 using TicketingSystemDavid.ViewModels.Project.Enums;
 using TicketingSystemDavid.ViewModels.Ticket;
 using TicketingSystemDavid.ViewModels.Ticket.Enums;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace TicketingSystemDavid.Controllers
 {
