@@ -244,6 +244,8 @@ namespace TicketingSystemDavid.Controllers
                 Description = model.Description,
                 IsDeleted = model.IsDeleted,
                 File = model.File,
+                FileContent = model.FileContent,
+                FileName = model.FileName,
                 Messages = model.Messages.Select(m => new MessageDetailsViewModelMessage
                 {
                     Id = m.Id,

@@ -8,6 +8,7 @@ using TicketingSystemDavid.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.Controllers
 {
+    [Authorize]
     public class TicketController : BaseController
     {
         private readonly ITicketServices _ticketServices;
@@ -52,6 +53,11 @@ namespace TicketingSystemDavid.Controllers
 
             model.ProjectId = id;
 
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             await _ticketServices.Create(ConvertTicket(model));
 
             return RedirectToAction("Index", "Home");
@@ -84,6 +90,11 @@ namespace TicketingSystemDavid.Controllers
         public async Task<IActionResult> Edit(int id, CreateTicketViewModel model)
         {
             model.Creator = User.Identity.Name;
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             await _ticketServices.Edit(ConvertTicket(model), id);
 

@@ -54,6 +54,8 @@ namespace TicketingSystem.Data
             model.Description = ticket.Description;
             model.Type = ticket.Type;
             model.IsDeleted = ticket.IsDeleted;
+            model.FileContent = ticket.FileContent;
+            model.FileName = ticket.FileName;
             model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModelServices
             {
                 Id = x.Id,

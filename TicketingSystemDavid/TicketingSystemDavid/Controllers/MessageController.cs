@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using TicketingSystem.Data;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.Message;
 using TicketingSystemDavid.ViewModels.Message;
@@ -10,15 +12,23 @@ namespace TicketingSystemDavid.Controllers
     public class MessageController : BaseController
     {
         private readonly IMessageServices _messageServices;
+        private readonly IUserService _userService;
 
-        public MessageController(IMessageServices messageServices)
+        public MessageController(IMessageServices messageServices, IUserService userService)
         {
             _messageServices = messageServices;
+            _userService = userService;
+
         }
 
         [HttpGet]
         public IActionResult Create(int id)
         {
+            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            {
+                return RedirectToAction("Unauthorized", "Home");
+            }
+
             CreateMessageViewModel model = new CreateMessageViewModel();
 
             model.Creator = this.User.Identity.Name;
@@ -39,8 +49,13 @@ namespace TicketingSystemDavid.Controllers
                 model.FileName = model.File.FileName;
             }
 
-            model.Creator = this.User.Identity.Name;
+            model.Creator = User.Identity.Name;
             model.TicketId = id;
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             await _messageServices.Create(ConvertMessage(model));
 
@@ -62,7 +77,12 @@ namespace TicketingSystemDavid.Controllers
         public async Task<IActionResult> Edit(int id, CreateMessageViewModel model)
         {
             model.Creator = this.User.Identity.Name;
-            
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             await _messageServices.Edit(ConvertMessage(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id });

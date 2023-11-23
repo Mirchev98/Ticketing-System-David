@@ -9,7 +9,8 @@ namespace TicketingSystemDavid.ViewModels.Ticket
     {
         public int Id { get; set; }
 
-        public string Creator { get; set; } = null!;
+        [AllowNull]
+        public string? Creator { get; set; }
 
         public int ProjectId { get; set; }
 
@@ -25,7 +26,8 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public TicketState State { get; set; }
 
-        public IFormFile File { get; set; }
+        [AllowNull]
+        public IFormFile? File { get; set; }
 
         [AllowNull]
         public string? FileName { get; set; }

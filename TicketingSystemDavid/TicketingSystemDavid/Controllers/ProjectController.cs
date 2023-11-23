@@ -29,6 +29,11 @@ namespace TicketingSystemDavid.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateProjectViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             await _projectServices.Create(ConvertProject(model));
 
             return RedirectToAction("All");

@@ -12,7 +12,8 @@ namespace TicketingSystemDavid.ViewModels.Message
         [Required]
         public MessageState State { get; set; }
 
-        public string Creator { get; set; } = null!;
+        [AllowNull]
+        public string? Creator { get; set; } 
 
         [Required]
         [StringLength(DataConstants.MessageContentMaxLen, MinimumLength = DataConstants.MessageContentMinLen)]
@@ -20,7 +21,8 @@ namespace TicketingSystemDavid.ViewModels.Message
 
         public int TicketId { get; set; }
 
-        public IFormFile File { get; set; }
+        [AllowNull]
+        public IFormFile? File { get; set; }
 
         [AllowNull]
         public string? FileName { get; set; }

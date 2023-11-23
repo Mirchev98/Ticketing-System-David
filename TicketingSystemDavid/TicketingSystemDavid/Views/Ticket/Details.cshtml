@@ -18,8 +18,11 @@
             <p><strong>State:</strong> @Model.State</p>
             <p><strong>Messages:</strong> @Model.Messages.Count()</p>
 
-            <a class="btn btn-info" asp-controller="Ticket" asp-action="DownloadFile"
-               asp-route-id="@Model.Id">Download File</a>
+            @if (Model.FileContent != null)
+            {
+                <a class="btn btn-info" asp-controller="Ticket" asp-action="DownloadFile"
+                   asp-route-id="@Model.Id">Download File</a>
+            }
 
             <div class="mt-3">
                 <a class="btn btn-info" asp-controller="Message" asp-action="Create"

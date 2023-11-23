@@ -6,9 +6,11 @@ using TicketingSystemDavid.Web.Areas.Admin.Controllers;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystemDavid.ViewModels.User;
 using TicketingSystem.Services.Models.User;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
 {
+    [Authorize]
     public class UserController : BaseAdminController
     {
         private readonly IUserService userService;
