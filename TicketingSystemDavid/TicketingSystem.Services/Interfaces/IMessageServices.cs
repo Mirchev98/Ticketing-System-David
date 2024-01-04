@@ -1,0 +1,19 @@
+﻿using TicketingSystem.Services.Models.Message;
+
+namespace TicketingSystem.Services.Interfaces
+{
+    public interface IMessageServices
+    {
+        Task Create(CreateMessageModelServices model);
+
+        Task<CreateMessageModelServices> FillModel(CreateMessageModelServices model, int id);
+
+        Task Edit(CreateMessageModelServices model, int id);
+
+        Task Delete(int id);
+
+        Task<DownloadFilesModelServices> Download(int id);
+
+        Task<int> FindTicket(int id);
+    }
+}
