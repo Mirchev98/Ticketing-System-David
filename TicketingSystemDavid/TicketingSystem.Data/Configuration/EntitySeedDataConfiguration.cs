@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Web.Helpers;
-using TicketingSystem.Common;
+using TicketingSystem.Data.Common;
 using TicketingSystem.Data.Models;
 
 namespace TicketingSystem.Data.Configuration

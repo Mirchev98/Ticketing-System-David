@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TicketingSystem.Common;
+using TicketingSystem.Data.Common;
 using TicketingSystemDavid.Models;
 
 namespace TicketingSystemDavid.Controllers

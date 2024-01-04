@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using TicketingSystem.Common;
 using TicketingSystem.Data.Models;
 using TicketingSystemDavid.Web.Areas.Admin.Controllers;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystemDavid.ViewModels.User;
-using TicketingSystem.Services.Models.User;
 using Microsoft.AspNetCore.Authorization;
+using TicketingSystem.Data.Common;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
 {

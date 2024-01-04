@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using TicketingSystem.Data;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.Message;
 using TicketingSystemDavid.ViewModels.Message;

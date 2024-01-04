@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TicketingSystem.Common;
+using TicketingSystem.Data.Common;
 using TicketingSystem.Services.Models.User;
 using TicketingSystemDavid.ViewModels.User;
 

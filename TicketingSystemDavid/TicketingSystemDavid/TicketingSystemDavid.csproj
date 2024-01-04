@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TicketingSystem.Common\TicketingSystem.Common.csproj" />
     <ProjectReference Include="..\TitcketingSystem.Data\TicketingSystem.Services.csproj" />
   </ItemGroup>
 

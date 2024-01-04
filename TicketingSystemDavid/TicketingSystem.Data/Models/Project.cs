@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TicketingSystem.Common;
+using TicketingSystem.Data.Common;
 
 namespace TicketingSystem.Data.Models
 {

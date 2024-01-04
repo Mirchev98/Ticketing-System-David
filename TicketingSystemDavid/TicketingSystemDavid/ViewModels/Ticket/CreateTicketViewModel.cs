@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using TicketingSystem.Common;
+using TicketingSystem.Data.Common;
 using TicketingSystemDavid.ViewModels.Ticket.Enums;
 
 namespace TicketingSystemDavid.ViewModels.Ticket

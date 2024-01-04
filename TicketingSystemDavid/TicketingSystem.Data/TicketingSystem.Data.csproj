@@ -20,8 +20,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TicketingSystem.Common\TicketingSystem.Common.csproj" />
-  </ItemGroup>
-
 </Project>

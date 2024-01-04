@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TicketingSystem.Common;
 using TicketingSystem.Data;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Web.Infrastructure;
+using TicketingSystem.Data.Common;
 
 namespace TicketingSystemDavid
 {

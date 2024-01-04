@@ -4,8 +4,6 @@ using System.Web.Helpers;
 using TicketingSystem.Data.Models;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.User;
-using System.ComponentModel;
-using System.Diagnostics;
 
 namespace TicketingSystem.Data
 {

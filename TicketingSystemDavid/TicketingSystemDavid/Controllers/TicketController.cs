@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TicketingSystem.Data.Interfaces;
 using TicketingSystem.Services.Models.Ticket;
-using TicketingSystem.Services.Models.User;
 using TicketingSystemDavid.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.Controllers

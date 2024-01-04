@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using TicketingSystem.Common;
+using TicketingSystem.Data.Common;
 using TicketingSystem.Data.Models;
 
 namespace TicketingSystem.Web.Infrastructure

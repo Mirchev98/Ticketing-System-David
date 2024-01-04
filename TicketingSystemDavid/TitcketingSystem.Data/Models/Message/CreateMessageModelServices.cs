@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using TicketingSystem.Common;
+using TicketingSystem.Data.Common;
 using TicketingSystem.Services.Models.Message.Enums;
 
 namespace TicketingSystem.Services.Models.Message
