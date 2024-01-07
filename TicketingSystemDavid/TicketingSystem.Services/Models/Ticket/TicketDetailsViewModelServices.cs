@@ -7,7 +7,7 @@ namespace TicketingSystem.Services.Models.Ticket
     {
         public TicketDetailsViewModelServices()
         {
-            Messages = new List<MessageDetailsViewModelServices>();
+            Messages = new List<MessageDetailsViewModelService>();
         }
 
         public int Id { get; set; }
@@ -26,7 +26,7 @@ namespace TicketingSystem.Services.Models.Ticket
 
         public string Description { get; set; } = null!;
 
-        public ICollection<MessageDetailsViewModelServices> Messages { get; set; }
+        public ICollection<MessageDetailsViewModelService> Messages { get; set; }
 
         public bool IsDeleted { get; set; }
 

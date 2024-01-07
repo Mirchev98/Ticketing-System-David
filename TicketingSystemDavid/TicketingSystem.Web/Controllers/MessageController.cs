@@ -77,7 +77,7 @@ namespace TicketingSystemDavid.Controllers
             CreateMessageViewModel model = new CreateMessageViewModel();
             model.Creator = this.User.Identity.Name;
 
-            CreateMessageModelServices newModel = await _messageServices.FillModel(ConvertMessage(model), id);
+            CreateMessageModelService newModel = await _messageServices.FillModel(ConvertMessage(model), id);
 
             if (newModel == null)
             {

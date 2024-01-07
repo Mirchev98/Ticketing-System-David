@@ -2,7 +2,7 @@
 
 namespace TicketingSystem.Services.Models.Message
 {
-    public class DownloadFilesModelServices
+    public class DownloadFilesModelService
     {
         public int Id { get; set; }
 

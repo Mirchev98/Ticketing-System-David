@@ -47,9 +47,9 @@ namespace TicketingSystem.Services
 
             projectQuery = queryModel.ProjectSorting switch
             {
-                ProjectSortEnumServices.NameAsc => projectQuery
+                ProjectSortServices.NameAsc => projectQuery
                     .OrderBy(b => b.Name),
-                ProjectSortEnumServices.NameDesc => projectQuery
+                ProjectSortServices.NameDesc => projectQuery
                     .OrderByDescending(b => b.Name)
             };
 
@@ -90,12 +90,12 @@ namespace TicketingSystem.Services
                 State = x.State,
                 Heading = x.Heading,
                 Description = x.Description,
-                Messages = x.Messages.Select(x => new MessageDetailsViewModelServices
+                Messages = x.Messages.Select(x => new MessageDetailsViewModelService
                 {
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
                     Creator = x.Creator,
-                    State = x.State,
+                    State = (MessageStateService)Enum.Parse(typeof(MessageStateService), x.State.ToString()),
                     Content = x.Content,
                     TicketId = x.TicketId,
                     IsDeleted = x.IsDeleted

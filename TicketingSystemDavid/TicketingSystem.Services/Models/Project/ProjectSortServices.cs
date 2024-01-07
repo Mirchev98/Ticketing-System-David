@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystem.Services.Models.Project
 {
-    public enum ProjectSortEnumServices
+    public enum ProjectSortServices
     {
         NameAsc,
         NameDesc

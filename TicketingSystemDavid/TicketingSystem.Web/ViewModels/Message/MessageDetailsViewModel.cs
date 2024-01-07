@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using TicketingSystem.Web.ViewModels.Message;
 
-namespace TicketingSystem.Services.Models.Message
+namespace TicketingSystemDavid.ViewModels.Message
 {
-    public class MessageDetailsViewModelServices
+    public class MessageDetailsViewModel
     {
         public int Id { get; set; }
 
@@ -10,7 +10,7 @@ namespace TicketingSystem.Services.Models.Message
 
         public DateTime CreatedOn { get; set; }
 
-        public string State { get; set; } = null!;
+        public MessageState State { get; set; } 
 
         public string Content { get; set; } = null!;
 

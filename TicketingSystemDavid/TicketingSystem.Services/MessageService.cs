@@ -15,7 +15,7 @@ namespace TicketingSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(CreateMessageModelServices model)
+        public async Task Create(CreateMessageModelService model)
         {
             Message message = new Message();
 
@@ -41,11 +41,11 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<DownloadFilesModelServices> Download(int id)
+        public async Task<DownloadFilesModelService> Download(int id)
         {
             Message message = await dbContext.Messages.FindAsync(id);
 
-            DownloadFilesModelServices model = new DownloadFilesModelServices();
+            DownloadFilesModelService model = new DownloadFilesModelService();
 
             model.FileContent = message.FileContent;
             model.ContentType = message.ContentType;
@@ -54,7 +54,7 @@ namespace TicketingSystem.Services
             return model;
         }
 
-        public async Task Edit(CreateMessageModelServices model, int id)
+        public async Task Edit(CreateMessageModelService model, int id)
         {
             Message message = await dbContext.Messages.FindAsync(id);
 
@@ -66,7 +66,7 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<CreateMessageModelServices> FillModel(CreateMessageModelServices model, int id)
+        public async Task<CreateMessageModelService> FillModel(CreateMessageModelService model, int id)
         {
             Message message = await dbContext.Messages.Include(x => x.Ticket).FirstOrDefaultAsync(x => x.Id == id);
 

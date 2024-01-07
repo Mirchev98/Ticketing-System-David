@@ -58,12 +58,12 @@ namespace TicketingSystem.Services
             model.IsDeleted = ticket.IsDeleted;
             model.FileContent = ticket.FileContent;
             model.FileName = ticket.FileName;
-            model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModelServices
+            model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModelService
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
                 Creator = x.Creator,
-                State = x.State,
+                State = (MessageStateService)Enum.Parse(typeof(MessageStateService), x.State.ToString()),
                 Content = x.Content,
                 TicketId = x.TicketId,
                 IsDeleted = x.IsDeleted,

@@ -16,7 +16,7 @@ namespace TicketingSystem.Services.Models.Project
         public string? SearchString { get; set; }
 
         [Display(Name = "Sort Projects By")]
-        public ProjectSortEnumServices ProjectSorting { get; set; }
+        public ProjectSortServices ProjectSorting { get; set; }
 
         public int CurrentPage { get; set; }
 

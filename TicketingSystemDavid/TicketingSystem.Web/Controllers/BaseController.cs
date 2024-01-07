@@ -16,12 +16,12 @@ namespace TicketingSystemDavid.Controllers
     {
         //Message Convert Methods
 
-        public CreateMessageModelServices ConvertMessage(CreateMessageViewModel model)
+        public CreateMessageModelService ConvertMessage(CreateMessageViewModel model)
         {
-            CreateMessageModelServices newModel = new CreateMessageModelServices
+            CreateMessageModelService newModel = new CreateMessageModelService
             {
                 Id = model.Id,
-                State = (MessageStateServices)Enum.Parse(typeof(MessageStateServices), model.State.ToString()),
+                State = (MessageStateService)Enum.Parse(typeof(MessageStateService), model.State.ToString()),
                 Content = model.Content,
                 Creator = model.Creator,
                 CreatedOn = model.CreatedOn,
@@ -35,7 +35,7 @@ namespace TicketingSystemDavid.Controllers
             return newModel;
         }
 
-        public CreateMessageViewModel ConvertMessageViewModel(CreateMessageModelServices model)
+        public CreateMessageViewModel ConvertMessageViewModel(CreateMessageModelService model)
         {
             CreateMessageViewModel newModel = new CreateMessageViewModel
             {
@@ -73,7 +73,7 @@ namespace TicketingSystemDavid.Controllers
             ProjectAllQueryModelServices newModel = new ProjectAllQueryModelServices
             {
                 SearchString = query.SearchString,
-                ProjectSorting = (ProjectSortEnumServices)Enum.Parse(typeof(ProjectSortEnumServices), query.ProjectSorting.ToString()),
+                ProjectSorting = (ProjectSortServices)Enum.Parse(typeof(ProjectSortServices), query.ProjectSorting.ToString()),
                 CurrentPage = query.CurrentPage,
                 ProjectsPerPage = query.ProjectsPerPage,
                 TotalProjects = query.TotalProjects,
@@ -149,10 +149,10 @@ namespace TicketingSystemDavid.Controllers
                     State = t.State,
                     Description = t.Description,
                     IsDeleted = t.IsDeleted,
-                    Messages = t.Messages.Select(m => new MessageDetailsViewModelMessage
+                    Messages = t.Messages.Select(m => new MessageDetailsViewModel
                     {
                         Id = m.Id,
-                        State = m.State,
+                        State = (MessageState)Enum.Parse(typeof(MessageState), m.State.ToString()),
                         Content = m.Content,
                         Creator = m.Creator,
                         TicketId = m.TicketId,
@@ -220,10 +220,10 @@ namespace TicketingSystemDavid.Controllers
                 Description = model.Description,
                 IsDeleted = model.IsDeleted,
                 File = model.File,
-                Messages = model.Messages.Select(m => new MessageDetailsViewModelServices
+                Messages = model.Messages.Select(m => new MessageDetailsViewModelService
                 {
                     Id = m.Id,
-                    State = m.State,
+                    State = (MessageStateService)Enum.Parse(typeof(MessageStateService), model.State.ToString()),
                     Content = m.Content,
                     Creator = m.Creator,
                     TicketId = m.TicketId,
@@ -253,10 +253,10 @@ namespace TicketingSystemDavid.Controllers
                 File = model.File,
                 FileContent = model.FileContent,
                 FileName = model.FileName,
-                Messages = model.Messages.Select(m => new MessageDetailsViewModelMessage
+                Messages = model.Messages.Select(m => new MessageDetailsViewModel
                 {
                     Id = m.Id,
-                    State = m.State,
+                    State = (MessageState)Enum.Parse(typeof(MessageState), model.State.ToString()),
                     Content = m.Content,
                     Creator = m.Creator,
                     TicketId = m.TicketId,
