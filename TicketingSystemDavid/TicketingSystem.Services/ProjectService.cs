@@ -85,7 +85,7 @@ namespace TicketingSystem.Services
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
-                Creator = x.Creator,
+                Creator = x.CreatorEmail,
                 Type = x.Type,
                 State = x.State,
                 Heading = x.Heading,
@@ -94,7 +94,7 @@ namespace TicketingSystem.Services
                 {
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
-                    Creator = x.Creator,
+                    Creator = x.CreatorEmail,
                     State = (MessageStateService)Enum.Parse(typeof(MessageStateService), x.State.ToString()),
                     Content = x.Content,
                     TicketId = x.TicketId,

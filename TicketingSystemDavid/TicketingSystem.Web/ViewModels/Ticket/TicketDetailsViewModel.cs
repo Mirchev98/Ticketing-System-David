@@ -16,7 +16,7 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public DateTime CreatedOn { get; set; }
 
-        public string Creator { get; set; } = null!;
+        public string CreatorEmail { get; set; } = null!;
 
         public string Type { get; set; } = null!;
 

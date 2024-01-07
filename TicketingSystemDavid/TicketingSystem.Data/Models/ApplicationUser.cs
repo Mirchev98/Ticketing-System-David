@@ -11,6 +11,8 @@ namespace TicketingSystem.Data.Models
             IsAuthorized = false;
             IsAdmin = false;
             IsSupport = false;
+            Messages = new List<Message>();
+            Tickets = new List<Ticket>();
         }
 
         public bool IsAdmin { get; set; }
@@ -28,5 +30,9 @@ namespace TicketingSystem.Data.Models
         [Required]
         [MaxLength(DataConstants.UserLastNameMaxLen)]
         public string LastName { get; set; } = null!;
+
+        public ICollection<Message> Messages { get; set; }
+
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }

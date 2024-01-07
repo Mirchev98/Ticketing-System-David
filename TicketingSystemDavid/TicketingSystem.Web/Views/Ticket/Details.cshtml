@@ -16,7 +16,7 @@
                 <a class="btn btn-secondary" asp-controller="Project" asp-action="Details" asp-route-id="@Model.ProjectId">Back to All Tickets</a>
             </div>
             <p><strong>Description:</strong> @Model.Description</p>
-            <p><strong>Written by:</strong> @Model.Creator</p>
+            <p><strong>Written by:</strong> @Model.CreatorEmail</p>
             <p><strong>Type:</strong> @Model.Type</p>
             <p><strong>State:</strong> @Model.State</p>
             <p><strong>Messages:</strong> @Model.Messages.Count()</p>
@@ -35,7 +35,7 @@
                 </div>
             }
 
-            @if (Model.Creator == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Support"))
+            @if (Model.CreatorEmail == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Support"))
             {
                 <div class="mt-3">
                     <a class="btn btn-danger" asp-controller="Ticket" asp-action="Delete"
@@ -60,7 +60,7 @@
         }
         else
         {
-            if (!message.IsDeleted && message.Creator == User.Identity.Name)
+            if (!message.IsDeleted && message.CreatorEmail == User.Identity.Name)
             {
                 <partial name="_MessageDetailsPartial" model="@message" />
             }

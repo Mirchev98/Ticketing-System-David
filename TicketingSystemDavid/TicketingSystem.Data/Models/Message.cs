@@ -15,7 +15,7 @@ namespace TicketingSystem.Data.Models
         [Key]
         public int Id { get; set; }
 
-        public string Creator { get; set; } = null!;
+        public string CreatorEmail { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
 
@@ -25,6 +25,11 @@ namespace TicketingSystem.Data.Models
         [Required]
         [MaxLength(DataConstants.MessageContentMaxLen)]
         public string Content { get; set; } = null!;
+
+        [ForeignKey(nameof(Creator))]
+        public string CreatorId { get; set; }
+
+        public ApplicationUser Creator { get; set; }
 
         [ForeignKey(nameof(Ticket))]
         public int TicketId { get; set; }

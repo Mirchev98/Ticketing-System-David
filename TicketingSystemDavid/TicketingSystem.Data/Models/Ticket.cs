@@ -23,7 +23,7 @@ namespace TicketingSystem.Data.Models
 
         public DateTime CreatedOn { get; set; }
 
-        public string Creator { get; set; } = null!;
+        public string CreatorEmail { get; set; } = null!;
 
         [Required]
         public string Type { get; set; } = null!;
@@ -38,6 +38,11 @@ namespace TicketingSystem.Data.Models
         [Required]
         [MaxLength(DataConstants.TicketDescriptionMaxLen)]
         public string Description { get; set; } = null!;
+
+        [ForeignKey(nameof(Creator))]
+        public string CreatorId { get; set; }
+
+        public ApplicationUser Creator { get; set; }
 
         public ICollection<Message> Messages { get; set; }
 

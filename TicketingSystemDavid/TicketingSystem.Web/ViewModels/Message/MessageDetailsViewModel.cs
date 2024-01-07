@@ -6,7 +6,7 @@ namespace TicketingSystemDavid.ViewModels.Message
     {
         public int Id { get; set; }
 
-        public string Creator { get; set; } = null!;
+        public string CreatorEmail { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
 

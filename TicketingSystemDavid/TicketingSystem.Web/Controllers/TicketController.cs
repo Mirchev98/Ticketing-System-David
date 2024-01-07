@@ -135,10 +135,12 @@ namespace TicketingSystemDavid.Controllers
         {
             var model = await _ticketServices.Download(id);
 
+            var memory = new MemoryStream(model.FileContent);
+
             if (model == null || model.FileContent == null)
                 return RedirectToAction("Details", "Ticket", new { id });
 
-            return File(model.FileContent, model.ContentType, model.FileName);
+            return File(memory, "application/octet-stream", model.FileName);
         }
     }
 }

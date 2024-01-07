@@ -21,7 +21,7 @@ namespace TicketingSystem.Services
             Ticket ticket = new Ticket();
 
             ticket.ProjectId = model.ProjectId;
-            ticket.Creator = model.Creator;
+            ticket.CreatorEmail = model.Creator;
             ticket.State = model.State.ToString();
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
@@ -50,7 +50,7 @@ namespace TicketingSystem.Services
 
             model.Id = ticket.Id;
             model.ProjectId = ticket.ProjectId;
-            model.Creator = ticket.Creator;
+            model.Creator = ticket.CreatorEmail;
             model.State = ticket.State;
             model.Heading = ticket.Heading;
             model.Description = ticket.Description;
@@ -62,7 +62,7 @@ namespace TicketingSystem.Services
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
-                Creator = x.Creator,
+                Creator = x.CreatorEmail,
                 State = (MessageStateService)Enum.Parse(typeof(MessageStateService), x.State.ToString()),
                 Content = x.Content,
                 TicketId = x.TicketId,
@@ -92,7 +92,7 @@ namespace TicketingSystem.Services
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
             //ticket.ProjectId = model.ProjectId;
-            ticket.Creator = model.Creator;
+            ticket.CreatorEmail = model.Creator;
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
             ticket.Type = model.Type.ToString();
@@ -107,7 +107,7 @@ namespace TicketingSystem.Services
 
             model.Id = ticket.Id;
             model.ProjectId = ticket.ProjectId;
-            model.Creator = ticket.Creator;
+            model.Creator = ticket.CreatorEmail;
             model.Heading = ticket.Heading;
             model.Description = ticket.Description;
 

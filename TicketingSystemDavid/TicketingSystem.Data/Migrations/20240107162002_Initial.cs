@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -182,11 +184,12 @@ namespace TicketingSystem.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Creator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatorEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Heading = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
@@ -195,6 +198,12 @@ namespace TicketingSystem.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tickets_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Tickets_Projects_ProjectId",
                         column: x => x.ProjectId,
@@ -209,10 +218,11 @@ namespace TicketingSystem.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Creator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatorEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TicketId = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -223,11 +233,17 @@ namespace TicketingSystem.Data.Migrations
                 {
                     table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Messages_AspNetUsers_CreatorId",
+                        column: x => x.CreatorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Messages_Tickets_TicketId",
                         column: x => x.TicketId,
                         principalTable: "Tickets",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.InsertData(
@@ -235,9 +251,9 @@ namespace TicketingSystem.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "AppliedRole", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsAdmin", "IsAuthorized", "IsSupport", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "031f86ff-67a6-4055-837a-4b14c4807061", 0, null, "854dfb24-48fb-46fb-a3b9-87a0218bcc53", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "ABkuJLVyksBp7PlrX8yoZBlgr//WMJYb45WHF2GmHJvO8XjzmgwTKkZ0Dx48u7ED9A==", null, false, "6d1e73fb-63ee-4dc4-852b-57d9b6cccebb", false, "user@user.com" },
-                    { "acdaa908-e2d9-402f-a23f-6fde04dc6edc", 0, null, "9caf28cf-bc17-491a-bdb5-0b9a81e40b62", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "AEd8mfyVSDJIwJuBG9lp7l0XvuNWPcWpq9lH7docOXlVD2LoInyHfeBkl1lzgZ669g==", null, false, "d3415c9a-ee29-4ec6-ab81-6c068690ce58", false, "admin@admin.com" },
-                    { "e776f462-b46a-4ef5-8849-2e52d4764ea8", 0, null, "996dea6b-4db5-4ccb-8ec3-5d45ad728aee", "support@support.com", false, "Support", false, true, true, "Supportov", false, null, "support@support.com", "support@support.com", "AGExJ2OyUS9Y5Zbt9poqUAODMFKoDoM/tvoNm3nJZ9ZmNO0h7jDslN0SqMi6pFb9hQ==", null, false, "8b9f1747-e474-43c4-bfea-c4f2fbbaab57", false, "support@support.com" }
+                    { "AdminUser", 0, null, "b00dfddd-341c-49c5-a267-9c238ea260ad", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "ADoZmJdZb6MJ0bFMxHOlUYYkDFNIsmj5jMFAcInUkWUvjhv0HpX15EuqjNGtp4Ygfw==", null, false, "a3bc7179-66e1-40aa-895e-08037d8e3dcb", false, "admin@admin.com" },
+                    { "NormalUser", 0, null, "f11b8772-0bcd-46c2-aa2b-3cd2d557f979", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "AMFME6P5MNyJunyRQSZbVtONqKv/PAnugi67ZuSf3R/ueRAI8uKwuqZK/+/J6djX3w==", null, false, "bb97c451-53e8-4d50-a572-77d6556b5dea", false, "user@user.com" },
+                    { "SupportUser", 0, null, "83ef7819-ed5b-46c3-af8f-d610748adde0", "support@support.com", false, "Support", false, true, true, "Supportov", false, null, "support@support.com", "support@support.com", "AC4W9lJyT3wgwsHJnW2j6zUtR486uKEhuOX9LHCTD8BMT9YUB72X3KXtnsbh5GwvRg==", null, false, "0a8163e2-b711-4bac-a4d9-c86a2655cdfc", false, "support@support.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -252,23 +268,23 @@ namespace TicketingSystem.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tickets",
-                columns: new[] { "Id", "ContentType", "CreatedOn", "Creator", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 1, null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7751), "user@user.com", "Very bad bug found", null, null, "Bug Found", false, 1, "New", "Bug Report" });
+                columns: new[] { "Id", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
+                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "Very bad bug found", null, null, "Bug Found", false, 1, "New", "Bug Report" });
 
             migrationBuilder.InsertData(
                 table: "Tickets",
-                columns: new[] { "Id", "ContentType", "CreatedOn", "Creator", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 2, null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7758), "user@user.com", "A very nice feature to add", null, null, "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
+                columns: new[] { "Id", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
+                values: new object[] { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "A very nice feature to add", null, null, "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
 
             migrationBuilder.InsertData(
                 table: "Messages",
-                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "Creator", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
-                values: new object[] { 1, "Testing message", null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7785), "support@support.com", null, null, false, "Posted", 1 });
+                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
+                values: new object[] { 1, "Testing message", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "support@support.com", "SupportUser", null, null, false, "Posted", 1 });
 
             migrationBuilder.InsertData(
                 table: "Messages",
-                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "Creator", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
-                values: new object[] { 2, "Second Message", null, new DateTime(2023, 10, 25, 18, 51, 18, 995, DateTimeKind.Utc).AddTicks(7789), "user@user.com", null, null, false, "Posted", 1 });
+                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
+                values: new object[] { 2, "Second Message", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", null, null, false, "Posted", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -310,9 +326,19 @@ namespace TicketingSystem.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Messages_CreatorId",
+                table: "Messages",
+                column: "CreatorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Messages_TicketId",
                 table: "Messages",
                 column: "TicketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_CreatorId",
+                table: "Tickets",
+                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_ProjectId",
@@ -344,10 +370,10 @@ namespace TicketingSystem.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Tickets");
 
             migrationBuilder.DropTable(
-                name: "Tickets");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Projects");

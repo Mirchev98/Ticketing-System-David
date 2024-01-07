@@ -21,7 +21,7 @@ namespace TicketingSystem.Services
 
             message.State = model.State.ToString();
             message.Content = model.Content;
-            message.Creator = creator;
+            message.CreatorEmail = creator;
             message.TicketId = model.TicketId;
             message.FileContent = model.FileContent;
             message.ContentType = model.ContentType;
@@ -60,7 +60,7 @@ namespace TicketingSystem.Services
 
             message.State = model.State.ToString();
             message.Content = model.Content;
-            message.Creator = creator;
+            message.CreatorEmail = creator;
             message.CreatedOn = DateTime.Now;
 
             await dbContext.SaveChangesAsync();
@@ -71,7 +71,7 @@ namespace TicketingSystem.Services
             Message message = await dbContext.Messages.Include(x => x.Ticket).FirstOrDefaultAsync(x => x.Id == id);
 
             model.Content = message.Content;
-            model.Creator = message.Creator;
+            model.Creator = message.CreatorEmail;
             model.CreatedOn = message.CreatedOn;
             model.TicketId = message.TicketId;
 

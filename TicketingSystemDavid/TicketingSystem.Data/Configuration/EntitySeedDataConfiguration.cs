@@ -13,6 +13,7 @@ namespace TicketingSystem.Data.Configuration
                 .HasData(
                 new ApplicationUser
                 {
+                    Id = "AdminUser",
                     Email = DataConstants.AdminEmail,
                     NormalizedEmail = DataConstants.AdminEmail,
                     UserName = DataConstants.AdminEmail,
@@ -25,6 +26,7 @@ namespace TicketingSystem.Data.Configuration
                 },
                 new ApplicationUser
                 {
+                    Id = "SupportUser",
                     Email = DataConstants.SupportEmail,
                     NormalizedEmail = DataConstants.SupportEmail,
                     UserName = DataConstants.SupportEmail,
@@ -37,6 +39,7 @@ namespace TicketingSystem.Data.Configuration
                 },
                 new ApplicationUser
                 {
+                    Id = "NormalUser",
                     Email = DataConstants.UserEmail,
                     NormalizedEmail = DataConstants.UserEmail,
                     UserName = DataConstants.UserEmail,
@@ -74,7 +77,8 @@ namespace TicketingSystem.Data.Configuration
                 {
                     Id = 1,
                     ProjectId = 1,
-                    Creator = DataConstants.UserEmail,
+                    CreatorEmail = DataConstants.UserEmail,
+                    CreatorId = "NormalUser",
                     Type = "Bug Report",
                     State = "New",
                     Heading = "Bug Found",
@@ -84,7 +88,8 @@ namespace TicketingSystem.Data.Configuration
                 {
                     Id = 2,
                     ProjectId = 1,
-                    Creator = DataConstants.UserEmail,
+                    CreatorEmail = DataConstants.UserEmail,
+                    CreatorId = "NormalUser",
                     Type = "Feature Request",
                     State = "Work In Progress",
                     Heading = "Feature Idea",
@@ -96,7 +101,8 @@ namespace TicketingSystem.Data.Configuration
                 new Message
                 {
                     Id = 1,
-                    Creator = DataConstants.SupportEmail,
+                    CreatorEmail = DataConstants.SupportEmail,
+                    CreatorId = "SupportUser",
                     State = "Posted",
                     Content = "Testing message",
                     TicketId = 1
@@ -104,7 +110,8 @@ namespace TicketingSystem.Data.Configuration
                 new Message
                 {
                     Id = 2,
-                    Creator = DataConstants.UserEmail,
+                    CreatorEmail = DataConstants.UserEmail,
+                    CreatorId = "NormalUser",
                     State = "Posted",
                     Content = "Second Message",
                     TicketId = 1
