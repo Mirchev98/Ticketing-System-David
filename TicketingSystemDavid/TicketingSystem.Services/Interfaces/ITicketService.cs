@@ -2,7 +2,7 @@
 
 namespace TicketingSystem.Services.Interfaces
 {
-    public interface ITicketServices
+    public interface ITicketService
     {
         Task Create(CreateTicketViewModelServices model);
 

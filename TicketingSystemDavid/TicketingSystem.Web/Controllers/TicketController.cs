@@ -10,10 +10,10 @@ namespace TicketingSystemDavid.Controllers
     [Authorize]
     public class TicketController : BaseController
     {
-        private readonly ITicketServices _ticketServices;
+        private readonly ITicketService _ticketServices;
         private readonly IUserService _userService;
 
-        public TicketController(ITicketServices ticketServices, IUserService userServices)
+        public TicketController(ITicketService ticketServices, IUserService userServices)
         {
             this._ticketServices = ticketServices;
             this._userService = userServices;

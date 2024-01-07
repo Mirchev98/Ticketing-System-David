@@ -6,11 +6,11 @@ using TicketingSystem.Data;
 
 namespace TicketingSystem.Services
 {
-    public class MessageServices : IMessageServices
+    public class MessageService : IMessageService
     {
         private readonly TicketingSystemDbContext dbContext;
 
-        public MessageServices(TicketingSystemDbContext dbContext)
+        public MessageService(TicketingSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

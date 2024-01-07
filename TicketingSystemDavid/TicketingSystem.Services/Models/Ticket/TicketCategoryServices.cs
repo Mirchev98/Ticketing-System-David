@@ -1,6 +1,6 @@
-﻿namespace TicketingSystemDavid.ViewModels.Ticket.Enums
+﻿namespace TicketingSystem.Services.Models.Ticket
 {
-    public enum TicketCategory
+    public enum TicketCategoryServices
     {
         BugReport,
         FeatureRequest,

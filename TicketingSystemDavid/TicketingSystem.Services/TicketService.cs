@@ -7,11 +7,11 @@ using TicketingSystem.Data;
 
 namespace TicketingSystem.Services
 {
-    public class TicketServices : ITicketServices
+    public class TicketService : ITicketService
     {
         private readonly TicketingSystemDbContext dbContext;
 
-        public TicketServices(TicketingSystemDbContext dbContext)
+        public TicketService(TicketingSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

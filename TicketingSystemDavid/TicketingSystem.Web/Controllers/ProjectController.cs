@@ -11,10 +11,10 @@ namespace TicketingSystemDavid.Controllers
     [Authorize]
     public class ProjectController : BaseController
     {
-        private readonly IProjectServices _projectServices;
+        private readonly IProjectService _projectServices;
         private readonly IUserService _userService;
 
-        public ProjectController(IProjectServices projectServices, IUserService userService)
+        public ProjectController(IProjectService projectServices, IUserService userService)
         {
             _projectServices = projectServices;
             _userService = userService;

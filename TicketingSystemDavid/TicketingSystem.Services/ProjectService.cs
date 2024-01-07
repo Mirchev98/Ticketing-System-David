@@ -3,17 +3,16 @@ using TicketingSystem.Data.Models;
 using TicketingSystem.Services.Models.Project;
 using TicketingSystem.Services.Models.Ticket;
 using TicketingSystem.Services.Models.Message;
-using TicketingSystem.Services.Models.Project.Enums;
 using TicketingSystem.Services.Interfaces;
 using TicketingSystem.Data;
 
 namespace TicketingSystem.Services
 {
-    public class ProjectServices : IProjectServices
+    public class ProjectService : IProjectService
     {
         private readonly TicketingSystemDbContext dbContext;
 
-        public ProjectServices(TicketingSystemDbContext dbContext)
+        public ProjectService(TicketingSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

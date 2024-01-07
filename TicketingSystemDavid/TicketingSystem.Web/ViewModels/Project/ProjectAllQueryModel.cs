@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TicketingSystemDavid.ViewModels.Project.Enums;
+using TicketingSystem.Web.ViewModels.Project;
 
 namespace TicketingSystemDavid.ViewModels.Project
 {
@@ -17,7 +17,7 @@ namespace TicketingSystemDavid.ViewModels.Project
         public string? SearchString { get; set; }
 
         [Display(Name = "Sort Projects By")]
-        public ProjectSortEnum ProjectSorting { get; set; }
+        public ProjectSort ProjectSorting { get; set; }
 
         public int CurrentPage { get; set; }
 

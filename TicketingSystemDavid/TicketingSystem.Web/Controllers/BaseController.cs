@@ -1,16 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TicketingSystem.Services.Models.Message;
-using TicketingSystem.Services.Models.Message.Enums;
 using TicketingSystem.Services.Models.Project;
-using TicketingSystem.Services.Models.Project.Enums;
 using TicketingSystem.Services.Models.Ticket;
-using TicketingSystem.Services.Models.Ticket.Enums;
+using TicketingSystem.Web.ViewModels.Message;
+using TicketingSystem.Web.ViewModels.Project;
+using TicketingSystem.Web.ViewModels.Ticket;
 using TicketingSystemDavid.ViewModels.Message;
-using TicketingSystemDavid.ViewModels.Message.Enums;
 using TicketingSystemDavid.ViewModels.Project;
-using TicketingSystemDavid.ViewModels.Project.Enums;
 using TicketingSystemDavid.ViewModels.Ticket;
-using TicketingSystemDavid.ViewModels.Ticket.Enums;
 
 namespace TicketingSystemDavid.Controllers
 {
@@ -98,7 +95,7 @@ namespace TicketingSystemDavid.Controllers
             ProjectAllQueryModel newModel = new ProjectAllQueryModel
             {
                 SearchString = query.SearchString,
-                ProjectSorting = (ProjectSortEnum)Enum.Parse(typeof(ProjectSortEnum), query.ProjectSorting.ToString()),
+                ProjectSorting = (ProjectSort)Enum.Parse(typeof(ProjectSort), query.ProjectSorting.ToString()),
                 CurrentPage = query.CurrentPage,
                 ProjectsPerPage = query.ProjectsPerPage,
                 TotalProjects = query.TotalProjects,

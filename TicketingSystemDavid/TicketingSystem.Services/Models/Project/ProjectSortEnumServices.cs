@@ -1,4 +1,4 @@
-﻿namespace TicketingSystem.Services.Models.Project.Enums
+﻿namespace TicketingSystem.Services.Models.Project
 {
     public enum ProjectSortEnumServices
     {

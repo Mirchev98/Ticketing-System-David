@@ -1,4 +1,4 @@
-﻿namespace TicketingSystemDavid.ViewModels.Message.Enums
+﻿namespace TicketingSystem.Web.ViewModels.Message
 {
     public enum MessageState
     {

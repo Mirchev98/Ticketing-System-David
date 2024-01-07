@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using TicketingSystem.Services.Models.Ticket.Enums;
 
 namespace TicketingSystem.Services.Models.Ticket
 {

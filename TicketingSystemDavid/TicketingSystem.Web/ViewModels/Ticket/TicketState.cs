@@ -1,4 +1,4 @@
-﻿namespace TicketingSystemDavid.ViewModels.Ticket.Enums
+﻿namespace TicketingSystem.Web.ViewModels.Ticket
 {
     public enum TicketState
     {

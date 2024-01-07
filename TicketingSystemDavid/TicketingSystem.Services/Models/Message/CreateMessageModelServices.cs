@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TicketingSystem.Data.Common;
-using TicketingSystem.Services.Models.Message.Enums;
 
 namespace TicketingSystem.Services.Models.Message
 {

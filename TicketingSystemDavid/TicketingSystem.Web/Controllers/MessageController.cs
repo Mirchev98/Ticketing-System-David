@@ -10,10 +10,10 @@ namespace TicketingSystemDavid.Controllers
     [Authorize]
     public class MessageController : BaseController
     {
-        private readonly IMessageServices _messageServices;
+        private readonly IMessageService _messageServices;
         private readonly IUserService _userService;
 
-        public MessageController(IMessageServices messageServices, IUserService userService)
+        public MessageController(IMessageService messageServices, IUserService userService)
         {
             _messageServices = messageServices;
             _userService = userService;

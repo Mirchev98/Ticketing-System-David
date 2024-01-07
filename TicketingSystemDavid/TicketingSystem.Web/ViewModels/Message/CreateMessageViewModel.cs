@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TicketingSystem.Data.Common;
-using TicketingSystemDavid.ViewModels.Message.Enums;
+using TicketingSystem.Web.ViewModels.Message;
 
 namespace TicketingSystemDavid.ViewModels.Message
 {

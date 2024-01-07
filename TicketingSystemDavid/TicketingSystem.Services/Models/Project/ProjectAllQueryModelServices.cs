@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TicketingSystem.Services.Models.Project.Enums;
 
 namespace TicketingSystem.Services.Models.Project
 {

@@ -2,7 +2,7 @@
 
 namespace TicketingSystem.Services.Interfaces
 {
-    public interface IMessageServices
+    public interface IMessageService
     {
         Task Create(CreateMessageModelServices model);
 

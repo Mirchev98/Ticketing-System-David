@@ -35,9 +35,9 @@ namespace TicketingSystemDavid
                 options.Password.RequireUppercase = false;
             });
 
-            builder.Services.AddScoped<IProjectServices, ProjectServices>();
-            builder.Services.AddScoped<ITicketServices, TicketServices>();
-            builder.Services.AddScoped<IMessageServices, MessageServices>();
+            builder.Services.AddScoped<IProjectService, ProjectService>();
+            builder.Services.AddScoped<ITicketService, TicketService>();
+            builder.Services.AddScoped<IMessageService, MessageService>();
             builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();

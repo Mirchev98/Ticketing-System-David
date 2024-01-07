@@ -1,4 +1,4 @@
-﻿namespace TicketingSystem.Services.Models.Message.Enums
+﻿namespace TicketingSystem.Services.Models.Message
 {
     public enum MessageStateServices
     {

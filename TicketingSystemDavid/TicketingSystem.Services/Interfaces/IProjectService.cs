@@ -3,7 +3,7 @@ using TicketingSystem.Services.Models.Project;
 
 namespace TicketingSystem.Services.Interfaces
 {
-    public interface IProjectServices
+    public interface IProjectService
     {
         Task Create(CreateProjectViewModelServices model);
 
