@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Diagnostics.CodeAnalysis;
 using TicketingSystem.Services.Models.Message;
 
 namespace TicketingSystem.Services.Models.Ticket
@@ -30,7 +31,8 @@ namespace TicketingSystem.Services.Models.Ticket
 
         public bool IsDeleted { get; set; }
 
-        public IFormFile File { get; set; }
+        [AllowNull]
+        public FileStream File { get; set; }
 
         public string? FileName { get; set; }
 

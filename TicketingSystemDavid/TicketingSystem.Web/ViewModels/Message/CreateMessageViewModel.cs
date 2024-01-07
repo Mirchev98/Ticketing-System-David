@@ -12,9 +12,6 @@ namespace TicketingSystemDavid.ViewModels.Message
         [Required]
         public MessageState State { get; set; }
 
-        [AllowNull]
-        public string? Creator { get; set; }
-
         public DateTime CreatedOn { get; set; }
 
         [Required]
@@ -24,8 +21,8 @@ namespace TicketingSystemDavid.ViewModels.Message
         public int TicketId { get; set; }
 
         [AllowNull]
-        public IFormFile? File { get; set; }
-
+        public byte[]? File {  get; set; }
+        
         [AllowNull]
         public string? FileName { get; set; }
 

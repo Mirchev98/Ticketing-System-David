@@ -23,7 +23,6 @@ namespace TicketingSystemDavid.Controllers
                 Id = model.Id,
                 State = (MessageStateService)Enum.Parse(typeof(MessageStateService), model.State.ToString()),
                 Content = model.Content,
-                Creator = model.Creator,
                 CreatedOn = model.CreatedOn,
                 TicketId = model.TicketId,
                 FileContent = model.FileContent,
@@ -42,7 +41,6 @@ namespace TicketingSystemDavid.Controllers
                 Id = model.Id,
                 State = (MessageState)Enum.Parse(typeof(MessageState), model.State.ToString()),
                 Content = model.Content,
-                Creator = model.Creator,
                 TicketId = model.TicketId,
                 CreatedOn = model.CreatedOn,
                 FileContent = model.FileContent,
@@ -177,7 +175,6 @@ namespace TicketingSystemDavid.Controllers
                 Heading = model.Heading,
                 State = (TicketStateServices)Enum.Parse(typeof(TicketStateServices), model.State.ToString()),
                 Description = model.Description,
-                File = model.File,
                 FileName = model.FileName,
                 FileContent = model.FileContent,
                 ContentType = model.ContentType
@@ -197,7 +194,6 @@ namespace TicketingSystemDavid.Controllers
                 Heading = model.Heading,
                 State = (TicketState)Enum.Parse(typeof(TicketState), model.State.ToString()),
                 Description = model.Description,
-                File = model.File,
                 FileName = model.FileName,
                 FileContent = model.FileContent,
                 ContentType = model.ContentType
@@ -219,7 +215,8 @@ namespace TicketingSystemDavid.Controllers
                 State = model.State,
                 Description = model.Description,
                 IsDeleted = model.IsDeleted,
-                File = model.File,
+                FileContent = model.FileContent,
+                FileName = model.FileName,
                 Messages = model.Messages.Select(m => new MessageDetailsViewModelService
                 {
                     Id = m.Id,
@@ -229,7 +226,6 @@ namespace TicketingSystemDavid.Controllers
                     TicketId = m.TicketId,
                     FileContent = m.FileContent,
                     FileName = m.FileName,
-                    File = m.File,
                     IsDeleted = m.IsDeleted
                 }).ToList(),
             };
@@ -250,7 +246,6 @@ namespace TicketingSystemDavid.Controllers
                 State = model.State,
                 Description = model.Description,
                 IsDeleted = model.IsDeleted,
-                File = model.File,
                 FileContent = model.FileContent,
                 FileName = model.FileName,
                 Messages = model.Messages.Select(m => new MessageDetailsViewModel
@@ -262,7 +257,6 @@ namespace TicketingSystemDavid.Controllers
                     TicketId = m.TicketId,
                     FileContent = m.FileContent,
                     FileName = m.FileName,
-                    File = m.File,
                     IsDeleted = m.IsDeleted
                 }).ToList(),
             };

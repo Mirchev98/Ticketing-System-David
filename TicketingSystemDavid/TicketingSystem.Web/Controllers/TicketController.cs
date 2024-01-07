@@ -38,13 +38,15 @@ namespace TicketingSystemDavid.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateTicketViewModel model, int id)
         {
-            if (model.File != null && model.File.Length > 0)
+            var uploadedFile = Request.Form.Files.GetFile("File");
+
+            if (uploadedFile != null)
             {
                 using var stream = new MemoryStream();
-                await model.File.CopyToAsync(stream);
+                await uploadedFile.CopyToAsync(stream);
+                model.File = stream.ToArray();
                 model.FileContent = stream.ToArray();
-                model.ContentType = model.File.ContentType;
-                model.FileName = model.File.FileName;
+                model.FileName = uploadedFile.FileName;
             }
 
 

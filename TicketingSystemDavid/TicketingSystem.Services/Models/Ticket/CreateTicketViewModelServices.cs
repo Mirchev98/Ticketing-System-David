@@ -18,8 +18,6 @@ namespace TicketingSystem.Services.Models.Ticket
 
         public TicketStateServices State { get; set; }
 
-        public IFormFile File { get; set; }
-
         public string? FileName { get; set; }
 
         public byte[]? FileContent { get; set; }

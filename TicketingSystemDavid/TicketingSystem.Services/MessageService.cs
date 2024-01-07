@@ -15,13 +15,13 @@ namespace TicketingSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(CreateMessageModelService model)
+        public async Task Create(CreateMessageModelService model, string creator)
         {
             Message message = new Message();
 
             message.State = model.State.ToString();
             message.Content = model.Content;
-            message.Creator = model.Creator;
+            message.Creator = creator;
             message.TicketId = model.TicketId;
             message.FileContent = model.FileContent;
             message.ContentType = model.ContentType;
@@ -54,13 +54,13 @@ namespace TicketingSystem.Services
             return model;
         }
 
-        public async Task Edit(CreateMessageModelService model, int id)
+        public async Task Edit(CreateMessageModelService model, int id, string creator)
         {
             Message message = await dbContext.Messages.FindAsync(id);
 
             message.State = model.State.ToString();
             message.Content = model.Content;
-            message.Creator = model.Creator;
+            message.Creator = creator;
             message.CreatedOn = DateTime.Now;
 
             await dbContext.SaveChangesAsync();

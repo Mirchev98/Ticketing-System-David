@@ -22,8 +22,6 @@ namespace TicketingSystem.Services.Models.Message
 
         public int TicketId { get; set; }
 
-        public IFormFile File { get; set; }
-
         [AllowNull]
         public string? FileName { get; set; }
 

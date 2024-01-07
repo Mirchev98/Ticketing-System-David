@@ -27,7 +27,7 @@ namespace TicketingSystemDavid.ViewModels.Ticket
         public TicketState State { get; set; }
 
         [AllowNull]
-        public IFormFile? File { get; set; }
+        public byte[]? File { get; set; }
 
         [AllowNull]
         public string? FileName { get; set; }

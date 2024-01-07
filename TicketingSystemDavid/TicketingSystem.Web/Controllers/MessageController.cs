@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Security.Claims;
 using TicketingSystem.Services.Interfaces;
 using TicketingSystem.Services.Models.Message;
@@ -30,7 +31,6 @@ namespace TicketingSystemDavid.Controllers
 
             CreateMessageViewModel model = new CreateMessageViewModel();
 
-            model.Creator = this.User.Identity.Name;
             model.TicketId = id;
             
             return View();
@@ -44,16 +44,17 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            if (model.File != null && model.File.Length > 0)
+            var uploadedFile = Request.Form.Files.GetFile("File");
+
+            if (uploadedFile != null)
             {
                 using var stream = new MemoryStream();
-                await model.File.CopyToAsync(stream);
+                await uploadedFile.CopyToAsync(stream);
+                model.File = stream.ToArray();
                 model.FileContent = stream.ToArray();
-                model.ContentType = model.File.ContentType;
-                model.FileName = model.File.FileName;
+                model.FileName = uploadedFile.FileName;
             }
 
-            model.Creator = User.Identity.Name;
             model.TicketId = id;
 
             if (!ModelState.IsValid)
@@ -61,7 +62,8 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _messageServices.Create(ConvertMessage(model));
+
+            await _messageServices.Create(ConvertMessage(model), User.Identity.Name);
 
             return RedirectToAction("Details", "Ticket", new { id });
         }
@@ -75,7 +77,6 @@ namespace TicketingSystemDavid.Controllers
             }
 
             CreateMessageViewModel model = new CreateMessageViewModel();
-            model.Creator = this.User.Identity.Name;
 
             CreateMessageModelService newModel = await _messageServices.FillModel(ConvertMessage(model), id);
 
@@ -90,8 +91,6 @@ namespace TicketingSystemDavid.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, CreateMessageViewModel model)
         {
-            model.Creator = this.User.Identity.Name;
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -99,7 +98,7 @@ namespace TicketingSystemDavid.Controllers
 
             int ticketId = await _messageServices.FindTicket(model.Id);
 
-            await _messageServices.Edit(ConvertMessage(model), id);
+            await _messageServices.Edit(ConvertMessage(model), id, User.Identity.Name);
 
             return RedirectToAction("Details", "Ticket", new { id = ticketId });
         }
@@ -122,10 +121,12 @@ namespace TicketingSystemDavid.Controllers
         {
             var model = await _messageServices.Download(id);
 
+            var memory = new MemoryStream(model.FileContent);
+
             if (model == null || model.FileContent == null)
                 return RedirectToAction("Details", "Ticket", new { id });
 
-            return File(model.FileContent, model.ContentType, model.FileName);
+            return File(memory, "application/octet-stream", model.FileName);
         }
     }
 }

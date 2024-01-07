@@ -1,4 +1,5 @@
-﻿using TicketingSystemDavid.ViewModels.Message;
+﻿using System.Diagnostics.CodeAnalysis;
+using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.ViewModels.Ticket
 {
@@ -29,7 +30,8 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public bool IsDeleted { get; set; }
 
-        public IFormFile File { get; set; }
+        [AllowNull]
+        public FileStream File { get; set; }
 
         public string? FileName { get; set; }
 
