@@ -31,7 +31,5 @@ namespace TicketingSystemDavid.ViewModels.Message
 
         [AllowNull]
         public string? ContentType { get; set; }
-
-        public bool SoftDleted { get; set; }
     }
 }

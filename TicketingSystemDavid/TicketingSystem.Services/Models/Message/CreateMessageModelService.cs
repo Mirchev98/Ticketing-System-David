@@ -29,7 +29,5 @@ namespace TicketingSystem.Services.Models.Message
 
         [AllowNull]
         public string? ContentType { get; set; }
-
-        public bool SoftDeleted { get; set; }
     }
 }

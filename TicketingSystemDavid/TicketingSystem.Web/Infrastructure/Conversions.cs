@@ -25,7 +25,6 @@ namespace TicketingSystem.Web.Infrastructure
                 FileContent = model.FileContent,
                 ContentType = model.ContentType,
                 FileName = model.FileName,
-                SoftDeleted = model.SoftDleted
             };
 
             return newModel;
@@ -43,7 +42,6 @@ namespace TicketingSystem.Web.Infrastructure
                 FileContent = model.FileContent,
                 ContentType = model.ContentType,
                 FileName = model.FileName,
-                SoftDleted = model.SoftDeleted
             };
 
             return newModel;
