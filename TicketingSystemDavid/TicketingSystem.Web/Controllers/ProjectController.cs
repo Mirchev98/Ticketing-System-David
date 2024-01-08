@@ -4,6 +4,7 @@ using System.Security.Claims;
 using TicketingSystem.Data.Common;
 using TicketingSystem.Services.Interfaces;
 using TicketingSystem.Services.Models.Project;
+using TicketingSystem.Web.Infrastructure;
 using TicketingSystemDavid.ViewModels.Project;
 
 namespace TicketingSystemDavid.Controllers
@@ -13,12 +14,13 @@ namespace TicketingSystemDavid.Controllers
     {
         private readonly IProjectService _projectServices;
         private readonly IUserService _userService;
+        private Conversions conversions;
 
         public ProjectController(IProjectService projectServices, IUserService userService)
         {
             _projectServices = projectServices;
             _userService = userService;
-
+            conversions = new Conversions();
         }
 
         [HttpGet]
@@ -38,22 +40,22 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _projectServices.Create(ConvertProject(model));
+            await _projectServices.Create(conversions.ConvertProject(model));
 
             return RedirectToAction("All");
         }
 
         [HttpGet]
-        public async Task<IActionResult> All([FromQuery] ProjectAllQueryModel query)
+        public async Task<IActionResult> All([FromQuery] FindProjectsRequestViewModel query)
         {
             if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
             {
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            AllProjectsFilteredAndOrderedServices model = await _projectServices.AllAsync(ConvertQuery(query));
+            FindProjectsResultViewModelServices model = await _projectServices.AllAsync(conversions.ConvertQuery(query));
 
-            AllProjectsFilteredAndOrdered convertedModel = ConvertProjectAllViewModel(model);
+            FindProjectsResultViewModel convertedModel = conversions.ConvertProjectAllViewModel(model);
 
             query.Projects = convertedModel.Projects;
             query.TotalProjects = convertedModel.TotalProjectsCount;
@@ -74,7 +76,7 @@ namespace TicketingSystemDavid.Controllers
             await _projectServices.FillModel(model, id);
 
 
-            return View(ConvertProjectDetailsViewModel(model));
+            return View(conversions.ConvertProjectDetailsViewModel(model));
         }
 
         [Authorize(Roles = DataConstants.AdminRoleName)]

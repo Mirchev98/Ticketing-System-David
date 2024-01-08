@@ -1,22 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TicketingSystem.Web.ViewModels.Project;
 
-namespace TicketingSystem.Services.Models.Project
+namespace TicketingSystemDavid.ViewModels.Project
 {
-    public class ProjectAllQueryModelServices
+    public class FindProjectsRequestViewModel
     {
-        public ProjectAllQueryModelServices()
+        public FindProjectsRequestViewModel()
         {
             CurrentPage = 1;
             ProjectsPerPage = 6;
 
-            Projects = new List<ProjectAllViewModelServices>();
+            Projects = new List<ProjectAllViewModel>();
         }
 
         [Display(Name = "Search by word")]
         public string? SearchString { get; set; }
 
         [Display(Name = "Sort Projects By")]
-        public ProjectSortServices ProjectSorting { get; set; }
+        public ProjectSort ProjectSorting { get; set; }
 
         public int CurrentPage { get; set; }
 
@@ -24,6 +25,6 @@ namespace TicketingSystem.Services.Models.Project
 
         public int TotalProjects { get; set; }
 
-        public IEnumerable<ProjectAllViewModelServices> Projects { get; set; }
+        public IEnumerable<ProjectAllViewModel> Projects { get; set; }
     }
 }

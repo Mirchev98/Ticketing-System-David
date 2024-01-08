@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace TicketingSystem.Services.Models.Message
+﻿namespace TicketingSystem.Services.Models.Message
 {
     public class MessageDetailsViewModelService
     {
@@ -16,7 +14,7 @@ namespace TicketingSystem.Services.Models.Message
 
         public int TicketId { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDeleted { get; set; }
 
         public string? FileName { get; set; }
 

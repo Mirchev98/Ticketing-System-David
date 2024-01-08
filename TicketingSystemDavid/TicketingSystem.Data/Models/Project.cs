@@ -23,6 +23,6 @@ namespace TicketingSystem.Data.Models
 
         public ICollection<Ticket> Tickets { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDeleted { get; set; }
     }
 }

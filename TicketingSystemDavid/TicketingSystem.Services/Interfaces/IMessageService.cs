@@ -1,4 +1,5 @@
-﻿using TicketingSystem.Services.Models.Message;
+﻿using TicketingSystem.Services.Models.File;
+using TicketingSystem.Services.Models.Message;
 
 namespace TicketingSystem.Services.Interfaces
 {
@@ -12,7 +13,7 @@ namespace TicketingSystem.Services.Interfaces
 
         Task Delete(int id);
 
-        Task<DownloadFilesModelService> Download(int id);
+        Task<DownloadFileModel> Download(int id);
 
         Task<int> FindTicket(int id);
     }

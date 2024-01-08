@@ -21,13 +21,13 @@
 
         <h4 class="text-center mt-5 mb-4">Tickets</h4>
 
-        @if (Model.Tickets.Any(x => x.IsDeleted == false) && Model.Tickets.Any(x => x.CreatorEmail == User.Identity.Name) || User.IsInRole("Admin") || User.IsInRole("Support"))
+        @if (Model.Tickets.Any(x => x.SoftDleted == false) && Model.Tickets.Any(x => x.CreatorEmail == User.Identity.Name) || User.IsInRole("Admin") || User.IsInRole("Support"))
         {
             @foreach (TicketDetailsViewModel ticket in Model.Tickets)
             {
                 @if (ticket.CreatorEmail == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Support"))
                 {
-                    @if (ticket.IsDeleted == false)
+                    @if (ticket.SoftDleted == false)
                     {
                         <div class="card mb-3">
                             <div class="card-body">

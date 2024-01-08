@@ -29,11 +29,11 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<AllProjectsFilteredAndOrderedServices> AllAsync(ProjectAllQueryModelServices queryModel)
+        public async Task<FindProjectsResultViewModelServices> AllAsync(FindProjectsRequestViewModelServices queryModel)
         {
             IQueryable<Project> projectQuery = dbContext
                                 .Projects
-                                .Where(b => b.IsDeleted == false)
+                                .Where(b => b.SoftDeleted == false)
                                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
@@ -61,13 +61,13 @@ namespace TicketingSystem.Services
                     Id = b.Id,
                     Name = b.Name,
                     Description = b.Description,
-                    TicketCount = b.Tickets.Where(x => x.IsDeleted == false).Count(),
+                    TicketCount = b.Tickets.Where(x => x.SoftDeleted == false).Count(),
                 })
                 .ToArrayAsync();
 
             int totalProjectsCount = projectQuery.Count();
 
-            return new AllProjectsFilteredAndOrderedServices()
+            return new FindProjectsResultViewModelServices()
             {
                 TotalProjectsCount = totalProjectsCount,
                 Projects = projects
@@ -80,7 +80,7 @@ namespace TicketingSystem.Services
 
             model.Id = project.Id;
             model.Description = project.Description;
-            model.IsDeleted = project.IsDeleted;
+            model.IsDeleted = project.SoftDeleted;
             model.Tickets = project.Tickets.Select(x => new TicketDetailsViewModelServices
             {
                 Id = x.Id,
@@ -98,9 +98,9 @@ namespace TicketingSystem.Services
                     State = (MessageStateService)Enum.Parse(typeof(MessageStateService), x.State.ToString()),
                     Content = x.Content,
                     TicketId = x.TicketId,
-                    IsDeleted = x.IsDeleted
+                    SoftDeleted = x.SoftDeleted
                 }).ToList(),
-                IsDeleted = x.IsDeleted
+                IsDeleted = x.SoftDeleted
             }).ToList();
             model.Name = project.Name;
 
@@ -116,7 +116,7 @@ namespace TicketingSystem.Services
         {
             Project project = await dbContext.Projects.FindAsync(id);
 
-            project.IsDeleted = true;
+            project.SoftDeleted = true;
 
             await dbContext.SaveChangesAsync();
         }

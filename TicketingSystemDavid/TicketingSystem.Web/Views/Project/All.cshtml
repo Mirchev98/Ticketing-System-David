@@ -1,4 +1,4 @@
-﻿@model ProjectAllQueryModel
+﻿@model FindProjectsRequestViewModel
 
 @{
     ViewBag.Title = "All Projects";
@@ -64,7 +64,7 @@
         <div class="row">
             @foreach (var project in Model.Projects)
             {
-                if (!project.IsDeleted)
+                if (!project.SoftDleted)
                 {
                     <partial name="_ProjectsDetailsPartial" model="@project" />
                 }

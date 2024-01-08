@@ -39,7 +39,7 @@ namespace TicketingSystem.Services
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
-            ticket.IsDeleted = true;
+            ticket.SoftDeleted = true;
 
             await dbContext.SaveChangesAsync();
         }
@@ -55,7 +55,7 @@ namespace TicketingSystem.Services
             model.Heading = ticket.Heading;
             model.Description = ticket.Description;
             model.Type = ticket.Type;
-            model.IsDeleted = ticket.IsDeleted;
+            model.IsDeleted = ticket.SoftDeleted;
             model.FileContent = ticket.FileContent;
             model.FileName = ticket.FileName;
             model.Messages = ticket.Messages.Select(x => new MessageDetailsViewModelService
@@ -66,7 +66,7 @@ namespace TicketingSystem.Services
                 State = (MessageStateService)Enum.Parse(typeof(MessageStateService), x.State.ToString()),
                 Content = x.Content,
                 TicketId = x.TicketId,
-                IsDeleted = x.IsDeleted,
+                SoftDeleted = x.SoftDeleted,
                 FileContent = x.FileContent,
                 FileName = x.FileName
             }).ToList();

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TicketingSystem.Services.Interfaces;
 using TicketingSystem.Services.Models.Ticket;
+using TicketingSystem.Web.Infrastructure;
 using TicketingSystemDavid.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.Controllers
@@ -12,11 +13,13 @@ namespace TicketingSystemDavid.Controllers
     {
         private readonly ITicketService _ticketServices;
         private readonly IUserService _userService;
+        private Conversions conversions;
 
         public TicketController(ITicketService ticketServices, IUserService userServices)
         {
             this._ticketServices = ticketServices;
             this._userService = userServices;
+            conversions = new Conversions();
         }
 
         [HttpGet]
@@ -59,7 +62,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _ticketServices.Create(ConvertTicket(model));
+            await _ticketServices.Create(conversions.ConvertTicket(model));
 
             return RedirectToAction("Details", "Project", new { id });
         }
@@ -76,7 +79,7 @@ namespace TicketingSystemDavid.Controllers
 
             await _ticketServices.Details(model, id);
 
-            return View(ConvertTicketDetailsViewModel(model));
+            return View(conversions.ConvertTicketDetailsViewModel(model));
         }
 
         [HttpGet]
@@ -98,7 +101,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Details", "Ticket", new { id });
             }
 
-            return View(ConvertTicketViewModel(model));
+            return View(conversions.ConvertTicketViewModel(model));
         }
 
 
@@ -112,7 +115,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _ticketServices.Edit(ConvertTicket(model), id);
+            await _ticketServices.Edit(conversions.ConvertTicket(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id });
         }

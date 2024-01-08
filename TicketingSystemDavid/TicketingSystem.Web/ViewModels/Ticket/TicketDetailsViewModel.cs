@@ -28,7 +28,7 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public ICollection<MessageDetailsViewModel> Messages { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDleted { get; set; }
 
         [AllowNull]
         public FileStream File { get; set; }

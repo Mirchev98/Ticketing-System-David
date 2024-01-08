@@ -1,8 +1,8 @@
 ﻿namespace TicketingSystem.Services.Models.Project
 {
-    public class AllProjectsFilteredAndOrderedServices
+    public class FindProjectsResultViewModelServices
     {
-        public AllProjectsFilteredAndOrderedServices()
+        public FindProjectsResultViewModelServices()
         {
             Projects = new List<ProjectAllViewModelServices>();
         }

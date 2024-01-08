@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace TicketingSystem.Services.Models.Ticket
+﻿namespace TicketingSystem.Services.Models.Ticket
 {
     public class DownloadFilesTicketServices
     {

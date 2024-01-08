@@ -36,7 +36,7 @@ namespace TicketingSystem.Data.Models
 
         public Ticket Ticket { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDeleted { get; set; }
 
         [AllowNull]
         public string? FileName { get; set; }

@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace TicketingSystem.Services.Models.Message
+﻿namespace TicketingSystem.Services.Models.File
 {
-    public class DownloadFilesModelService
+    public class DownloadFileModel
     {
         public int Id { get; set; }
 

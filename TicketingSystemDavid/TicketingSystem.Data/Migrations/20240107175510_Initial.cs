@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -63,7 +61,7 @@ namespace TicketingSystem.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    SoftDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -190,7 +188,7 @@ namespace TicketingSystem.Data.Migrations
                     Heading = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    SoftDeleted = table.Column<bool>(type: "bit", nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     ContentType = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -224,7 +222,7 @@ namespace TicketingSystem.Data.Migrations
                     Content = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     CreatorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TicketId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    SoftDeleted = table.Column<bool>(type: "bit", nullable: false),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FileContent = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     ContentType = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -251,39 +249,39 @@ namespace TicketingSystem.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "AppliedRole", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsAdmin", "IsAuthorized", "IsSupport", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "AdminUser", 0, null, "b00dfddd-341c-49c5-a267-9c238ea260ad", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "ADoZmJdZb6MJ0bFMxHOlUYYkDFNIsmj5jMFAcInUkWUvjhv0HpX15EuqjNGtp4Ygfw==", null, false, "a3bc7179-66e1-40aa-895e-08037d8e3dcb", false, "admin@admin.com" },
-                    { "NormalUser", 0, null, "f11b8772-0bcd-46c2-aa2b-3cd2d557f979", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "AMFME6P5MNyJunyRQSZbVtONqKv/PAnugi67ZuSf3R/ueRAI8uKwuqZK/+/J6djX3w==", null, false, "bb97c451-53e8-4d50-a572-77d6556b5dea", false, "user@user.com" },
-                    { "SupportUser", 0, null, "83ef7819-ed5b-46c3-af8f-d610748adde0", "support@support.com", false, "Support", false, true, true, "Supportov", false, null, "support@support.com", "support@support.com", "AC4W9lJyT3wgwsHJnW2j6zUtR486uKEhuOX9LHCTD8BMT9YUB72X3KXtnsbh5GwvRg==", null, false, "0a8163e2-b711-4bac-a4d9-c86a2655cdfc", false, "support@support.com" }
+                    { "AdminUser", 0, null, "51a5d402-c695-4ca8-a5df-3c85047dfee2", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "ABp+r4Z4zEov1GLEhnt1vMRxF9MZh/+3OZPjhqb1Ko52/Rr8jxy07smAQ/lfC55f/A==", null, false, "bf22a5d5-8956-471a-aff7-195751d1021a", false, "admin@admin.com" },
+                    { "NormalUser", 0, null, "37174cc8-d25e-424a-9e4a-bb1b5c64ad2a", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "AOIlTxI9xzDXLoh3ftMfr8sEa67qlTLvcROt3FdTx5lCSUDJ8NDfvfN4K9a90bdoQQ==", null, false, "5bc7acd3-6d50-4187-82a9-1dc30e773538", false, "user@user.com" },
+                    { "SupportUser", 0, null, "8c18a278-7b60-44f4-89fe-412d529e5add", "support@support.com", false, "Support", false, true, true, "Supportov", false, null, "support@support.com", "support@support.com", "AAXuASdwC0cSTBHMsuQ38rHixR9auqIYQ8EfANxbZV9Xa6C02bYCLlkIFWqCo0AEKA==", null, false, "2cf0e15f-a5c2-4778-840c-af8097e43ed4", false, "support@support.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Projects",
-                columns: new[] { "Id", "Description", "IsDeleted", "Name" },
+                columns: new[] { "Id", "Description", "Name", "SoftDeleted" },
                 values: new object[,]
                 {
-                    { 1, "Just for testing", false, "Test Project One" },
-                    { 2, "It's a fun project to work on", false, "Super Cool Project" },
-                    { 3, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu pretium nunc. Nulla porttitor et mauris tristique commodo. Ut ac lectus eget purus commodo dapibus vel vel arcu. Sed mattis, tortor a dignissim scelerisque, ex justo hendrerit tortor, vel tincidunt lectus erat eget magna.", false, "Lorem Ispum" }
+                    { 1, "Just for testing", "Test Project One", false },
+                    { 2, "It's a fun project to work on", "Super Cool Project", false },
+                    { 3, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu pretium nunc. Nulla porttitor et mauris tristique commodo. Ut ac lectus eget purus commodo dapibus vel vel arcu. Sed mattis, tortor a dignissim scelerisque, ex justo hendrerit tortor, vel tincidunt lectus erat eget magna.", "Lorem Ispum", false }
                 });
 
             migrationBuilder.InsertData(
                 table: "Tickets",
-                columns: new[] { "Id", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "Very bad bug found", null, null, "Bug Found", false, 1, "New", "Bug Report" });
+                columns: new[] { "Id", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "FileContent", "FileName", "Heading", "ProjectId", "SoftDeleted", "State", "Type" },
+                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "Very bad bug found", null, null, "Bug Found", 1, false, "New", "Bug Report" });
 
             migrationBuilder.InsertData(
                 table: "Tickets",
-                columns: new[] { "Id", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "FileContent", "FileName", "Heading", "IsDeleted", "ProjectId", "State", "Type" },
-                values: new object[] { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "A very nice feature to add", null, null, "Feature Idea", false, 1, "Work In Progress", "Feature Request" });
+                columns: new[] { "Id", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "FileContent", "FileName", "Heading", "ProjectId", "SoftDeleted", "State", "Type" },
+                values: new object[] { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "A very nice feature to add", null, null, "Feature Idea", 1, false, "Work In Progress", "Feature Request" });
 
             migrationBuilder.InsertData(
                 table: "Messages",
-                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
+                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "FileContent", "FileName", "SoftDeleted", "State", "TicketId" },
                 values: new object[] { 1, "Testing message", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "support@support.com", "SupportUser", null, null, false, "Posted", 1 });
 
             migrationBuilder.InsertData(
                 table: "Messages",
-                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "FileContent", "FileName", "IsDeleted", "State", "TicketId" },
+                columns: new[] { "Id", "Content", "ContentType", "CreatedOn", "CreatorEmail", "CreatorId", "FileContent", "FileName", "SoftDeleted", "State", "TicketId" },
                 values: new object[] { 2, "Second Message", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", null, null, false, "Posted", 1 });
 
             migrationBuilder.CreateIndex(

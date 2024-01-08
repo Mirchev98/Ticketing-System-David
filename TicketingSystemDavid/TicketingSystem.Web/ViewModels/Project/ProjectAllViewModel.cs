@@ -8,7 +8,7 @@
 
         public string Description { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDleted { get; set; }
 
         public int TicketCount { get; set; }
     }

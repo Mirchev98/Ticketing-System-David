@@ -46,7 +46,7 @@ namespace TicketingSystem.Data.Models
 
         public ICollection<Message> Messages { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDeleted { get; set; }
 
         [AllowNull]
         public string? FileName { get; set; }

@@ -12,7 +12,7 @@ using TicketingSystem.Data;
 namespace TicketingSystem.Data.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    [Migration("20240107162002_Initial")]
+    [Migration("20240107175510_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -252,7 +252,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "AdminUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b00dfddd-341c-49c5-a267-9c238ea260ad",
+                            ConcurrencyStamp = "51a5d402-c695-4ca8-a5df-3c85047dfee2",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -263,9 +263,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin@admin.com",
-                            PasswordHash = "ADoZmJdZb6MJ0bFMxHOlUYYkDFNIsmj5jMFAcInUkWUvjhv0HpX15EuqjNGtp4Ygfw==",
+                            PasswordHash = "ABp+r4Z4zEov1GLEhnt1vMRxF9MZh/+3OZPjhqb1Ko52/Rr8jxy07smAQ/lfC55f/A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a3bc7179-66e1-40aa-895e-08037d8e3dcb",
+                            SecurityStamp = "bf22a5d5-8956-471a-aff7-195751d1021a",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -273,7 +273,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "SupportUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "83ef7819-ed5b-46c3-af8f-d610748adde0",
+                            ConcurrencyStamp = "8c18a278-7b60-44f4-89fe-412d529e5add",
                             Email = "support@support.com",
                             EmailConfirmed = false,
                             FirstName = "Support",
@@ -284,9 +284,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "support@support.com",
                             NormalizedUserName = "support@support.com",
-                            PasswordHash = "AC4W9lJyT3wgwsHJnW2j6zUtR486uKEhuOX9LHCTD8BMT9YUB72X3KXtnsbh5GwvRg==",
+                            PasswordHash = "AAXuASdwC0cSTBHMsuQ38rHixR9auqIYQ8EfANxbZV9Xa6C02bYCLlkIFWqCo0AEKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0a8163e2-b711-4bac-a4d9-c86a2655cdfc",
+                            SecurityStamp = "2cf0e15f-a5c2-4778-840c-af8097e43ed4",
                             TwoFactorEnabled = false,
                             UserName = "support@support.com"
                         },
@@ -294,7 +294,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "NormalUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f11b8772-0bcd-46c2-aa2b-3cd2d557f979",
+                            ConcurrencyStamp = "37174cc8-d25e-424a-9e4a-bb1b5c64ad2a",
                             Email = "user@user.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -305,9 +305,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "user@user.com",
                             NormalizedUserName = "user@user.com",
-                            PasswordHash = "AMFME6P5MNyJunyRQSZbVtONqKv/PAnugi67ZuSf3R/ueRAI8uKwuqZK/+/J6djX3w==",
+                            PasswordHash = "AOIlTxI9xzDXLoh3ftMfr8sEa67qlTLvcROt3FdTx5lCSUDJ8NDfvfN4K9a90bdoQQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bb97c451-53e8-4d50-a572-77d6556b5dea",
+                            SecurityStamp = "5bc7acd3-6d50-4187-82a9-1dc30e773538",
                             TwoFactorEnabled = false,
                             UserName = "user@user.com"
                         });
@@ -346,7 +346,7 @@ namespace TicketingSystem.Data.Migrations
                     b.Property<string>("FileName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("SoftDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("State")
@@ -372,7 +372,7 @@ namespace TicketingSystem.Data.Migrations
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatorEmail = "support@support.com",
                             CreatorId = "SupportUser",
-                            IsDeleted = false,
+                            SoftDeleted = false,
                             State = "Posted",
                             TicketId = 1
                         },
@@ -383,7 +383,7 @@ namespace TicketingSystem.Data.Migrations
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatorEmail = "user@user.com",
                             CreatorId = "NormalUser",
-                            IsDeleted = false,
+                            SoftDeleted = false,
                             State = "Posted",
                             TicketId = 1
                         });
@@ -402,13 +402,13 @@ namespace TicketingSystem.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("SoftDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -419,22 +419,22 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = 1,
                             Description = "Just for testing",
-                            IsDeleted = false,
-                            Name = "Test Project One"
+                            Name = "Test Project One",
+                            SoftDeleted = false
                         },
                         new
                         {
                             Id = 2,
                             Description = "It's a fun project to work on",
-                            IsDeleted = false,
-                            Name = "Super Cool Project"
+                            Name = "Super Cool Project",
+                            SoftDeleted = false
                         },
                         new
                         {
                             Id = 3,
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu pretium nunc. Nulla porttitor et mauris tristique commodo. Ut ac lectus eget purus commodo dapibus vel vel arcu. Sed mattis, tortor a dignissim scelerisque, ex justo hendrerit tortor, vel tincidunt lectus erat eget magna.",
-                            IsDeleted = false,
-                            Name = "Lorem Ispum"
+                            Name = "Lorem Ispum",
+                            SoftDeleted = false
                         });
                 });
 
@@ -476,11 +476,11 @@ namespace TicketingSystem.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("SoftDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("State")
                         .IsRequired()
@@ -507,8 +507,8 @@ namespace TicketingSystem.Data.Migrations
                             CreatorId = "NormalUser",
                             Description = "Very bad bug found",
                             Heading = "Bug Found",
-                            IsDeleted = false,
                             ProjectId = 1,
+                            SoftDeleted = false,
                             State = "New",
                             Type = "Bug Report"
                         },
@@ -520,8 +520,8 @@ namespace TicketingSystem.Data.Migrations
                             CreatorId = "NormalUser",
                             Description = "A very nice feature to add",
                             Heading = "Feature Idea",
-                            IsDeleted = false,
                             ProjectId = 1,
+                            SoftDeleted = false,
                             State = "Work In Progress",
                             Type = "Feature Request"
                         });

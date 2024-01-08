@@ -3,6 +3,7 @@ using TicketingSystem.Services.Models.Message;
 using Microsoft.EntityFrameworkCore;
 using TicketingSystem.Services.Interfaces;
 using TicketingSystem.Data;
+using TicketingSystem.Services.Models.File;
 
 namespace TicketingSystem.Services
 {
@@ -36,16 +37,16 @@ namespace TicketingSystem.Services
         {
             Message message = await dbContext.Messages.FindAsync(id);
 
-            message.IsDeleted = true;
+            message.SoftDeleted = true;
 
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<DownloadFilesModelService> Download(int id)
+        public async Task<DownloadFileModel> Download(int id)
         {
             Message message = await dbContext.Messages.FindAsync(id);
 
-            DownloadFilesModelService model = new DownloadFilesModelService();
+            DownloadFileModel model = new DownloadFileModel();
 
             model.FileContent = message.FileContent;
             model.ContentType = message.ContentType;

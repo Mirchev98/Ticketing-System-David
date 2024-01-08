@@ -17,6 +17,6 @@ namespace TicketingSystemDavid.ViewModels.Project
 
         public ICollection<TicketDetailsViewModel> Tickets { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDleted { get; set; }
     }
 }

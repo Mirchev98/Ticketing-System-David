@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 using System.Security.Claims;
 using TicketingSystem.Services.Interfaces;
 using TicketingSystem.Services.Models.Message;
+using TicketingSystem.Web.Infrastructure;
 using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.Controllers
@@ -13,12 +13,13 @@ namespace TicketingSystemDavid.Controllers
     {
         private readonly IMessageService _messageServices;
         private readonly IUserService _userService;
+        private Conversions conversions;
 
         public MessageController(IMessageService messageServices, IUserService userService)
         {
             _messageServices = messageServices;
             _userService = userService;
-
+            conversions = new Conversions();
         }
 
         [HttpGet]
@@ -62,8 +63,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-
-            await _messageServices.Create(ConvertMessage(model), User.Identity.Name);
+            await _messageServices.Create(conversions.ConvertMessage(model), User.Identity.Name);
 
             return RedirectToAction("Details", "Ticket", new { id });
         }
@@ -78,14 +78,15 @@ namespace TicketingSystemDavid.Controllers
 
             CreateMessageViewModel model = new CreateMessageViewModel();
 
-            CreateMessageModelService newModel = await _messageServices.FillModel(ConvertMessage(model), id);
+
+            CreateMessageModelService newModel = await _messageServices.FillModel(conversions.ConvertMessage(model), id);
 
             if (newModel == null)
             {
                 return RedirectToAction("Details", "Ticket", new { id });
             }
 
-            return View(ConvertMessageViewModel(newModel));
+            return View(conversions.ConvertMessageViewModel(newModel));
         }
 
         [HttpPost]
@@ -98,7 +99,7 @@ namespace TicketingSystemDavid.Controllers
 
             int ticketId = await _messageServices.FindTicket(model.Id);
 
-            await _messageServices.Edit(ConvertMessage(model), id, User.Identity.Name);
+            await _messageServices.Edit(conversions.ConvertMessage(model), id, User.Identity.Name);
 
             return RedirectToAction("Details", "Ticket", new { id = ticketId });
         }

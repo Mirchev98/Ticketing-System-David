@@ -7,7 +7,7 @@ namespace TicketingSystem.Services.Interfaces
     {
         Task Create(CreateProjectViewModelServices model);
 
-        Task<AllProjectsFilteredAndOrderedServices> AllAsync(ProjectAllQueryModelServices queryModel);
+        Task<FindProjectsResultViewModelServices> AllAsync(FindProjectsRequestViewModelServices queryModel);
 
         Task<ProjectDetailsViewModelServices> FillModel(ProjectDetailsViewModelServices model, int id);
 
