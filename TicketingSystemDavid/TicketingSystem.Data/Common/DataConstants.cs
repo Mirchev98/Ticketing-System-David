@@ -30,6 +30,8 @@
         public const int ProjectDescriptionMinLen = 10;
         public const int ProjectDescriptionMaxLen = 500;
 
+        public const int ProjectsPerPage = 3;
+
         //Ticket constants
         public const int TicketHeadingMinLen = 3;
         public const int TicketHeadingMaxLen = 20;

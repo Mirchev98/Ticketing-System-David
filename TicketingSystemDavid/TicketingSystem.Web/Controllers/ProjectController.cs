@@ -45,22 +45,41 @@ namespace TicketingSystemDavid.Controllers
             return RedirectToAction("All");
         }
 
+        //[HttpGet]
+        //public async Task<IActionResult> All([FromQuery] FindProjectsRequestViewModel query)
+        //{
+        //    if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+        //    {
+        //        return RedirectToAction("Unauthorized", "Home");
+        //    }
+
+        //    //FindProjectsResultViewModelServices model = await _projectServices.AllAsync(conversions.ConvertQuery(query));
+
+        //    //FindProjectsResultViewModel convertedModel = conversions.ConvertProjectAllViewModel(model);
+
+        //    //query.Projects = convertedModel.Projects;
+        //    //query.TotalProjects = convertedModel.TotalProjectsCount;
+
+        //    //return View(query);
+        //}
+
         [HttpGet]
-        public async Task<IActionResult> All([FromQuery] FindProjectsRequestViewModel query)
+        public async Task<IActionResult> All(string searchTerm, string sortOrder, int page = 1)
         {
-            if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            var projects = await _projectServices.GetProjectsAsync(searchTerm, sortOrder, page, DataConstants.ProjectsPerPage);
+            
+            var model = new FindProjectsResultViewModel
             {
-                return RedirectToAction("Unauthorized", "Home");
-            }
+                TotalProjectsCount = projects.TotalProjectsCount,
+                Projects = projects.Projects.Select(p => 
+                conversions.ConvertProjectAllViewModel(p))
+                .ToList(),
+                SearchTerm = searchTerm,
+                SortOrder = sortOrder,
+                CurrentPage = page
+            };
 
-            FindProjectsResultViewModelServices model = await _projectServices.AllAsync(conversions.ConvertQuery(query));
-
-            FindProjectsResultViewModel convertedModel = conversions.ConvertProjectAllViewModel(model);
-
-            query.Projects = convertedModel.Projects;
-            query.TotalProjects = convertedModel.TotalProjectsCount;
-
-            return View(query);
+            return View(model);
         }
 
         [HttpGet]

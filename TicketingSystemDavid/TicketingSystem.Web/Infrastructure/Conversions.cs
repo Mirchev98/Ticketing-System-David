@@ -2,7 +2,6 @@
 using TicketingSystem.Services.Models.Project;
 using TicketingSystem.Services.Models.Ticket;
 using TicketingSystem.Web.ViewModels.Message;
-using TicketingSystem.Web.ViewModels.Project;
 using TicketingSystem.Web.ViewModels.Ticket;
 using TicketingSystemDavid.ViewModels.Message;
 using TicketingSystemDavid.ViewModels.Project;
@@ -52,6 +51,19 @@ namespace TicketingSystem.Web.Infrastructure
 
         //Project Convert Methods
 
+        public ProjectAllViewModel ConvertProjectAllViewModel(ProjectAllViewModelServices model)
+        {
+            ProjectAllViewModel newModel = new ProjectAllViewModel
+            {
+                Id = model.Id,
+                Description = model.Description,
+                TicketCount = model.TicketCount,
+                SoftDleted = model.SoftDeleted
+            };
+
+            return newModel;
+        }
+
         public CreateProjectViewModelServices ConvertProject(CreateProjectViewModel model)
         {
             CreateProjectViewModelServices newModel = new CreateProjectViewModelServices
@@ -59,50 +71,6 @@ namespace TicketingSystem.Web.Infrastructure
                 Id = model.Id,
                 Name = model.Name,
                 Description = model.Description
-            };
-
-            return newModel;
-        }
-
-        public FindProjectsRequestViewModelServices ConvertQuery(FindProjectsRequestViewModel query)
-        {
-            FindProjectsRequestViewModelServices newModel = new FindProjectsRequestViewModelServices
-            {
-                SearchString = query.SearchString,
-                ProjectSorting = (ProjectSortServices)Enum.Parse(typeof(ProjectSortServices), query.ProjectSorting.ToString()),
-                CurrentPage = query.CurrentPage,
-                ProjectsPerPage = query.ProjectsPerPage,
-                TotalProjects = query.TotalProjects,
-                Projects = query.Projects.Select(p => new ProjectAllViewModelServices
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Description = p.Description,
-                    IsDeleted = p.SoftDleted,
-                    TicketCount = p.TicketCount
-                })
-            };
-
-            return newModel;
-        }
-
-        public FindProjectsRequestViewModel ConvertQueryForViewModel(FindProjectsRequestViewModelServices query)
-        {
-            FindProjectsRequestViewModel newModel = new FindProjectsRequestViewModel
-            {
-                SearchString = query.SearchString,
-                ProjectSorting = (ProjectSort)Enum.Parse(typeof(ProjectSort), query.ProjectSorting.ToString()),
-                CurrentPage = query.CurrentPage,
-                ProjectsPerPage = query.ProjectsPerPage,
-                TotalProjects = query.TotalProjects,
-                Projects = query.Projects.Select(p => new ProjectAllViewModel
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Description = p.Description,
-                    SoftDleted = p.IsDeleted,
-                    TicketCount = p.TicketCount
-                })
             };
 
             return newModel;
@@ -118,7 +86,7 @@ namespace TicketingSystem.Web.Infrastructure
                     Id = p.Id,
                     Name = p.Name,
                     Description = p.Description,
-                    SoftDleted = p.IsDeleted,
+                    SoftDleted = p.SoftDeleted,
                     TicketCount = p.TicketCount
                 })
             };

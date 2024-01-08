@@ -29,49 +29,84 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<FindProjectsResultViewModelServices> AllAsync(FindProjectsRequestViewModelServices queryModel)
+        //public async Task<FindProjectsResultViewModelServices> AllAsync(FindProjectsRequestViewModelServices queryModel)
+        //{
+        //    IQueryable<Project> projectQuery = dbContext
+        //                        .Projects
+        //                        .Where(b => b.SoftDeleted == false)
+        //                        .AsQueryable();
+
+        //    if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+        //    {
+        //        string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+        //        projectQuery = projectQuery
+        //            .Where(h => EF.Functions.Like(h.Name, wildCard) ||
+        //                        EF.Functions.Like(h.Description, wildCard));
+        //    }
+
+        //    projectQuery = queryModel.ProjectSorting switch
+        //    {
+        //        ProjectSortServices.NameAsc => projectQuery
+        //            .OrderBy(b => b.Name),
+        //        ProjectSortServices.NameDesc => projectQuery
+        //            .OrderByDescending(b => b.Name)
+        //    };
+
+        //    IEnumerable<ProjectAllViewModelServices> projects = await projectQuery
+        //        .Skip((queryModel.CurrentPage - 1) * queryModel.ProjectsPerPage)
+        //        .Take(queryModel.ProjectsPerPage)
+        //        .Select(b => new ProjectAllViewModelServices
+        //        {
+        //            Id = b.Id,
+        //            Name = b.Name,
+        //            Description = b.Description,
+        //            TicketCount = b.Tickets.Where(x => x.SoftDeleted == false).Count(),
+        //        })
+        //        .ToArrayAsync();
+
+        //    int totalProjectsCount = projectQuery.Count();
+
+        //    return new FindProjectsResultViewModelServices()
+        //    {
+        //        TotalProjectsCount = totalProjectsCount,
+        //        Projects = projects
+        //    };
+        //}
+
+        public async Task<FindProjectsResultViewModelServices> GetProjectsAsync(string searchTerm, string sortOrder, int page, int pageSize)
         {
-            IQueryable<Project> projectQuery = dbContext
-                                .Projects
-                                .Where(b => b.SoftDeleted == false)
-                                .AsQueryable();
+            var query = dbContext.Projects.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            if (!string.IsNullOrEmpty(searchTerm))
             {
-                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
-
-                projectQuery = projectQuery
-                    .Where(h => EF.Functions.Like(h.Name, wildCard) ||
-                                EF.Functions.Like(h.Description, wildCard));
+                query = query.Where(p => p.Name.Contains(searchTerm) || p.Description.Contains(searchTerm));
             }
 
-            projectQuery = queryModel.ProjectSorting switch
+            int totalProjects = await query.CountAsync();
+
+            query = sortOrder switch
             {
-                ProjectSortServices.NameAsc => projectQuery
-                    .OrderBy(b => b.Name),
-                ProjectSortServices.NameDesc => projectQuery
-                    .OrderByDescending(b => b.Name)
+                "name_asc" => query.OrderBy(p => p.Name),
+                "name_desc" => query.OrderByDescending(p => p.Name),
+                _ => query
             };
 
-            IEnumerable<ProjectAllViewModelServices> projects = await projectQuery
-                .Skip((queryModel.CurrentPage - 1) * queryModel.ProjectsPerPage)
-                .Take(queryModel.ProjectsPerPage)
-                .Select(b => new ProjectAllViewModelServices
-                {
-                    Id = b.Id,
-                    Name = b.Name,
-                    Description = b.Description,
-                    TicketCount = b.Tickets.Where(x => x.SoftDeleted == false).Count(),
-                })
-                .ToArrayAsync();
 
-            int totalProjectsCount = projectQuery.Count();
+            var projects = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            return new FindProjectsResultViewModelServices()
+            FindProjectsResultViewModelServices result = new FindProjectsResultViewModelServices();
+            
+            result.TotalProjectsCount = totalProjects;
+            result.Projects = projects.Select(b => new ProjectAllViewModelServices
             {
-                TotalProjectsCount = totalProjectsCount,
-                Projects = projects
-            };
+                Id = b.Id,
+                Name = b.Name,
+                Description = b.Description,
+                TicketCount = b.Tickets.Where(x => x.SoftDeleted == false).Count(),
+            });
+
+            return (result);
         }
 
         public async Task<ProjectDetailsViewModelServices> FillModel(ProjectDetailsViewModelServices model, int id)
