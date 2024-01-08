@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystem.Services.Models.Project
 {
-    public class CreateProjectViewModelServices
+    public class ProjectCreateModelServices
     {
         public int Id { get; set; }
 

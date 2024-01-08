@@ -17,7 +17,7 @@ namespace TicketingSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(CreateProjectViewModelServices model)
+        public async Task Create(ProjectCreateModelServices model)
         {
             Project project = new Project();
 
@@ -74,7 +74,7 @@ namespace TicketingSystem.Services
         //    };
         //}
 
-        public async Task<FindProjectsResultViewModelServices> GetProjectsAsync(string searchTerm, string sortOrder, int page, int pageSize)
+        public async Task<FindProjectsResultModelServices> GetProjectsAsync(string searchTerm, string sortOrder, int page, int pageSize)
         {
             var query = dbContext.Projects.AsQueryable();
 
@@ -95,10 +95,10 @@ namespace TicketingSystem.Services
 
             var projects = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            FindProjectsResultViewModelServices result = new FindProjectsResultViewModelServices();
+            FindProjectsResultModelServices result = new FindProjectsResultModelServices();
             
             result.TotalProjectsCount = totalProjects;
-            result.Projects = projects.Select(b => new ProjectAllViewModelServices
+            result.Projects = projects.Select(b => new ProjectViewModelServices
             {
                 Id = b.Id,
                 Name = b.Name,
@@ -109,14 +109,14 @@ namespace TicketingSystem.Services
             return (result);
         }
 
-        public async Task<ProjectDetailsViewModelServices> FillModel(ProjectDetailsViewModelServices model, int id)
+        public async Task<ProjectDetailsModelServices> FillModel(ProjectDetailsModelServices model, int id)
         {
             Project project = await dbContext.Projects.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == id);
 
             model.Id = project.Id;
             model.Description = project.Description;
             model.IsDeleted = project.SoftDeleted;
-            model.Tickets = project.Tickets.Select(x => new TicketDetailsViewModelServices
+            model.Tickets = project.Tickets.Select(x => new TicketDetailsModelServices
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,

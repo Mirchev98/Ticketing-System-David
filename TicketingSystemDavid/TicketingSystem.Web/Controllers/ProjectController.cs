@@ -27,13 +27,13 @@ namespace TicketingSystemDavid.Controllers
         [Authorize(Roles = DataConstants.AdminRoleName)]
         public IActionResult Create()
         {
-            CreateProjectViewModel model = new CreateProjectViewModel();
+            ProjectCreateViewModel model = new ProjectCreateViewModel();
             
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateProjectViewModel model)
+        public async Task<IActionResult> Create(ProjectCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            ProjectDetailsViewModelServices model = new ProjectDetailsViewModelServices();
+            ProjectDetailsModelServices model = new ProjectDetailsModelServices();
 
             await _projectServices.FillModel(model, id);
 

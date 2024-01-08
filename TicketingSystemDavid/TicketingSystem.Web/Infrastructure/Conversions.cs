@@ -49,7 +49,7 @@ namespace TicketingSystem.Web.Infrastructure
 
         //Project Convert Methods
 
-        public ProjectAllViewModel ConvertProjectAllViewModel(ProjectAllViewModelServices model)
+        public ProjectAllViewModel ConvertProjectAllViewModel(ProjectViewModelServices model)
         {
             ProjectAllViewModel newModel = new ProjectAllViewModel
             {
@@ -62,9 +62,9 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public CreateProjectViewModelServices ConvertProject(CreateProjectViewModel model)
+        public ProjectCreateModelServices ConvertProject(ProjectCreateViewModel model)
         {
-            CreateProjectViewModelServices newModel = new CreateProjectViewModelServices
+            ProjectCreateModelServices newModel = new ProjectCreateModelServices
             {
                 Id = model.Id,
                 Name = model.Name,
@@ -74,7 +74,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public FindProjectsResultViewModel ConvertProjectAllViewModel(FindProjectsResultViewModelServices model)
+        public FindProjectsResultViewModel ConvertProjectAllViewModel(FindProjectsResultModelServices model)
         {
             FindProjectsResultViewModel newModel = new FindProjectsResultViewModel
             {
@@ -92,7 +92,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public ProjectDetailsViewModel ConvertProjectDetailsViewModel(ProjectDetailsViewModelServices model)
+        public ProjectDetailsViewModel ConvertProjectDetailsViewModel(ProjectDetailsModelServices model)
         {
             ProjectDetailsViewModel newModel = new ProjectDetailsViewModel
             {
@@ -128,9 +128,9 @@ namespace TicketingSystem.Web.Infrastructure
 
         //Ticket Convert Methods
 
-        public CreateTicketViewModelServices ConvertTicket(CreateTicketViewModel model)
+        public TicketCreateModelServices ConvertTicket(TicketCreateViewModel model)
         {
-            CreateTicketViewModelServices newModel = new CreateTicketViewModelServices
+            TicketCreateModelServices newModel = new TicketCreateModelServices
             {
                 Id = model.Id,
                 ProjectId = model.ProjectId,
@@ -147,9 +147,9 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public CreateTicketViewModel ConvertTicketViewModel(CreateTicketViewModelServices model)
+        public TicketCreateViewModel ConvertTicketViewModel(TicketCreateModelServices model)
         {
-            CreateTicketViewModel newModel = new CreateTicketViewModel
+            TicketCreateViewModel newModel = new TicketCreateViewModel
             {
                 Id = model.Id,
                 ProjectId = model.ProjectId,
@@ -166,9 +166,9 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketDetailsViewModelServices ConvertTicketDetails(TicketDetailsViewModel model)
+        public TicketDetailsModelServices ConvertTicketDetails(TicketDetailsViewModel model)
         {
-            TicketDetailsViewModelServices newModel = new TicketDetailsViewModelServices
+            TicketDetailsModelServices newModel = new TicketDetailsModelServices
             {
                 Id = model.Id,
                 ProjectId = model.ProjectId,
@@ -197,7 +197,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketDetailsViewModel ConvertTicketDetailsViewModel(TicketDetailsViewModelServices model)
+        public TicketDetailsViewModel ConvertTicketDetailsViewModel(TicketDetailsModelServices model)
         {
             TicketDetailsViewModel newModel = new TicketDetailsViewModel
             {

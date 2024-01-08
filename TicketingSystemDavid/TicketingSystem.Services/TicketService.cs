@@ -4,6 +4,7 @@ using TicketingSystem.Services.Models.Ticket;
 using TicketingSystem.Services.Models.Message;
 using TicketingSystem.Services.Interfaces;
 using TicketingSystem.Data;
+using TicketingSystem.Services.Models.File;
 
 namespace TicketingSystem.Services
 {
@@ -16,7 +17,7 @@ namespace TicketingSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(CreateTicketViewModelServices model)
+        public async Task Create(TicketCreateModelServices model)
         {
             Ticket ticket = new Ticket();
 
@@ -44,7 +45,7 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<TicketDetailsViewModelServices> Details(TicketDetailsViewModelServices model, int id)
+        public async Task<TicketDetailsModelServices> Details(TicketDetailsModelServices model, int id)
         {
             Ticket ticket = await dbContext.Tickets.Include(x => x.Messages).FirstOrDefaultAsync(t => t.Id == id);
 
@@ -74,11 +75,11 @@ namespace TicketingSystem.Services
             return model;
         }
 
-        public async Task<DownloadFilesTicketServices> Download(int id)
+        public async Task<DownloadFileModel> Download(int id)
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
-            DownloadFilesTicketServices model = new DownloadFilesTicketServices();
+            DownloadFileModel model = new DownloadFileModel();
 
             model.FileContent = ticket.FileContent;
             model.ContentType = ticket.ContentType;
@@ -87,7 +88,7 @@ namespace TicketingSystem.Services
             return model;
         }
 
-        public async Task Edit(CreateTicketViewModelServices model, int id)
+        public async Task Edit(TicketCreateModelServices model, int id)
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
@@ -101,7 +102,7 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<CreateTicketViewModelServices> FillModel(CreateTicketViewModelServices model, int id)
+        public async Task<TicketCreateModelServices> FillModel(TicketCreateModelServices model, int id)
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 

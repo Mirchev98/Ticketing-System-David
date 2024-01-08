@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystem.Services.Models.Ticket
 {
-    public class CreateTicketViewModelServices
+    public class TicketCreateModelServices
     {
         public int Id { get; set; }
 

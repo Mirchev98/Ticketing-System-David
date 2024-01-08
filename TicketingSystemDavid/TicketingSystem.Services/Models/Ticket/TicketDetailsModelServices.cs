@@ -3,9 +3,9 @@ using TicketingSystem.Services.Models.Message;
 
 namespace TicketingSystem.Services.Models.Ticket
 {
-    public class TicketDetailsViewModelServices
+    public class TicketDetailsModelServices
     {
-        public TicketDetailsViewModelServices()
+        public TicketDetailsModelServices()
         {
             Messages = new List<MessageDetailsViewModelService>();
         }

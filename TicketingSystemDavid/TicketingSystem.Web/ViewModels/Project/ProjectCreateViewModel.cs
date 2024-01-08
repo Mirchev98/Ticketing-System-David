@@ -3,7 +3,7 @@ using TicketingSystem.Data.Common;
 
 namespace TicketingSystemDavid.ViewModels.Project
 {
-    public class CreateProjectViewModel
+    public class ProjectCreateViewModel
     {
         public int Id { get; set; }
 

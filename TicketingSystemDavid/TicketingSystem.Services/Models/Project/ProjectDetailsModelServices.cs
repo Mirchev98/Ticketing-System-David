@@ -2,11 +2,11 @@
 
 namespace TicketingSystem.Services.Models.Project
 {
-    public class ProjectDetailsViewModelServices
+    public class ProjectDetailsModelServices
     {
-        public ProjectDetailsViewModelServices()
+        public ProjectDetailsModelServices()
         {
-            Tickets = new List<TicketDetailsViewModelServices>();
+            Tickets = new List<TicketDetailsModelServices>();
         }
 
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace TicketingSystem.Services.Models.Project
 
         public string Description { get; set; } = null!;
 
-        public ICollection<TicketDetailsViewModelServices> Tickets { get; set; }
+        public ICollection<TicketDetailsModelServices> Tickets { get; set; }
 
         public bool IsDeleted { get; set; }
     }
