@@ -75,7 +75,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            TicketDetailsModelServices model = new TicketDetailsModelServices();
+            TicketDetails model = new TicketDetails();
 
             await _ticketServices.Details(model, id);
 
@@ -90,7 +90,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            TicketCreateModelServices model = new TicketCreateModelServices();
+            TicketCreate model = new TicketCreate();
 
             model.Creator = User.Identity.Name;
 

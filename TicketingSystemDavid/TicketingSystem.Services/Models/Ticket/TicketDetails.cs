@@ -3,11 +3,11 @@ using TicketingSystem.Services.Models.Message;
 
 namespace TicketingSystem.Services.Models.Ticket
 {
-    public class TicketDetailsModelServices
+    public class TicketDetails
     {
-        public TicketDetailsModelServices()
+        public TicketDetails()
         {
-            Messages = new List<MessageDetailsViewModelService>();
+            Messages = new List<MessageDetails>();
         }
 
         public int Id { get; set; }
@@ -26,7 +26,7 @@ namespace TicketingSystem.Services.Models.Ticket
 
         public string Description { get; set; } = null!;
 
-        public ICollection<MessageDetailsViewModelService> Messages { get; set; }
+        public ICollection<MessageDetails> Messages { get; set; }
 
         public bool IsDeleted { get; set; }
 

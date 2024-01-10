@@ -5,13 +5,13 @@ namespace TicketingSystem.Services.Interfaces
 {
     public interface ITicketService
     {
-        Task Create(TicketCreateModelServices model);
+        Task Create(TicketCreate model);
 
-        Task<TicketDetailsModelServices> Details(TicketDetailsModelServices model, int id);
+        Task<TicketDetails> Details(TicketDetails model, int id);
 
-        Task<TicketCreateModelServices> FillModel(TicketCreateModelServices model, int id);
+        Task<TicketCreate> FillModel(TicketCreate model, int id);
 
-        Task Edit(TicketCreateModelServices model, int id);
+        Task Edit(TicketCreate model, int id);
 
         Task Delete(int id);
 

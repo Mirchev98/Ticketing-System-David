@@ -90,7 +90,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            ProjectDetailsModelServices model = new ProjectDetailsModelServices();
+            ProjectDetails model = new ProjectDetails();
 
             await _projectServices.FillModel(model, id);
 

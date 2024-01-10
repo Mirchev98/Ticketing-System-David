@@ -17,7 +17,7 @@ namespace TicketingSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(ProjectCreateModelServices model)
+        public async Task Create(ProjectCreate model)
         {
             Project project = new Project();
 
@@ -74,7 +74,7 @@ namespace TicketingSystem.Services
         //    };
         //}
 
-        public async Task<FindProjectsResultModelServices> GetProjectsAsync(string searchTerm, string sortOrder, int page, int pageSize)
+        public async Task<FindProjectsResult> GetProjectsAsync(string searchTerm, string sortOrder, int page, int pageSize)
         {
             var query = dbContext.Projects.AsQueryable();
 
@@ -95,7 +95,7 @@ namespace TicketingSystem.Services
 
             var projects = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            FindProjectsResultModelServices result = new FindProjectsResultModelServices();
+            FindProjectsResult result = new FindProjectsResult();
             
             result.TotalProjectsCount = totalProjects;
             result.Projects = projects.Select(b => new ProjectViewModelServices
@@ -109,14 +109,14 @@ namespace TicketingSystem.Services
             return (result);
         }
 
-        public async Task<ProjectDetailsModelServices> FillModel(ProjectDetailsModelServices model, int id)
+        public async Task<ProjectDetails> FillModel(ProjectDetails model, int id)
         {
             Project project = await dbContext.Projects.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == id);
 
             model.Id = project.Id;
             model.Description = project.Description;
             model.IsDeleted = project.SoftDeleted;
-            model.Tickets = project.Tickets.Select(x => new TicketDetailsModelServices
+            model.Tickets = project.Tickets.Select(x => new TicketDetails
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
@@ -125,12 +125,12 @@ namespace TicketingSystem.Services
                 State = x.State,
                 Heading = x.Heading,
                 Description = x.Description,
-                Messages = x.Messages.Select(x => new MessageDetailsViewModelService
+                Messages = x.Messages.Select(x => new MessageDetails
                 {
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
                     Creator = x.CreatorEmail,
-                    State = (MessageStateService)Enum.Parse(typeof(MessageStateService), x.State.ToString()),
+                    State = (MessageState)Enum.Parse(typeof(MessageState), x.State.ToString()),
                     Content = x.Content,
                     TicketId = x.TicketId,
                     SoftDeleted = x.SoftDeleted

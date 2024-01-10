@@ -5,11 +5,11 @@ namespace TicketingSystem.Services.Interfaces
 {
     public interface IMessageService
     {
-        Task Create(CreateMessageModelService model, string creator);
+        Task Create(CreateMessage model, string creator);
 
-        Task<CreateMessageModelService> FillModel(CreateMessageModelService model, int id);
+        Task<CreateMessage> FillModel(CreateMessage model, int id);
 
-        Task Edit(CreateMessageModelService model, int id, string creator);
+        Task Edit(CreateMessage model, int id, string creator);
 
         Task Delete(int id);
 

@@ -13,12 +13,12 @@ namespace TicketingSystem.Web.Infrastructure
     {
         //Message Convert Methods
 
-        public CreateMessageModelService ConvertMessage(CreateMessageViewModel model)
+        public CreateMessage ConvertMessage(CreateMessageViewModel model)
         {
-            CreateMessageModelService newModel = new CreateMessageModelService
+            CreateMessage newModel = new CreateMessage
             {
                 Id = model.Id,
-                State = (MessageStateService)Enum.Parse(typeof(MessageStateService), model.State.ToString()),
+                State = (Services.Models.Message.MessageState)Enum.Parse(typeof(Services.Models.Message.MessageState), model.State.ToString()),
                 Content = model.Content,
                 CreatedOn = model.CreatedOn,
                 TicketId = model.TicketId,
@@ -30,12 +30,12 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public CreateMessageViewModel ConvertMessageViewModel(CreateMessageModelService model)
+        public CreateMessageViewModel ConvertMessageViewModel(CreateMessage model)
         {
             CreateMessageViewModel newModel = new CreateMessageViewModel
             {
                 Id = model.Id,
-                State = (MessageState)Enum.Parse(typeof(MessageState), model.State.ToString()),
+                State = (ViewModels.Message.MessageState)Enum.Parse(typeof(ViewModels.Message.MessageState), model.State.ToString()),
                 Content = model.Content,
                 TicketId = model.TicketId,
                 CreatedOn = model.CreatedOn,
@@ -49,9 +49,9 @@ namespace TicketingSystem.Web.Infrastructure
 
         //Project Convert Methods
 
-        public ProjectAllViewModel ConvertProjectAllViewModel(ProjectViewModelServices model)
+        public ProjectViewModel ConvertProjectAllViewModel(ProjectViewModelServices model)
         {
-            ProjectAllViewModel newModel = new ProjectAllViewModel
+            ProjectViewModel newModel = new ProjectViewModel
             {
                 Id = model.Id,
                 Description = model.Description,
@@ -62,11 +62,10 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public ProjectCreateModelServices ConvertProject(ProjectCreateViewModel model)
+        public ProjectCreate ConvertProject(ProjectCreateViewModel model)
         {
-            ProjectCreateModelServices newModel = new ProjectCreateModelServices
+            ProjectCreate newModel = new ProjectCreate
             {
-                Id = model.Id,
                 Name = model.Name,
                 Description = model.Description
             };
@@ -74,12 +73,12 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public FindProjectsResultViewModel ConvertProjectAllViewModel(FindProjectsResultModelServices model)
+        public FindProjectsResultViewModel ConvertProjectAllViewModel(FindProjectsResult model)
         {
             FindProjectsResultViewModel newModel = new FindProjectsResultViewModel
             {
                 TotalProjectsCount = model.TotalProjectsCount,
-                Projects = model.Projects.Select(p => new ProjectAllViewModel
+                Projects = model.Projects.Select(p => new ProjectViewModel
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -92,7 +91,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public ProjectDetailsViewModel ConvertProjectDetailsViewModel(ProjectDetailsModelServices model)
+        public ProjectDetailsViewModel ConvertProjectDetailsViewModel(ProjectDetails model)
         {
             ProjectDetailsViewModel newModel = new ProjectDetailsViewModel
             {
@@ -114,7 +113,7 @@ namespace TicketingSystem.Web.Infrastructure
                     Messages = t.Messages.Select(m => new MessageDetailsViewModel
                     {
                         Id = m.Id,
-                        State = (MessageState)Enum.Parse(typeof(MessageState), m.State.ToString()),
+                        State = (ViewModels.Message.MessageState)Enum.Parse(typeof(ViewModels.Message.MessageState), m.State.ToString()),
                         Content = m.Content,
                         CreatorEmail = m.Creator,
                         TicketId = m.TicketId,
@@ -128,16 +127,16 @@ namespace TicketingSystem.Web.Infrastructure
 
         //Ticket Convert Methods
 
-        public TicketCreateModelServices ConvertTicket(TicketCreateViewModel model)
+        public TicketCreate ConvertTicket(TicketCreateViewModel model)
         {
-            TicketCreateModelServices newModel = new TicketCreateModelServices
+            TicketCreate newModel = new TicketCreate
             {
                 Id = model.Id,
                 ProjectId = model.ProjectId,
                 Creator = model.Creator,
-                Type = (TicketCategoryServices)Enum.Parse(typeof(TicketCategoryServices), model.Type.ToString()),
+                Type = (Services.Models.Ticket.TicketCategory)Enum.Parse(typeof(Services.Models.Ticket.TicketCategory), model.Type.ToString()),
                 Heading = model.Heading,
-                State = (TicketStateServices)Enum.Parse(typeof(TicketStateServices), model.State.ToString()),
+                State = (Services.Models.Ticket.TicketState)Enum.Parse(typeof(Services.Models.Ticket.TicketState), model.State.ToString()),
                 Description = model.Description,
                 FileName = model.FileName,
                 FileContent = model.FileContent,
@@ -147,16 +146,16 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketCreateViewModel ConvertTicketViewModel(TicketCreateModelServices model)
+        public TicketCreateViewModel ConvertTicketViewModel(TicketCreate model)
         {
             TicketCreateViewModel newModel = new TicketCreateViewModel
             {
                 Id = model.Id,
                 ProjectId = model.ProjectId,
                 Creator = model.Creator,
-                Type = (TicketCategory)Enum.Parse(typeof(TicketCategory), model.Type.ToString()),
+                Type = (ViewModels.Ticket.TicketCategory)Enum.Parse(typeof(ViewModels.Ticket.TicketCategory), model.Type.ToString()),
                 Heading = model.Heading,
-                State = (TicketState)Enum.Parse(typeof(TicketState), model.State.ToString()),
+                State = (ViewModels.Ticket.TicketState)Enum.Parse(typeof(ViewModels.Ticket.TicketState), model.State.ToString()),
                 Description = model.Description,
                 FileName = model.FileName,
                 FileContent = model.FileContent,
@@ -166,9 +165,9 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketDetailsModelServices ConvertTicketDetails(TicketDetailsViewModel model)
+        public TicketDetails ConvertTicketDetails(TicketDetailsViewModel model)
         {
-            TicketDetailsModelServices newModel = new TicketDetailsModelServices
+            TicketDetails newModel = new TicketDetails
             {
                 Id = model.Id,
                 ProjectId = model.ProjectId,
@@ -181,10 +180,10 @@ namespace TicketingSystem.Web.Infrastructure
                 IsDeleted = model.SoftDleted,
                 FileContent = model.FileContent,
                 FileName = model.FileName,
-                Messages = model.Messages.Select(m => new MessageDetailsViewModelService
+                Messages = model.Messages.Select(m => new MessageDetails
                 {
                     Id = m.Id,
-                    State = (MessageStateService)Enum.Parse(typeof(MessageStateService), model.State.ToString()),
+                    State = (Services.Models.Message.MessageState)Enum.Parse(typeof(Services.Models.Message.MessageState), model.State.ToString()),
                     Content = m.Content,
                     Creator = m.CreatorEmail,
                     TicketId = m.TicketId,
@@ -197,7 +196,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketDetailsViewModel ConvertTicketDetailsViewModel(TicketDetailsModelServices model)
+        public TicketDetailsViewModel ConvertTicketDetailsViewModel(TicketDetails model)
         {
             TicketDetailsViewModel newModel = new TicketDetailsViewModel
             {
@@ -215,7 +214,7 @@ namespace TicketingSystem.Web.Infrastructure
                 Messages = model.Messages.Select(m => new MessageDetailsViewModel
                 {
                     Id = m.Id,
-                    State = (MessageState)Enum.Parse(typeof(MessageState), model.State.ToString()),
+                    State = (ViewModels.Message.MessageState)Enum.Parse(typeof(ViewModels.Message.MessageState), model.State.ToString()),
                     Content = m.Content,
                     CreatorEmail = m.Creator,
                     TicketId = m.TicketId,

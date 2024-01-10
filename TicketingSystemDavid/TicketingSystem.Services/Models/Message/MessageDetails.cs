@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystem.Services.Models.Message
 {
-    public class MessageDetailsViewModelService
+    public class MessageDetails
     {
         public int Id { get; set; }
 
@@ -8,7 +8,7 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public MessageStateService State { get; set; } 
+        public MessageState State { get; set; } 
 
         public string Content { get; set; } = null!;
 

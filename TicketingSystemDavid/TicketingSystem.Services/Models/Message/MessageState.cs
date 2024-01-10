@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystem.Services.Models.Message
 {
-    public enum MessageStateService
+    public enum MessageState
     {
         Draft,
         Posted

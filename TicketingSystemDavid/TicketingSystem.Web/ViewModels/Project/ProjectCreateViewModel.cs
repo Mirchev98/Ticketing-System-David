@@ -5,7 +5,6 @@ namespace TicketingSystemDavid.ViewModels.Project
 {
     public class ProjectCreateViewModel
     {
-        public int Id { get; set; }
 
         [Required]
         [StringLength(DataConstants.ProjectNameMaxLen, MinimumLength = DataConstants.ProjectNameMinLen)]

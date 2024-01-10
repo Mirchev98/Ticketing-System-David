@@ -4,12 +4,12 @@ using TicketingSystem.Data.Common;
 
 namespace TicketingSystem.Services.Models.Message
 {
-    public class CreateMessageModelService
+    public class CreateMessage
     {
         public int Id { get; set; }
 
         [Required]
-        public MessageStateService State { get; set; }
+        public MessageState State { get; set; }
 
         public string Creator { get; set; } = null!;
 
