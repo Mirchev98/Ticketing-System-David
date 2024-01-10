@@ -13,7 +13,7 @@ namespace TicketingSystem.Web.Infrastructure
     {
         //Message Convert Methods
 
-        public CreateMessage ConvertMessage(CreateMessageViewModel model)
+        public CreateMessage ConvertMessage(MessageCreateViewModel model)
         {
             CreateMessage newModel = new CreateMessage
             {
@@ -30,9 +30,9 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public CreateMessageViewModel ConvertMessageViewModel(CreateMessage model)
+        public MessageCreateViewModel ConvertMessageViewModel(CreateMessage model)
         {
-            CreateMessageViewModel newModel = new CreateMessageViewModel
+            MessageCreateViewModel newModel = new MessageCreateViewModel
             {
                 Id = model.Id,
                 State = (ViewModels.Message.MessageState)Enum.Parse(typeof(ViewModels.Message.MessageState), model.State.ToString()),
