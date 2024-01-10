@@ -48,20 +48,38 @@
            asp-route-sortOrder="@Model.SortOrder">Next</a>
     </div>
 
-    @if (!Model.Projects.Any())
+    @if (Model.Projects.Any())
     {
-        <div class="alert alert-info text-center">No projects found by the given criteria!</div>
+        <table class="table table-hover mt-4">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Tickets</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model.Projects)
+                {
+                    <tr>
+                        <td>@project.Name</td>
+                        <td>@project.TicketCount</td>
+                        <td>@project.Description</td>
+                        <td>
+                            <a asp-controller="Project" asp-action="Details" asp-route-id="@project.Id" class="btn btn-primary btn-sm">Details</a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="Project" asp-action="Delete" asp-route-id="@project.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
     else
     {
-        <div class="row">
-            @foreach (var project in Model.Projects)
-            {
-                if (!project.SoftDleted)
-                {
-                    <partial name="_ProjectsDetailsPartial" model="@project" />
-                }
-            }
-        </div>
+        <div class="alert alert-info text-center">No projects found!</div>
     }
 </div>
