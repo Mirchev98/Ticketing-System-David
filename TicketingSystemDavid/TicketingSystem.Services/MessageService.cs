@@ -16,7 +16,7 @@ namespace TicketingSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task Create(CreateMessage model, string creator)
+        public async Task Create(MessageCreate model, string creator)
         {
             Message message = new Message();
 
@@ -55,7 +55,7 @@ namespace TicketingSystem.Services
             return model;
         }
 
-        public async Task Edit(CreateMessage model, int id, string creator)
+        public async Task Edit(MessageCreate model, int id, string creator)
         {
             Message message = await dbContext.Messages.FindAsync(id);
 
@@ -67,12 +67,12 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<CreateMessage> FillModel(CreateMessage model, int id)
+        public async Task<MessageCreate> FillModel(MessageCreate model, int id)
         {
             Message message = await dbContext.Messages.Include(x => x.Ticket).FirstOrDefaultAsync(x => x.Id == id);
 
             model.Content = message.Content;
-            model.Creator = message.CreatorEmail;
+            model.CreatorName = message.CreatorEmail;
             model.CreatedOn = message.CreatedOn;
             model.TicketId = message.TicketId;
 

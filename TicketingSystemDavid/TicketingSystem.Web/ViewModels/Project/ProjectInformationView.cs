@@ -1,6 +1,6 @@
 ﻿namespace TicketingSystemDavid.ViewModels.Project
 {
-    public class ProjectViewModel
+    public class ProjectInformationView
     {
         public int Id { get; set; }
 

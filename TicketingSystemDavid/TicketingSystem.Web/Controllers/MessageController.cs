@@ -30,7 +30,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            MessageCreateViewModel model = new MessageCreateViewModel();
+            MessageCreateView model = new MessageCreateView();
 
             model.TicketId = id;
             
@@ -38,12 +38,16 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(MessageCreateViewModel model, int id)
+        public async Task<IActionResult> Create(MessageCreateView model, int id)
         {
             if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
             {
                 return RedirectToAction("Unauthorized", "Home");
             }
+
+            model.CreatorName = this.User.Identity.Name;
+
+            model.CreatorId = _userService.GetUserId(this.User.Identity.Name);
 
             var uploadedFile = Request.Form.Files.GetFile("File");
 
@@ -76,10 +80,10 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            MessageCreateViewModel model = new MessageCreateViewModel();
+            MessageCreateView model = new MessageCreateView();
 
 
-            CreateMessage newModel = await _messageServices.FillModel(conversions.ConvertMessage(model), id);
+            MessageCreate newModel = await _messageServices.FillModel(conversions.ConvertMessage(model), id);
 
             if (newModel == null)
             {
@@ -90,7 +94,7 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, MessageCreateViewModel model)
+        public async Task<IActionResult> Edit(int id, MessageCreateView model)
         {
             if (!ModelState.IsValid)
             {

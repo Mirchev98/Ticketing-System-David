@@ -16,7 +16,9 @@ namespace TicketingSystem.Services.Models.Ticket
 
         public DateTime CreatedOn { get; set; }
 
-        public string Creator { get; set; } = null!;
+        public string CreatorName { get; set; } = null!;
+
+        public string CreatorId { get; set; }
 
         public string Type { get; set; } = null!;
 
@@ -28,7 +30,7 @@ namespace TicketingSystem.Services.Models.Ticket
 
         public ICollection<MessageDetails> Messages { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool SoftDeleted { get; set; }
 
         [AllowNull]
         public FileStream File { get; set; }

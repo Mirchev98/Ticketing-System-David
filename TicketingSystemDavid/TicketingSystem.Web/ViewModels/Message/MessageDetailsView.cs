@@ -2,11 +2,13 @@
 
 namespace TicketingSystemDavid.ViewModels.Message
 {
-    public class MessageDetailsViewModel
+    public class MessageDetailsView
     {
         public int Id { get; set; }
 
-        public string CreatorEmail { get; set; } = null!;
+        public string CreatorName { get; set; } = null!;
+
+        public string CreatorId { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

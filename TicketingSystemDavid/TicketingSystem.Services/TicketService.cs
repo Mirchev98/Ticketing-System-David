@@ -22,7 +22,7 @@ namespace TicketingSystem.Services
             Ticket ticket = new Ticket();
 
             ticket.ProjectId = model.ProjectId;
-            ticket.CreatorEmail = model.Creator;
+            ticket.CreatorEmail = model.CreatorName;
             ticket.State = model.State.ToString();
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
@@ -51,19 +51,19 @@ namespace TicketingSystem.Services
 
             model.Id = ticket.Id;
             model.ProjectId = ticket.ProjectId;
-            model.Creator = ticket.CreatorEmail;
+            model.CreatorName = ticket.CreatorEmail;
             model.State = ticket.State;
             model.Heading = ticket.Heading;
             model.Description = ticket.Description;
             model.Type = ticket.Type;
-            model.IsDeleted = ticket.SoftDeleted;
+            model.SoftDeleted = ticket.SoftDeleted;
             model.FileContent = ticket.FileContent;
             model.FileName = ticket.FileName;
             model.Messages = ticket.Messages.Select(x => new MessageDetails
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
-                Creator = x.CreatorEmail,
+                CreatorName = x.CreatorEmail,
                 State = (MessageState)Enum.Parse(typeof(MessageState), x.State.ToString()),
                 Content = x.Content,
                 TicketId = x.TicketId,
@@ -93,7 +93,7 @@ namespace TicketingSystem.Services
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
             //ticket.ProjectId = model.ProjectId;
-            ticket.CreatorEmail = model.Creator;
+            ticket.CreatorEmail = model.CreatorName;
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
             ticket.Type = model.Type.ToString();
@@ -108,7 +108,7 @@ namespace TicketingSystem.Services
 
             model.Id = ticket.Id;
             model.ProjectId = ticket.ProjectId;
-            model.Creator = ticket.CreatorEmail;
+            model.CreatorName = ticket.CreatorEmail;
             model.Heading = ticket.Heading;
             model.Description = ticket.Description;
 

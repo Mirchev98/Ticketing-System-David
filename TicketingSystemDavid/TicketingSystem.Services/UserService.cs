@@ -95,5 +95,12 @@ namespace TicketingSystem.Services
 
             return false;
         }
+
+        public string GetUserId(string email)
+        {
+            ApplicationUser user = dbContext.Users.FirstOrDefault(x => x.Email == email);
+
+            return user.Id;
+        }
     }
 }

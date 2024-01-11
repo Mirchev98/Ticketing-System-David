@@ -24,5 +24,7 @@ namespace TicketingSystem.Services.Interfaces
         Task Edit(ApplicationUser user, UserInformationServices model);
 
         bool CheckIfUserIsAuthorized(string id);
+
+        string GetUserId(string email);
     }
 }

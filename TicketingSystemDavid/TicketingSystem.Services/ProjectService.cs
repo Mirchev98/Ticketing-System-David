@@ -120,7 +120,7 @@ namespace TicketingSystem.Services
             {
                 Id = x.Id,
                 CreatedOn = x.CreatedOn,
-                Creator = x.CreatorEmail,
+                CreatorName = x.CreatorEmail,
                 Type = x.Type,
                 State = x.State,
                 Heading = x.Heading,
@@ -129,13 +129,13 @@ namespace TicketingSystem.Services
                 {
                     Id = x.Id,
                     CreatedOn = x.CreatedOn,
-                    Creator = x.CreatorEmail,
+                    CreatorName = x.CreatorEmail,
                     State = (MessageState)Enum.Parse(typeof(MessageState), x.State.ToString()),
                     Content = x.Content,
                     TicketId = x.TicketId,
                     SoftDeleted = x.SoftDeleted
                 }).ToList(),
-                IsDeleted = x.SoftDeleted
+                SoftDeleted = x.SoftDeleted
             }).ToList();
             model.Name = project.Name;
 

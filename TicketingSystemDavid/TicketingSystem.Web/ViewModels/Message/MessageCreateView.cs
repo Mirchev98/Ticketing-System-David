@@ -5,7 +5,7 @@ using TicketingSystem.Web.ViewModels.Message;
 
 namespace TicketingSystemDavid.ViewModels.Message
 {
-    public class MessageCreateViewModel
+    public class MessageCreateView
     {
         public int Id { get; set; }
 
@@ -13,6 +13,10 @@ namespace TicketingSystemDavid.ViewModels.Message
         public MessageState State { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public string CreatorName { get; set; }
+
+        public string CreatorId { get; set; }
 
         [Required]
         [StringLength(DataConstants.MessageContentMaxLen, MinimumLength = DataConstants.MessageContentMinLen)]

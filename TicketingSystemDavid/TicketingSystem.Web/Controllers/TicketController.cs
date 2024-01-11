@@ -31,7 +31,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            TicketCreateViewModel model = new TicketCreateViewModel();
+            TicketCreateView model = new TicketCreateView();
 
             model.ProjectId = id;
 
@@ -39,7 +39,7 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(TicketCreateViewModel model, int id)
+        public async Task<IActionResult> Create(TicketCreateView model, int id)
         {
             var uploadedFile = Request.Form.Files.GetFile("File");
 
@@ -53,7 +53,7 @@ namespace TicketingSystemDavid.Controllers
             }
 
 
-            model.Creator = this.User.Identity.Name;
+            model.CreatorName = this.User.Identity.Name;
 
             model.ProjectId = id;
 
@@ -92,7 +92,7 @@ namespace TicketingSystemDavid.Controllers
 
             TicketCreate model = new TicketCreate();
 
-            model.Creator = User.Identity.Name;
+            model.CreatorName = User.Identity.Name;
 
             await _ticketServices.FillModel(model, id);
 
@@ -106,9 +106,9 @@ namespace TicketingSystemDavid.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, TicketCreateViewModel model)
+        public async Task<IActionResult> Edit(int id, TicketCreateView model)
         {
-            model.Creator = User.Identity.Name;
+            model.CreatorName = User.Identity.Name;
 
             if (!ModelState.IsValid)
             {

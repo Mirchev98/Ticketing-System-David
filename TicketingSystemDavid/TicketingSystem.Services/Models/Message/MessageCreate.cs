@@ -4,16 +4,18 @@ using TicketingSystem.Data.Common;
 
 namespace TicketingSystem.Services.Models.Message
 {
-    public class CreateMessage
+    public class MessageCreate
     {
         public int Id { get; set; }
 
         [Required]
         public MessageState State { get; set; }
 
-        public string Creator { get; set; } = null!;
+        public string CreatorName { get; set; } = null!;
 
         public DateTime CreatedOn { get; set; }
+
+        public string CreatorId { get; set; }
 
         [Required]
         [StringLength(DataConstants.MessageContentMaxLen, MinimumLength = DataConstants.MessageContentMinLen)]

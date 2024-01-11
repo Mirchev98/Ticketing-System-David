@@ -5,12 +5,14 @@ using TicketingSystem.Web.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.ViewModels.Ticket
 {
-    public class TicketCreateViewModel
+    public class TicketCreateView
     {
         public int Id { get; set; }
 
         [AllowNull]
-        public string? Creator { get; set; }
+        public string? CreatorName { get; set; }
+
+        public string CreatorId { get; set; }
 
         public int ProjectId { get; set; }
 

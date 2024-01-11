@@ -3,11 +3,11 @@ using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.ViewModels.Ticket
 {
-    public class TicketDetailsViewModel
+    public class TicketDetailsView
     {
-        public TicketDetailsViewModel()
+        public TicketDetailsView()
         {
-            Messages = new List<MessageDetailsViewModel>();
+            Messages = new List<MessageDetailsView>();
         }
 
         public int Id { get; set; }
@@ -16,7 +16,9 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public DateTime CreatedOn { get; set; }
 
-        public string CreatorEmail { get; set; } = null!;
+        public string CreatorName { get; set; } = null!;
+
+        public string CreatorId { get; set; }
 
         public string Type { get; set; } = null!;
 
@@ -26,7 +28,7 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public string Description { get; set; } = null!;
 
-        public ICollection<MessageDetailsViewModel> Messages { get; set; }
+        public ICollection<MessageDetailsView> Messages { get; set; }
 
         public bool SoftDleted { get; set; }
 

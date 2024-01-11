@@ -1,4 +1,4 @@
-﻿@model ProjectDetailsViewModel
+﻿@model ProjectDetailsView
 
 @{
     ViewBag.Title = "Project Details";
@@ -21,18 +21,18 @@
 
         <h4 class="text-center mt-5 mb-4">Tickets</h4>
 
-        @if (Model.Tickets.Any(x => x.SoftDleted == false) && Model.Tickets.Any(x => x.CreatorEmail == User.Identity.Name) || User.IsInRole("Admin") || User.IsInRole("Support"))
+        @if (Model.Tickets.Any(x => x.SoftDleted == false) && Model.Tickets.Any(x => x.CreatorName == User.Identity.Name) || User.IsInRole("Admin") || User.IsInRole("Support"))
         {
-            @foreach (TicketDetailsViewModel ticket in Model.Tickets)
+            @foreach (TicketDetailsView ticket in Model.Tickets)
             {
-                @if (ticket.CreatorEmail == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Support"))
+                @if (ticket.CreatorName == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Support"))
                 {
                     @if (ticket.SoftDleted == false)
                     {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">@ticket.Heading</h5>
-                                <p class="card-text">Written by: <b>@ticket.CreatorEmail</b></p>
+                                <p class="card-text">Written by: <b>@ticket.CreatorName</b></p>
                                 <p class="card-text">Description: @ticket.Description</p>
                                 <p class="card-text">Type: @ticket.Type</p>
                                 <p class="card-text">State: @ticket.State</p>

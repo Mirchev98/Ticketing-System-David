@@ -4,7 +4,9 @@
     {
         public int Id { get; set; }
 
-        public string Creator { get; set; } = null!;
+        public string CreatorName { get; set; } = null!;
+
+        public string CreatorId { get; set; }
 
         public int ProjectId { get; set; }
         
