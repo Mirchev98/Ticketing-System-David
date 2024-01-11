@@ -14,9 +14,9 @@ namespace TicketingSystemDavid.ViewModels.Message
 
         public DateTime CreatedOn { get; set; }
 
-        public string CreatorName { get; set; }
+        public string? CreatorName { get; set; }
 
-        public string CreatorId { get; set; }
+        public string? CreatorId { get; set; }
 
         [Required]
         [StringLength(DataConstants.MessageContentMaxLen, MinimumLength = DataConstants.MessageContentMinLen)]

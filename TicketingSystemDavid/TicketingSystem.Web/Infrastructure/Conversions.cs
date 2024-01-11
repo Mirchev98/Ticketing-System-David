@@ -223,7 +223,7 @@ namespace TicketingSystem.Web.Infrastructure
                 Messages = model.Messages.Select(m => new MessageDetailsView
                 {
                     Id = m.Id,
-                    State = (ViewModels.Message.MessageState)Enum.Parse(typeof(ViewModels.Message.MessageState), model.State.ToString()),
+                    State = (ViewModels.Message.MessageState)Enum.Parse(typeof(ViewModels.Message.MessageState), m.State.ToString()),
                     Content = m.Content,
                     CreatorName = m.CreatorName,
                     CreatorId = model.CreatorId,

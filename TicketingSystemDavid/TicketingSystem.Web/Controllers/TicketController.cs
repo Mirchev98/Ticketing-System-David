@@ -55,6 +55,8 @@ namespace TicketingSystemDavid.Controllers
 
             model.CreatorName = this.User.Identity.Name;
 
+            model.CreatorId = _userService.GetUserId(this.User.Identity.Name);
+
             model.ProjectId = id;
 
             if (!ModelState.IsValid)

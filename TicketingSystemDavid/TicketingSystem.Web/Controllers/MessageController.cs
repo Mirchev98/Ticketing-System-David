@@ -67,7 +67,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _messageServices.Create(conversions.ConvertMessage(model), User.Identity.Name);
+            await _messageServices.Create(conversions.ConvertMessage(model));
 
             return RedirectToAction("Details", "Ticket", new { id });
         }
@@ -103,7 +103,7 @@ namespace TicketingSystemDavid.Controllers
 
             int ticketId = await _messageServices.FindTicket(model.Id);
 
-            await _messageServices.Edit(conversions.ConvertMessage(model), id, User.Identity.Name);
+            await _messageServices.Edit(conversions.ConvertMessage(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id = ticketId });
         }

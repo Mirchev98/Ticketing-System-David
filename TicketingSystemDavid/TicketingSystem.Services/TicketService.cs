@@ -23,6 +23,7 @@ namespace TicketingSystem.Services
 
             ticket.ProjectId = model.ProjectId;
             ticket.CreatorEmail = model.CreatorName;
+            ticket.CreatorId = model.CreatorId;
             ticket.State = model.State.ToString();
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
@@ -92,8 +93,6 @@ namespace TicketingSystem.Services
         {
             Ticket ticket = await dbContext.Tickets.FindAsync(id);
 
-            //ticket.ProjectId = model.ProjectId;
-            ticket.CreatorEmail = model.CreatorName;
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
             ticket.Type = model.Type.ToString();
