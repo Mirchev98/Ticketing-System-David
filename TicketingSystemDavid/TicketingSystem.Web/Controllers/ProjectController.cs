@@ -45,24 +45,6 @@ namespace TicketingSystemDavid.Controllers
             return RedirectToAction("All");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> All([FromQuery] FindProjectsRequestViewModel query)
-        //{
-        //    if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
-        //    {
-        //        return RedirectToAction("Unauthorized", "Home");
-        //    }
-
-        //    //FindProjectsResultViewModelServices model = await _projectServices.AllAsync(conversions.ConvertQuery(query));
-
-        //    //FindProjectsResultViewModel convertedModel = conversions.ConvertProjectAllViewModel(model);
-
-        //    //query.Projects = convertedModel.Projects;
-        //    //query.TotalProjects = convertedModel.TotalProjectsCount;
-
-        //    //return View(query);
-        //}
-
         [HttpGet]
         public async Task<IActionResult> All(string searchTerm, string sortOrder, int page = 1)
         {

@@ -58,6 +58,7 @@ namespace TicketingSystem.Web.Infrastructure
             ProjectInformationView newModel = new ProjectInformationView
             {
                 Id = model.Id,
+                Name = model.Name,
                 Description = model.Description,
                 TicketCount = model.TicketCount,
                 SoftDleted = model.SoftDeleted

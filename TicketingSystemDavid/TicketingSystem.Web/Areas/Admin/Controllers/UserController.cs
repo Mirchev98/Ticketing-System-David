@@ -6,6 +6,8 @@ using TicketingSystemDavid.ViewModels.User;
 using Microsoft.AspNetCore.Authorization;
 using TicketingSystem.Data.Common;
 using TicketingSystem.Services.Interfaces;
+using System.Web.Helpers;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
 {
@@ -151,9 +153,57 @@ namespace TicketingSystemDavid.Areas.Admin.Controllers
         {
             ApplicationUser user = await userService.GetUserById(id);
 
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             await userService.Edit(user, Convert(model));
 
             return RedirectToAction("All", "User");
+        }
+
+        [HttpGet]
+        [Route("Admin/User/Register")] 
+        public IActionResult Register()
+        {
+            var model = new RegisterFormModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Route("Admin/User/Register")]
+        public async Task<IActionResult> Register(RegisterFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            ApplicationUser user = new ApplicationUser()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName
+            };
+
+            await userManager.SetEmailAsync(user, model.Email);
+            await userManager.SetUserNameAsync(user, model.Email);
+
+            IdentityResult result =
+                await userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (IdentityError error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

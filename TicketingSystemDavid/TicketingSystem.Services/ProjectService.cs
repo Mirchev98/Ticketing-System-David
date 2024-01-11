@@ -29,54 +29,9 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        //public async Task<FindProjectsResultViewModelServices> AllAsync(FindProjectsRequestViewModelServices queryModel)
-        //{
-        //    IQueryable<Project> projectQuery = dbContext
-        //                        .Projects
-        //                        .Where(b => b.SoftDeleted == false)
-        //                        .AsQueryable();
-
-        //    if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
-        //    {
-        //        string wildCard = $"%{queryModel.SearchString.ToLower()}%";
-
-        //        projectQuery = projectQuery
-        //            .Where(h => EF.Functions.Like(h.Name, wildCard) ||
-        //                        EF.Functions.Like(h.Description, wildCard));
-        //    }
-
-        //    projectQuery = queryModel.ProjectSorting switch
-        //    {
-        //        ProjectSortServices.NameAsc => projectQuery
-        //            .OrderBy(b => b.Name),
-        //        ProjectSortServices.NameDesc => projectQuery
-        //            .OrderByDescending(b => b.Name)
-        //    };
-
-        //    IEnumerable<ProjectAllViewModelServices> projects = await projectQuery
-        //        .Skip((queryModel.CurrentPage - 1) * queryModel.ProjectsPerPage)
-        //        .Take(queryModel.ProjectsPerPage)
-        //        .Select(b => new ProjectAllViewModelServices
-        //        {
-        //            Id = b.Id,
-        //            Name = b.Name,
-        //            Description = b.Description,
-        //            TicketCount = b.Tickets.Where(x => x.SoftDeleted == false).Count(),
-        //        })
-        //        .ToArrayAsync();
-
-        //    int totalProjectsCount = projectQuery.Count();
-
-        //    return new FindProjectsResultViewModelServices()
-        //    {
-        //        TotalProjectsCount = totalProjectsCount,
-        //        Projects = projects
-        //    };
-        //}
-
         public async Task<FindProjectsResult> GetProjectsAsync(string searchTerm, string sortOrder, int page, int pageSize)
         {
-            var query = dbContext.Projects.AsQueryable();
+            var query = dbContext.Projects.Include(x => x.Tickets).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
