@@ -7,7 +7,7 @@
         <p><strong>State:</strong> @Model.State</p>
         <p><strong>Created On:</strong> @Model.CreatedOn</p>
 
-        @if (Model.FileContent != null)
+        @if (Model.File != null)
         {
             <a class="btn btn-info" asp-controller="Message" asp-action="DownloadFile"
                asp-route-id="@Model.Id">Download File</a>

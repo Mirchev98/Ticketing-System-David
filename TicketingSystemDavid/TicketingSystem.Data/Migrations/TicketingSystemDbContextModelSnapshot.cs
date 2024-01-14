@@ -250,7 +250,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "AdminUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "51a5d402-c695-4ca8-a5df-3c85047dfee2",
+                            ConcurrencyStamp = "765bc541-3ad4-44a6-88b9-c0bf1f45f22f",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -261,9 +261,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin@admin.com",
-                            PasswordHash = "ABp+r4Z4zEov1GLEhnt1vMRxF9MZh/+3OZPjhqb1Ko52/Rr8jxy07smAQ/lfC55f/A==",
+                            PasswordHash = "AA1JHF+BDBB+h+TyNshrGVkELb+3mSq2H7QzuneKlThfWcfCrmDXxaeEifmcRW4S9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bf22a5d5-8956-471a-aff7-195751d1021a",
+                            SecurityStamp = "6aab667a-825b-4974-8ccd-032857bb3154",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -271,7 +271,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "SupportUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c18a278-7b60-44f4-89fe-412d529e5add",
+                            ConcurrencyStamp = "4186b453-781a-40fe-a901-ef2fd40f49c8",
                             Email = "support@support.com",
                             EmailConfirmed = false,
                             FirstName = "Support",
@@ -282,9 +282,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "support@support.com",
                             NormalizedUserName = "support@support.com",
-                            PasswordHash = "AAXuASdwC0cSTBHMsuQ38rHixR9auqIYQ8EfANxbZV9Xa6C02bYCLlkIFWqCo0AEKA==",
+                            PasswordHash = "AJKqpo1Pg/AhuUxXdO3v3XVpzb+Ar5DdQzt2XPw8WvLubOQXeDPjJiCDZOGpfh0t/g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2cf0e15f-a5c2-4778-840c-af8097e43ed4",
+                            SecurityStamp = "d3c06088-979c-4958-b6a1-a24a93f2c6d3",
                             TwoFactorEnabled = false,
                             UserName = "support@support.com"
                         },
@@ -292,7 +292,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "NormalUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "37174cc8-d25e-424a-9e4a-bb1b5c64ad2a",
+                            ConcurrencyStamp = "44ff7944-735d-4381-95d6-6c2112c12ad0",
                             Email = "user@user.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -303,9 +303,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "user@user.com",
                             NormalizedUserName = "user@user.com",
-                            PasswordHash = "AOIlTxI9xzDXLoh3ftMfr8sEa67qlTLvcROt3FdTx5lCSUDJ8NDfvfN4K9a90bdoQQ==",
+                            PasswordHash = "AFW2bGpyYiBKygw08w7OslPvkMOxQkIgiloHsNdDkkNg+jcxYdiY8/xn4Tc8R66cEA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5bc7acd3-6d50-4187-82a9-1dc30e773538",
+                            SecurityStamp = "0eda70b8-7760-4c65-936b-14f3abed15cb",
                             TwoFactorEnabled = false,
                             UserName = "user@user.com"
                         });
@@ -324,9 +324,6 @@ namespace TicketingSystem.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("ContentType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -338,11 +335,8 @@ namespace TicketingSystem.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<byte[]>("FileContent")
+                    b.Property<byte[]>("File")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("SoftDeleted")
                         .HasColumnType("bit");
@@ -444,9 +438,6 @@ namespace TicketingSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("ContentType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -463,11 +454,8 @@ namespace TicketingSystem.Data.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<byte[]>("FileContent")
+                    b.Property<byte[]>("File")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Heading")
                         .IsRequired()

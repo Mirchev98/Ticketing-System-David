@@ -56,8 +56,6 @@ namespace TicketingSystemDavid.Controllers
                 using var stream = new MemoryStream();
                 await uploadedFile.CopyToAsync(stream);
                 model.File = stream.ToArray();
-                model.FileContent = stream.ToArray();
-                model.FileName = uploadedFile.FileName;
             }
 
             model.TicketId = id;

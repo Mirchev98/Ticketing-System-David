@@ -30,14 +30,5 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         [AllowNull]
         public byte[]? File { get; set; }
-
-        [AllowNull]
-        public string? FileName { get; set; }
-
-        [AllowNull]
-        public byte[]? FileContent { get; set; }
-
-        [AllowNull]
-        public string? ContentType { get; set; }
     }
 }

@@ -32,11 +32,6 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public bool SoftDleted { get; set; }
 
-        [AllowNull]
-        public FileStream File { get; set; }
-
-        public string? FileName { get; set; }
-
-        public byte[]? FileContent { get; set; }
+        public byte[]? File { get; set; }
     }
 }

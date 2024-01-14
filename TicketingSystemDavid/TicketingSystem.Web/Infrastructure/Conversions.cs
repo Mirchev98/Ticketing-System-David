@@ -24,9 +24,7 @@ namespace TicketingSystem.Web.Infrastructure
                 TicketId = model.TicketId,
                 CreatorId = model.CreatorId,
                 CreatorName = model.CreatorName,
-                FileContent = model.FileContent,
-                ContentType = model.ContentType,
-                FileName = model.FileName,
+                File = model.File
             };
 
             return newModel;
@@ -43,9 +41,7 @@ namespace TicketingSystem.Web.Infrastructure
                 CreatedOn = model.CreatedOn,
                 CreatorId = model.CreatorId,
                 CreatorName = model.CreatorName,
-                FileContent = model.FileContent,
-                ContentType = model.ContentType,
-                FileName = model.FileName,
+                File = model.File
             };
 
             return newModel;
@@ -144,9 +140,7 @@ namespace TicketingSystem.Web.Infrastructure
                 Heading = model.Heading,
                 State = (Services.Models.Ticket.TicketState)Enum.Parse(typeof(Services.Models.Ticket.TicketState), model.State.ToString()),
                 Description = model.Description,
-                FileName = model.FileName,
-                FileContent = model.FileContent,
-                ContentType = model.ContentType
+                File = model.File
             };
 
             return newModel;
@@ -164,9 +158,7 @@ namespace TicketingSystem.Web.Infrastructure
                 Heading = model.Heading,
                 State = (ViewModels.Ticket.TicketState)Enum.Parse(typeof(ViewModels.Ticket.TicketState), model.State.ToString()),
                 Description = model.Description,
-                FileName = model.FileName,
-                FileContent = model.FileContent,
-                ContentType = model.ContentType
+                File = model.File
             };
 
             return newModel;
@@ -186,8 +178,7 @@ namespace TicketingSystem.Web.Infrastructure
                 State = model.State,
                 Description = model.Description,
                 SoftDeleted = model.SoftDleted,
-                FileContent = model.FileContent,
-                FileName = model.FileName,
+                File = model.File,
                 Messages = model.Messages.Select(m => new MessageDetails
                 {
                     Id = m.Id,
@@ -196,8 +187,7 @@ namespace TicketingSystem.Web.Infrastructure
                     CreatorName = m.CreatorName,
                     CreatorId = model.CreatorId,
                     TicketId = m.TicketId,
-                    FileContent = m.FileContent,
-                    FileName = m.FileName,
+                    File = m.File,
                     SoftDeleted = m.IsDeleted
                 }).ToList(),
             };
@@ -219,8 +209,7 @@ namespace TicketingSystem.Web.Infrastructure
                 State = model.State,
                 Description = model.Description,
                 SoftDleted = model.SoftDeleted,
-                FileContent = model.FileContent,
-                FileName = model.FileName,
+                File = model.File,
                 Messages = model.Messages.Select(m => new MessageDetailsView
                 {
                     Id = m.Id,
@@ -229,8 +218,7 @@ namespace TicketingSystem.Web.Infrastructure
                     CreatorName = m.CreatorName,
                     CreatorId = model.CreatorId,
                     TicketId = m.TicketId,
-                    FileContent = m.FileContent,
-                    FileName = m.FileName,
+                    File = m.File,
                     IsDeleted = m.SoftDeleted
                 }).ToList(),
             };

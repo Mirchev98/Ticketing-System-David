@@ -25,9 +25,7 @@ namespace TicketingSystem.Services
             message.CreatorEmail = model.CreatorName;
             message.CreatorId = model.CreatorId;
             message.TicketId = model.TicketId;
-            message.FileContent = model.FileContent;
-            message.ContentType = model.ContentType;
-            message.FileName = model.FileName;
+            message.File = model.File;
             message.CreatedOn = DateTime.Now;
             message.CreatorId = model.CreatorId;
 
@@ -50,9 +48,7 @@ namespace TicketingSystem.Services
 
             DownloadFileModel model = new DownloadFileModel();
 
-            model.FileContent = message.FileContent;
-            model.ContentType = message.ContentType;
-            model.FileName = message.FileName;
+            model.FileContent = message.File;
 
             return model;
         }

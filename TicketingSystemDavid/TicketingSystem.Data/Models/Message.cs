@@ -39,12 +39,6 @@ namespace TicketingSystem.Data.Models
         public bool SoftDeleted { get; set; }
 
         [AllowNull]
-        public string? FileName { get; set; }
-
-        [AllowNull]
-        public byte[]? FileContent { get; set; }
-
-        [AllowNull]
-        public string? ContentType { get; set; }
+        public byte[]? File { get; set; }
     }
 }

@@ -28,9 +28,7 @@ namespace TicketingSystem.Services
             ticket.Heading = model.Heading;
             ticket.Description = model.Description;
             ticket.Type = model.Type.ToString();
-            ticket.FileContent = model.FileContent;
-            ticket.ContentType = model.ContentType;
-            ticket.FileName = model.FileName;
+            ticket.File = model.File;
             ticket.CreatedOn = DateTime.Now;
 
             await dbContext.Tickets.AddAsync(ticket);
@@ -59,8 +57,7 @@ namespace TicketingSystem.Services
             model.Description = ticket.Description;
             model.Type = ticket.Type;
             model.SoftDeleted = ticket.SoftDeleted;
-            model.FileContent = ticket.FileContent;
-            model.FileName = ticket.FileName;
+            model.File = ticket.File;
             model.Messages = ticket.Messages.Select(x => new MessageDetails
             {
                 Id = x.Id,
@@ -70,8 +67,7 @@ namespace TicketingSystem.Services
                 Content = x.Content,
                 TicketId = x.TicketId,
                 SoftDeleted = x.SoftDeleted,
-                FileContent = x.FileContent,
-                FileName = x.FileName
+                File = x.File
             }).ToList();
 
             return model;
@@ -83,9 +79,7 @@ namespace TicketingSystem.Services
 
             DownloadFileModel model = new DownloadFileModel();
 
-            model.FileContent = ticket.FileContent;
-            model.ContentType = ticket.ContentType;
-            model.FileName = ticket.FileName;
+            model.FileContent = ticket.File;
 
             return model;
         }
