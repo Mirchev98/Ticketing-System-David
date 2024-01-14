@@ -53,6 +53,7 @@ namespace TicketingSystem.Services
             model.Id = ticket.Id;
             model.ProjectId = ticket.ProjectId;
             model.CreatorName = ticket.CreatorEmail;
+            model.CreatorId = ticket.CreatorId;
             model.State = ticket.State;
             model.Heading = ticket.Heading;
             model.Description = ticket.Description;

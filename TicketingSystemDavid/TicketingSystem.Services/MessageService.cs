@@ -23,6 +23,7 @@ namespace TicketingSystem.Services
             message.State = model.State.ToString();
             message.Content = model.Content;
             message.CreatorEmail = model.CreatorName;
+            message.CreatorId = model.CreatorId;
             message.TicketId = model.TicketId;
             message.FileContent = model.FileContent;
             message.ContentType = model.ContentType;
