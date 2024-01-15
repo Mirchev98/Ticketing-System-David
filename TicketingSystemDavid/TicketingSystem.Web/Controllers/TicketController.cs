@@ -92,8 +92,6 @@ namespace TicketingSystemDavid.Controllers
 
             TicketCreate model = new TicketCreate();
 
-            model.CreatorName = User.Identity.Name;
-
             await _ticketServices.FillModel(model, id);
 
             if (model == null)
@@ -108,7 +106,6 @@ namespace TicketingSystemDavid.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, TicketCreateView model)
         {
-            model.CreatorName = User.Identity.Name;
 
             if (!ModelState.IsValid)
             {

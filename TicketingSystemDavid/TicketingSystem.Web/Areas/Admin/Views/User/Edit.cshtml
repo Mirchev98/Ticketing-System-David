@@ -5,10 +5,13 @@
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
+<div class="text-right mb-3">
+    <a asp-controller="User" asp-action="All" class="btn btn-success">All Users</a>
+</div>
+
 <div class="row">
     <div class="col-md-4 offset-md-4">
         <form id="registerForm" method="post">
-            <h2>Enter new credentials for account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating mb-2">
