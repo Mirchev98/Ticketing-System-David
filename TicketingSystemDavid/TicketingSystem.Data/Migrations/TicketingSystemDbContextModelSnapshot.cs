@@ -17,10 +17,10 @@ namespace TicketingSystem.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.21")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -55,7 +55,7 @@ namespace TicketingSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -80,7 +80,7 @@ namespace TicketingSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -250,7 +250,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "AdminUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "765bc541-3ad4-44a6-88b9-c0bf1f45f22f",
+                            ConcurrencyStamp = "98a3efbe-316f-4e5e-931c-f46f35b9a942",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -261,9 +261,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin@admin.com",
-                            PasswordHash = "AA1JHF+BDBB+h+TyNshrGVkELb+3mSq2H7QzuneKlThfWcfCrmDXxaeEifmcRW4S9g==",
+                            PasswordHash = "AFQcuO6ndpMhGJll4sl4x5Be6kj0PlmarPPSQxJbrNfchKgMv8WatHi06tIvPNfSKw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6aab667a-825b-4974-8ccd-032857bb3154",
+                            SecurityStamp = "47839076-8231-4e73-9dc3-d677d51d2ae2",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -271,7 +271,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "SupportUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4186b453-781a-40fe-a901-ef2fd40f49c8",
+                            ConcurrencyStamp = "0ef25d05-d443-467e-9d71-9e053f16b668",
                             Email = "support@support.com",
                             EmailConfirmed = false,
                             FirstName = "Support",
@@ -282,9 +282,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "support@support.com",
                             NormalizedUserName = "support@support.com",
-                            PasswordHash = "AJKqpo1Pg/AhuUxXdO3v3XVpzb+Ar5DdQzt2XPw8WvLubOQXeDPjJiCDZOGpfh0t/g==",
+                            PasswordHash = "AIoGvJW84ZeVX0jPFh8dD2mmAxbvQl1JkUt8mtR4rLZswu21xF+Q54rCpc3j++9Esg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d3c06088-979c-4958-b6a1-a24a93f2c6d3",
+                            SecurityStamp = "fea91833-2e49-4157-9af8-303bbccb4897",
                             TwoFactorEnabled = false,
                             UserName = "support@support.com"
                         },
@@ -292,7 +292,7 @@ namespace TicketingSystem.Data.Migrations
                         {
                             Id = "NormalUser",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "44ff7944-735d-4381-95d6-6c2112c12ad0",
+                            ConcurrencyStamp = "d0c0c35a-fde5-4725-863c-923947b39643",
                             Email = "user@user.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -303,9 +303,9 @@ namespace TicketingSystem.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "user@user.com",
                             NormalizedUserName = "user@user.com",
-                            PasswordHash = "AFW2bGpyYiBKygw08w7OslPvkMOxQkIgiloHsNdDkkNg+jcxYdiY8/xn4Tc8R66cEA==",
+                            PasswordHash = "AItss896CROIuv7sDAM2AIrNyejcRznbK7DdYKVUH/TnQii5KOxm0MFs3qraEWyW2w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0eda70b8-7760-4c65-936b-14f3abed15cb",
+                            SecurityStamp = "f61f4e68-f114-41c5-817c-e47e136fd187",
                             TwoFactorEnabled = false,
                             UserName = "user@user.com"
                         });
@@ -317,7 +317,7 @@ namespace TicketingSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -387,7 +387,7 @@ namespace TicketingSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -436,7 +436,7 @@ namespace TicketingSystem.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");

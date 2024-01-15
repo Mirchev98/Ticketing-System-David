@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TicketingSystem.Data.Migrations
 {
+    /// <inheritdoc />
     public partial class Initial : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -246,9 +250,9 @@ namespace TicketingSystem.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "AppliedRole", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsAdmin", "IsAuthorized", "IsSupport", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "AdminUser", 0, null, "765bc541-3ad4-44a6-88b9-c0bf1f45f22f", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "AA1JHF+BDBB+h+TyNshrGVkELb+3mSq2H7QzuneKlThfWcfCrmDXxaeEifmcRW4S9g==", null, false, "6aab667a-825b-4974-8ccd-032857bb3154", false, "admin@admin.com" },
-                    { "NormalUser", 0, null, "44ff7944-735d-4381-95d6-6c2112c12ad0", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "AFW2bGpyYiBKygw08w7OslPvkMOxQkIgiloHsNdDkkNg+jcxYdiY8/xn4Tc8R66cEA==", null, false, "0eda70b8-7760-4c65-936b-14f3abed15cb", false, "user@user.com" },
-                    { "SupportUser", 0, null, "4186b453-781a-40fe-a901-ef2fd40f49c8", "support@support.com", false, "Support", false, true, true, "Supportov", false, null, "support@support.com", "support@support.com", "AJKqpo1Pg/AhuUxXdO3v3XVpzb+Ar5DdQzt2XPw8WvLubOQXeDPjJiCDZOGpfh0t/g==", null, false, "d3c06088-979c-4958-b6a1-a24a93f2c6d3", false, "support@support.com" }
+                    { "AdminUser", 0, null, "98a3efbe-316f-4e5e-931c-f46f35b9a942", "admin@admin.com", false, "Admin", true, true, false, "Adminov", false, null, "admin@admin.com", "admin@admin.com", "AFQcuO6ndpMhGJll4sl4x5Be6kj0PlmarPPSQxJbrNfchKgMv8WatHi06tIvPNfSKw==", null, false, "47839076-8231-4e73-9dc3-d677d51d2ae2", false, "admin@admin.com" },
+                    { "NormalUser", 0, null, "d0c0c35a-fde5-4725-863c-923947b39643", "user@user.com", false, "User", false, true, false, "Userov", false, null, "user@user.com", "user@user.com", "AItss896CROIuv7sDAM2AIrNyejcRznbK7DdYKVUH/TnQii5KOxm0MFs3qraEWyW2w==", null, false, "f61f4e68-f114-41c5-817c-e47e136fd187", false, "user@user.com" },
+                    { "SupportUser", 0, null, "0ef25d05-d443-467e-9d71-9e053f16b668", "support@support.com", false, "Support", false, true, true, "Supportov", false, null, "support@support.com", "support@support.com", "AIoGvJW84ZeVX0jPFh8dD2mmAxbvQl1JkUt8mtR4rLZswu21xF+Q54rCpc3j++9Esg==", null, false, "fea91833-2e49-4157-9af8-303bbccb4897", false, "support@support.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -264,22 +268,20 @@ namespace TicketingSystem.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Tickets",
                 columns: new[] { "Id", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "File", "Heading", "ProjectId", "SoftDeleted", "State", "Type" },
-                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "Very bad bug found", null, "Bug Found", 1, false, "New", "Bug Report" });
-
-            migrationBuilder.InsertData(
-                table: "Tickets",
-                columns: new[] { "Id", "CreatedOn", "CreatorEmail", "CreatorId", "Description", "File", "Heading", "ProjectId", "SoftDeleted", "State", "Type" },
-                values: new object[] { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "A very nice feature to add", null, "Feature Idea", 1, false, "Work In Progress", "Feature Request" });
-
-            migrationBuilder.InsertData(
-                table: "Messages",
-                columns: new[] { "Id", "Content", "CreatedOn", "CreatorEmail", "CreatorId", "File", "SoftDeleted", "State", "TicketId" },
-                values: new object[] { 1, "Testing message", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "support@support.com", "SupportUser", null, false, "Posted", 1 });
+                values: new object[,]
+                {
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "Very bad bug found", null, "Bug Found", 1, false, "New", "Bug Report" },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", "A very nice feature to add", null, "Feature Idea", 1, false, "Work In Progress", "Feature Request" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "Id", "Content", "CreatedOn", "CreatorEmail", "CreatorId", "File", "SoftDeleted", "State", "TicketId" },
-                values: new object[] { 2, "Second Message", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", null, false, "Posted", 1 });
+                values: new object[,]
+                {
+                    { 1, "Testing message", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "support@support.com", "SupportUser", null, false, "Posted", 1 },
+                    { 2, "Second Message", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "user@user.com", "NormalUser", null, false, "Posted", 1 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -341,6 +343,7 @@ namespace TicketingSystem.Data.Migrations
                 column: "ProjectId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
