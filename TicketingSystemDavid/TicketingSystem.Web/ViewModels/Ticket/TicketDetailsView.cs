@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using TicketingSystemDavid.ViewModels.Message;
+﻿using TicketingSystemDavid.ViewModels.Message;
 
 namespace TicketingSystemDavid.ViewModels.Ticket
 {

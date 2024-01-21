@@ -1,8 +1,6 @@
 ﻿using TicketingSystem.Services.Models.Message;
 using TicketingSystem.Services.Models.Project;
 using TicketingSystem.Services.Models.Ticket;
-using TicketingSystem.Web.ViewModels.Message;
-using TicketingSystem.Web.ViewModels.Ticket;
 using TicketingSystemDavid.ViewModels.Message;
 using TicketingSystemDavid.ViewModels.Project;
 using TicketingSystemDavid.ViewModels.Ticket;

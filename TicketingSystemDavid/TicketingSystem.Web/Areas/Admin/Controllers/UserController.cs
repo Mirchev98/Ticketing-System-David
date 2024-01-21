@@ -6,8 +6,6 @@ using TicketingSystemDavid.ViewModels.User;
 using Microsoft.AspNetCore.Authorization;
 using TicketingSystem.Data.Common;
 using TicketingSystem.Services.Interfaces;
-using System.Web.Helpers;
-using Microsoft.Extensions.Caching.Memory;
 using TicketingSystem.Web.Areas.Admin.Infrastructure;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
