@@ -3,7 +3,7 @@ using TicketingSystem.Data.Common;
 
 namespace TicketingSystemDavid.ViewModels.User
 {
-    public class RegisterFormModel
+    public class RegisterUserViewModel
     {
         [Required]
         [EmailAddress]

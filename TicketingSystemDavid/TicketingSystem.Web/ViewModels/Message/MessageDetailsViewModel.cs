@@ -2,7 +2,7 @@
 
 namespace TicketingSystemDavid.ViewModels.Message
 {
-    public class MessageDetailsView
+    public class MessageDetailsViewModel
     {
         public int Id { get; set; }
 

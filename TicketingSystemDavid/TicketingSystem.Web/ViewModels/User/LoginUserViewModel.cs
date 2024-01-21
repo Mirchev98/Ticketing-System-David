@@ -2,7 +2,7 @@
 
 namespace TicketingSystemDavid.ViewModels.User
 {
-    public class LoginFormModel
+    public class LoginUserViewModel
     {
         [Required]
         [EmailAddress]

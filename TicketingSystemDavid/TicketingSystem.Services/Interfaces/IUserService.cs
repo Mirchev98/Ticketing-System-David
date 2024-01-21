@@ -21,7 +21,7 @@ namespace TicketingSystem.Services.Interfaces
 
         Task RemoveAutorization(ApplicationUser user);
 
-        Task Edit(ApplicationUser user, UserInformationServices model);
+        Task Edit(ApplicationUser user, UserInformation model);
 
         bool CheckIfUserIsAuthorized(string id);
 

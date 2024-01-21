@@ -28,7 +28,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            MessageCreateView model = new MessageCreateView();
+            MessageCreateViewModel model = new MessageCreateViewModel();
 
             model.TicketId = id;
             
@@ -36,7 +36,7 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(MessageCreateView model, int id)
+        public async Task<IActionResult> Create(MessageCreateViewModel model, int id)
         {
             if (!_userService.CheckIfUserIsAuthorized(User.FindFirstValue(ClaimTypes.NameIdentifier)))
             {
@@ -76,7 +76,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Unauthorized", "Home");
             }
 
-            MessageCreateView model = new MessageCreateView();
+            MessageCreateViewModel model = new MessageCreateViewModel();
 
 
             MessageCreate newModel = await _messageServices.FillModel(Conversions.ConvertMessage(model), id);
@@ -90,7 +90,7 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, MessageCreateView model)
+        public async Task<IActionResult> Edit(int id, MessageCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {

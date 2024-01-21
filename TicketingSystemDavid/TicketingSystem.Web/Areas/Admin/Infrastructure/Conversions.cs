@@ -5,9 +5,9 @@ namespace TicketingSystem.Web.Areas.Admin.Infrastructure
 {
     public static class Conversions
     {
-        public static UserInformationServices Convert(RegisterFormModel model)
+        public static UserInformation Convert(RegisterUserViewModel model)
         {
-            UserInformationServices newModel = new UserInformationServices
+            UserInformation newModel = new UserInformation
             {
                 Email = model.Email,
                 Password = model.Password,

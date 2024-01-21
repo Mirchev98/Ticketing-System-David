@@ -30,7 +30,7 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterFormModel model)
+        public async Task<IActionResult> Register(RegisterUserViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace TicketingSystemDavid.Controllers
         {
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            LoginFormModel model = new LoginFormModel()
+            LoginUserViewModel model = new LoginUserViewModel()
             {
                 ReturnUrl = returnUrl
             };
@@ -79,7 +79,7 @@ namespace TicketingSystemDavid.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginFormModel model)
+        public async Task<IActionResult> Login(LoginUserViewModel model)
         {
             if (!ModelState.IsValid)
             {

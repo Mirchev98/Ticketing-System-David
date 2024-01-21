@@ -2,11 +2,11 @@
 
 namespace TicketingSystemDavid.ViewModels.Ticket
 {
-    public class TicketDetailsView
+    public class TicketDetailsViewModel
     {
-        public TicketDetailsView()
+        public TicketDetailsViewModel()
         {
-            Messages = new List<MessageDetailsView>();
+            Messages = new List<MessageDetailsViewModel>();
         }
 
         public int Id { get; set; }
@@ -27,7 +27,7 @@ namespace TicketingSystemDavid.ViewModels.Ticket
 
         public string Description { get; set; } = null!;
 
-        public ICollection<MessageDetailsView> Messages { get; set; }
+        public ICollection<MessageDetailsViewModel> Messages { get; set; }
 
         public bool SoftDleted { get; set; }
 

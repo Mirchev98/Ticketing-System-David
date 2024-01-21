@@ -25,13 +25,13 @@ namespace TicketingSystemDavid.Controllers
         [Authorize(Roles = DataConstants.AdminRoleName)]
         public IActionResult Create()
         {
-            ProjectCreateView model = new ProjectCreateView();
+            ProjectCreateViewModel model = new ProjectCreateViewModel();
             
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProjectCreateView model)
+        public async Task<IActionResult> Create(ProjectCreateViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace TicketingSystemDavid.Controllers
         {
             var projects = await _projectServices.GetProjectsAsync(searchTerm, sortOrder, page, DataConstants.ProjectsPerPage);
             
-            var model = new FindProjectsResultView
+            var model = new FindProjectsResultViewModel
             {
                 TotalProjectsCount = projects.TotalProjectsCount,
                 Projects = projects.Projects.Select(p =>

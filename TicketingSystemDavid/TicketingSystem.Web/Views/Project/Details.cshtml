@@ -1,4 +1,4 @@
-﻿@model ProjectDetailsView
+﻿@model ProjectDetailsViewModel
 
 @{
     ViewBag.Title = "Project Details";
@@ -23,7 +23,7 @@
 
         @if (Model.Tickets.Any(x => x.SoftDleted == false) && Model.Tickets.Any(x => x.CreatorName == User.Identity.Name) || User.IsInRole("Admin") || User.IsInRole("Support"))
         {
-            @foreach (TicketDetailsView ticket in Model.Tickets)
+            @foreach (TicketDetailsViewModel ticket in Model.Tickets)
             {
                 @if (ticket.CreatorName == User.Identity.Name || User.IsInRole("Admin") || User.IsInRole("Support"))
                 {

@@ -32,7 +32,7 @@ namespace TicketingSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Edit(ApplicationUser user, UserInformationServices model)
+        public async Task Edit(ApplicationUser user, UserInformation model)
         {
             user.Email = model.Email;
             user.NormalizedEmail = model.Email;

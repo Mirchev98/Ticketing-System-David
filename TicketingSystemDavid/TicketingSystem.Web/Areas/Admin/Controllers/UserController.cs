@@ -130,7 +130,7 @@ namespace TicketingSystemDavid.Areas.Admin.Controllers
         [Route("Admin/User/Edit/{id}")]
         public async Task<IActionResult> Edit(string id)
         {
-            RegisterFormModel model = new RegisterFormModel();
+            RegisterUserViewModel model = new RegisterUserViewModel();
 
             ApplicationUser user = await userService.GetUserById(id);
 
@@ -148,7 +148,7 @@ namespace TicketingSystemDavid.Areas.Admin.Controllers
 
         [HttpPost]
         [Route("Admin/User/Edit/{id}")]
-        public async Task<IActionResult> Edit(string id, RegisterFormModel model)
+        public async Task<IActionResult> Edit(string id, RegisterUserViewModel model)
         {
             ApplicationUser user = await userService.GetUserById(id);
 
@@ -166,14 +166,14 @@ namespace TicketingSystemDavid.Areas.Admin.Controllers
         [Route("Admin/User/Register")] 
         public IActionResult Register()
         {
-            var model = new RegisterFormModel();
+            var model = new RegisterUserViewModel();
 
             return View(model);
         }
 
         [HttpPost]
         [Route("Admin/User/Register")]
-        public async Task<IActionResult> Register(RegisterFormModel model)
+        public async Task<IActionResult> Register(RegisterUserViewModel model)
         {
             if (!ModelState.IsValid)
             {

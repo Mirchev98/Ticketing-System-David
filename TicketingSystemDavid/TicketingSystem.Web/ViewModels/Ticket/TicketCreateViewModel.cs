@@ -5,7 +5,7 @@ using TicketingSystem.Web.ViewModels.Ticket;
 
 namespace TicketingSystemDavid.ViewModels.Ticket
 {
-    public class TicketCreateView
+    public class TicketCreateViewModel
     {
         public int Id { get; set; }
 

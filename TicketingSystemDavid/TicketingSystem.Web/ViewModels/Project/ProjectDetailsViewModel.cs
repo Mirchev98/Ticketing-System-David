@@ -2,11 +2,11 @@
 
 namespace TicketingSystemDavid.ViewModels.Project
 {
-    public class ProjectDetailsView
+    public class ProjectDetailsViewModel
     {
-        public ProjectDetailsView()
+        public ProjectDetailsViewModel()
         {
-            Tickets = new List<TicketDetailsView>();
+            Tickets = new List<TicketDetailsViewModel>();
         }
 
         public int Id { get; set; }
@@ -15,7 +15,7 @@ namespace TicketingSystemDavid.ViewModels.Project
 
         public string Description { get; set; } = null!;
 
-        public ICollection<TicketDetailsView> Tickets { get; set; }
+        public ICollection<TicketDetailsViewModel> Tickets { get; set; }
 
         public bool SoftDleted { get; set; }
     }

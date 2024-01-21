@@ -3,7 +3,7 @@ using TicketingSystem.Data.Common;
 
 namespace TicketingSystem.Services.Models.User
 {
-    public class UserInformationServices
+    public class UserInformation
     {
         [Required]
         [EmailAddress]
