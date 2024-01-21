@@ -8,6 +8,7 @@ using TicketingSystem.Data.Common;
 using TicketingSystem.Services.Interfaces;
 using System.Web.Helpers;
 using Microsoft.Extensions.Caching.Memory;
+using TicketingSystem.Web.Areas.Admin.Infrastructure;
 
 namespace TicketingSystemDavid.Areas.Admin.Controllers
 {
@@ -158,7 +159,7 @@ namespace TicketingSystemDavid.Areas.Admin.Controllers
                 return View(model);
             }
 
-            await userService.Edit(user, Convert(model));
+            await userService.Edit(user, Conversions.Convert(model));
 
             return RedirectToAction("All", "User");
         }
