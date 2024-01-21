@@ -13,13 +13,11 @@ namespace TicketingSystemDavid.Controllers
     {
         private readonly IMessageService _messageServices;
         private readonly IUserService _userService;
-        private Conversions conversions;
 
         public MessageController(IMessageService messageServices, IUserService userService)
         {
             _messageServices = messageServices;
             _userService = userService;
-            conversions = new Conversions();
         }
 
         [HttpGet]
@@ -65,7 +63,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _messageServices.Create(conversions.ConvertMessage(model));
+            await _messageServices.Create(Conversions.ConvertMessage(model));
 
             return RedirectToAction("Details", "Ticket", new { id });
         }
@@ -81,14 +79,14 @@ namespace TicketingSystemDavid.Controllers
             MessageCreateView model = new MessageCreateView();
 
 
-            MessageCreate newModel = await _messageServices.FillModel(conversions.ConvertMessage(model), id);
+            MessageCreate newModel = await _messageServices.FillModel(Conversions.ConvertMessage(model), id);
 
             if (newModel == null)
             {
                 return RedirectToAction("Details", "Ticket", new { id });
             }
 
-            return View(conversions.ConvertMessageViewModel(newModel));
+            return View(Conversions.ConvertMessageViewModel(newModel));
         }
 
         [HttpPost]
@@ -101,7 +99,7 @@ namespace TicketingSystemDavid.Controllers
 
             int ticketId = await _messageServices.FindTicket(model.Id);
 
-            await _messageServices.Edit(conversions.ConvertMessage(model), id);
+            await _messageServices.Edit(Conversions.ConvertMessage(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id = ticketId });
         }

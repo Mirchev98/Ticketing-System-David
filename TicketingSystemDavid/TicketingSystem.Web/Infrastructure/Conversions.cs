@@ -9,11 +9,11 @@ using TicketingSystemDavid.ViewModels.Ticket;
 
 namespace TicketingSystem.Web.Infrastructure
 {
-    public class Conversions
+    public static class Conversions
     {
         //Message Convert Methods
 
-        public MessageCreate ConvertMessage(MessageCreateView model)
+        public static MessageCreate ConvertMessage(MessageCreateView model)
         {
             MessageCreate newModel = new MessageCreate
             {
@@ -30,7 +30,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public MessageCreateView ConvertMessageViewModel(MessageCreate model)
+        public static MessageCreateView ConvertMessageViewModel(MessageCreate model)
         {
             MessageCreateView newModel = new MessageCreateView
             {
@@ -49,7 +49,7 @@ namespace TicketingSystem.Web.Infrastructure
 
         //Project Convert Methods
 
-        public ProjectInformationView ConvertProjectAllViewModel(ProjectViewModelServices model)
+        public static ProjectInformationView ConvertProjectAllViewModel(ProjectViewModelServices model)
         {
             ProjectInformationView newModel = new ProjectInformationView
             {
@@ -63,7 +63,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public ProjectCreate ConvertProject(ProjectCreateView model)
+        public static ProjectCreate ConvertProject(ProjectCreateView model)
         {
             ProjectCreate newModel = new ProjectCreate
             {
@@ -74,7 +74,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public FindProjectsResultView ConvertProjectAllViewModel(FindProjectsResult model)
+        public static FindProjectsResultView ConvertProjectAllViewModel(FindProjectsResult model)
         {
             FindProjectsResultView newModel = new FindProjectsResultView
             {
@@ -92,7 +92,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public ProjectDetailsView ConvertProjectDetailsViewModel(ProjectDetails model)
+        public static ProjectDetailsView ConvertProjectDetailsViewModel(ProjectDetails model)
         {
             ProjectDetailsView newModel = new ProjectDetailsView
             {
@@ -128,7 +128,7 @@ namespace TicketingSystem.Web.Infrastructure
 
         //Ticket Convert Methods
 
-        public TicketCreate ConvertTicket(TicketCreateView model)
+        public static TicketCreate ConvertTicket(TicketCreateView model)
         {
             TicketCreate newModel = new TicketCreate
             {
@@ -146,7 +146,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketCreateView ConvertTicketViewModel(TicketCreate model)
+        public static TicketCreateView ConvertTicketViewModel(TicketCreate model)
         {
             TicketCreateView newModel = new TicketCreateView
             {
@@ -164,7 +164,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketDetails ConvertTicketDetails(TicketDetailsView model)
+        public static TicketDetails ConvertTicketDetails(TicketDetailsView model)
         {
             TicketDetails newModel = new TicketDetails
             {
@@ -195,7 +195,7 @@ namespace TicketingSystem.Web.Infrastructure
             return newModel;
         }
 
-        public TicketDetailsView ConvertTicketDetailsViewModel(TicketDetails model)
+        public static TicketDetailsView ConvertTicketDetailsViewModel(TicketDetails model)
         {
             TicketDetailsView newModel = new TicketDetailsView
             {

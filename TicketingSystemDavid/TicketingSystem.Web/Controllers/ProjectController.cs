@@ -14,13 +14,11 @@ namespace TicketingSystemDavid.Controllers
     {
         private readonly IProjectService _projectServices;
         private readonly IUserService _userService;
-        private Conversions conversions;
 
         public ProjectController(IProjectService projectServices, IUserService userService)
         {
             _projectServices = projectServices;
             _userService = userService;
-            conversions = new Conversions();
         }
 
         [HttpGet]
@@ -40,7 +38,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _projectServices.Create(conversions.ConvertProject(model));
+            await _projectServices.Create(Conversions.ConvertProject(model));
 
             return RedirectToAction("All");
         }
@@ -53,8 +51,8 @@ namespace TicketingSystemDavid.Controllers
             var model = new FindProjectsResultView
             {
                 TotalProjectsCount = projects.TotalProjectsCount,
-                Projects = projects.Projects.Select(p => 
-                conversions.ConvertProjectAllViewModel(p))
+                Projects = projects.Projects.Select(p =>
+                Conversions.ConvertProjectAllViewModel(p))
                 .ToList(),
                 SearchTerm = searchTerm,
                 SortOrder = sortOrder,
@@ -77,7 +75,7 @@ namespace TicketingSystemDavid.Controllers
             await _projectServices.FillModel(model, id);
 
 
-            return View(conversions.ConvertProjectDetailsViewModel(model));
+            return View(Conversions.ConvertProjectDetailsViewModel(model));
         }
 
         [Authorize(Roles = DataConstants.AdminRoleName)]

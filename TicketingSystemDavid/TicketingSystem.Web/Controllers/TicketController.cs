@@ -13,13 +13,11 @@ namespace TicketingSystemDavid.Controllers
     {
         private readonly ITicketService _ticketServices;
         private readonly IUserService _userService;
-        private Conversions conversions;
 
         public TicketController(ITicketService ticketServices, IUserService userServices)
         {
             this._ticketServices = ticketServices;
             this._userService = userServices;
-            conversions = new Conversions();
         }
 
         [HttpGet]
@@ -62,7 +60,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _ticketServices.Create(conversions.ConvertTicket(model));
+            await _ticketServices.Create(Conversions.ConvertTicket(model));
 
             return RedirectToAction("Details", "Project", new { id });
         }
@@ -79,7 +77,7 @@ namespace TicketingSystemDavid.Controllers
 
             await _ticketServices.Details(model, id);
 
-            return View(conversions.ConvertTicketDetailsViewModel(model));
+            return View(Conversions.ConvertTicketDetailsViewModel(model));
         }
 
         [HttpGet]
@@ -99,7 +97,7 @@ namespace TicketingSystemDavid.Controllers
                 return RedirectToAction("Details", "Ticket", new { id });
             }
 
-            return View(conversions.ConvertTicketViewModel(model));
+            return View(Conversions.ConvertTicketViewModel(model));
         }
 
 
@@ -112,7 +110,7 @@ namespace TicketingSystemDavid.Controllers
                 return View(model);
             }
 
-            await _ticketServices.Edit(conversions.ConvertTicket(model), id);
+            await _ticketServices.Edit(Conversions.ConvertTicket(model), id);
 
             return RedirectToAction("Details", "Ticket", new { id });
         }
